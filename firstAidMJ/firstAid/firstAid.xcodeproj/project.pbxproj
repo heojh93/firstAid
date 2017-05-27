@@ -16,6 +16,7 @@
 		AD2010D41EC4620E00682212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D31EC4620E00682212 /* Assets.xcassets */; };
 		AD2010D71EC4620E00682212 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */; };
 		AD2501191ED814640080FF01 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2501181ED814640080FF01 /* QuestionViewController.swift */; };
+		AD551FF11ED9E75A003453BE /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD551FF01ED9E75A003453BE /* ImageScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		AD2010D61EC4620E00682212 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2010D81EC4620E00682212 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD2501181ED814640080FF01 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		AD551FF01ED9E75A003453BE /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		B18E3AF3E9B37ABDC2A304C2 /* Pods_firstAid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_firstAid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 				AD2010CE1EC4620E00682212 /* ViewController.swift */,
 				7A6914FF1ED29F7000FAF1A5 /* Data.swift */,
 				AD2010D01EC4620E00682212 /* Main.storyboard */,
+				AD551FF01ED9E75A003453BE /* ImageScrollView.swift */,
 				AD2010D31EC4620E00682212 /* Assets.xcassets */,
 				AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */,
 				AD2010D81EC4620E00682212 /* Info.plist */,
@@ -223,6 +226,7 @@
 				7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */,
 				AD2501191ED814640080FF01 /* QuestionViewController.swift in Sources */,
 				7A6914FE1ED29D5600FAF1A5 /* SearchTableView.swift in Sources */,
+				AD551FF11ED9E75A003453BE /* ImageScrollView.swift in Sources */,
 				AD2010CF1EC4620E00682212 /* ViewController.swift in Sources */,
 				AD2010CD1EC4620E00682212 /* AppDelegate.swift in Sources */,
 			);

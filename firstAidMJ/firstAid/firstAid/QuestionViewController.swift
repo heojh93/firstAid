@@ -31,6 +31,16 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     //self.dismiss(animated: true, completion: nil)
   }
   func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+    //var chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
+    var chosenImages = images
+    let imagePickerController = ImagePickerController()
+    //var stack = imagePickerController.stack
+    
+    viewsection.contentMode = .scaleAspectFit
+    viewsection.image = chosenImages[0]
+    //viewsection.image =
+      
+    self.dismiss(animated: true, completion: nil)
     //self.dismiss(animated: true, completion: nil)
   }
   func cancelButtonDidPress(_ imagePicker: ImagePickerController){
@@ -69,13 +79,6 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     //picker.sourceType = .photoLibrary
     //picker.delegate = self
     //self.present(picker, animated: true, completion: nil)
-  }
-  
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    var chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
-    viewsection.contentMode = .scaleAspectFit
-    viewsection.image = chosenImage
-    self.dismiss(animated: true, completion: nil)
   }
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
