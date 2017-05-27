@@ -37,7 +37,8 @@ class SearchTableView : UITableView {
     }
     
     fileprivate var filteredItems = [AnyObject]()
-    fileprivate let searchController = UISearchController(searchResultsController: .none)
+    
+    let searchController = UISearchController(searchResultsController: .none)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -49,11 +50,11 @@ class SearchTableView : UITableView {
         DispatchQueue.main.async { () -> Void in
             self.searchController.dimsBackgroundDuringPresentation = false
             self.searchController.searchResultsUpdater = self
-            self.searchController.searchBar.sizeToFit()
-            self.searchController
+            //definesPresentationContext = true
+            //self.searchController.searchBar.sizeToFit()
             self.tableHeaderView = self.searchController.searchBar
-            let contentOffset = CGPoint(x: 0.0, y: self.contentOffset.y + self.searchController.searchBar.frame.height)
-            self.setContentOffset(contentOffset, animated: false)
+            //let contentOffset = CGPoint(x: 0.0, y: self.contentOffset.y + self.searchController.searchBar.frame.height)
+            //self.setContentOffset(contentOffset, animated: false)
         }
     }
     

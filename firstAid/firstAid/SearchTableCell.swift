@@ -1,9 +1,9 @@
 //
-//  SearchTableCell.swift
+//  SearchTableController.swift
 //  firstAid
 //
 //  Created by heoju on 2017. 5. 27..
-//  Copyright © 2017년 KimMJ. All rights reserved.
+//  Copyright © 2017년 HJ. All rights reserved.
 //
 
 import UIKit

@@ -52,7 +52,7 @@ extension SearchViewController: UITableViewDataSource {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! SearchCell
         let Book = searchTableView.itemList[indexPath.row] as! BookData
-        
+       
         cell.bookName.text = Book.bookName
         cell.bookWriter.text = Book.bookWriter
         cell.layoutMargins = UIEdgeInsets.zero
