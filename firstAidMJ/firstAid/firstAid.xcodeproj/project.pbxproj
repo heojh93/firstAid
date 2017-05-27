@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62398FC2F48BE7A23FCFDBB0 /* Pods_firstAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E3AF3E9B37ABDC2A304C2 /* Pods_firstAid.framework */; };
 		7A6914FE1ED29D5600FAF1A5 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6914FD1ED29D5600FAF1A5 /* SearchTableView.swift */; };
 		7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6914FF1ED29F7000FAF1A5 /* Data.swift */; };
 		AD2010CD1EC4620E00682212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2010CC1EC4620E00682212 /* AppDelegate.swift */; };
@@ -14,9 +15,12 @@
 		AD2010D21EC4620E00682212 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D01EC4620E00682212 /* Main.storyboard */; };
 		AD2010D41EC4620E00682212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D31EC4620E00682212 /* Assets.xcassets */; };
 		AD2010D71EC4620E00682212 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */; };
+		AD2501191ED814640080FF01 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2501181ED814640080FF01 /* QuestionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		077EE2CE1BAD226E0CF06F89 /* Pods-firstAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.debug.xcconfig"; sourceTree = "<group>"; };
+		728F4C7D50C6CA38F6EB6651 /* Pods-firstAid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.release.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.release.xcconfig"; sourceTree = "<group>"; };
 		7A6914FD1ED29D5600FAF1A5 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
 		7A6914FF1ED29F7000FAF1A5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		AD2010C91EC4620E00682212 /* firstAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = firstAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +30,8 @@
 		AD2010D31EC4620E00682212 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD2010D61EC4620E00682212 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2010D81EC4620E00682212 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD2501181ED814640080FF01 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		B18E3AF3E9B37ABDC2A304C2 /* Pods_firstAid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_firstAid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +39,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62398FC2F48BE7A23FCFDBB0 /* Pods_firstAid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F3BDDA1605862E7FCC2CA1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B18E3AF3E9B37ABDC2A304C2 /* Pods_firstAid.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AD2010C01EC4620E00682212 = {
 			isa = PBXGroup;
 			children = (
 				AD2010CB1EC4620E00682212 /* firstAid */,
 				AD2010CA1EC4620E00682212 /* Products */,
+				E3091442DBDFA59C4F118C7F /* Pods */,
+				1F3BDDA1605862E7FCC2CA1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,8 +83,18 @@
 				AD2010D31EC4620E00682212 /* Assets.xcassets */,
 				AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */,
 				AD2010D81EC4620E00682212 /* Info.plist */,
+				AD2501181ED814640080FF01 /* QuestionViewController.swift */,
 			);
 			path = firstAid;
+			sourceTree = "<group>";
+		};
+		E3091442DBDFA59C4F118C7F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				077EE2CE1BAD226E0CF06F89 /* Pods-firstAid.debug.xcconfig */,
+				728F4C7D50C6CA38F6EB6651 /* Pods-firstAid.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD2010DB1EC4620E00682212 /* Build configuration list for PBXNativeTarget "firstAid" */;
 			buildPhases = (
+				C0A0A0B17BB2C18030BA3C2B /* [CP] Check Pods Manifest.lock */,
 				AD2010C51EC4620E00682212 /* Sources */,
 				AD2010C61EC4620E00682212 /* Frameworks */,
 				AD2010C71EC4620E00682212 /* Resources */,
+				029AFBE8A4AE812E217280B2 /* [CP] Embed Pods Frameworks */,
+				AA92B1A8F40FE27AEB1B6319 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -137,12 +167,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		029AFBE8A4AE812E217280B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-firstAid/Pods-firstAid-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA92B1A8F40FE27AEB1B6319 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-firstAid/Pods-firstAid-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0A0A0B17BB2C18030BA3C2B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AD2010C51EC4620E00682212 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */,
+				AD2501191ED814640080FF01 /* QuestionViewController.swift in Sources */,
 				7A6914FE1ED29D5600FAF1A5 /* SearchTableView.swift in Sources */,
 				AD2010CF1EC4620E00682212 /* ViewController.swift in Sources */,
 				AD2010CD1EC4620E00682212 /* AppDelegate.swift in Sources */,
@@ -266,6 +345,7 @@
 		};
 		AD2010DC1EC4620E00682212 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 077EE2CE1BAD226E0CF06F89 /* Pods-firstAid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = firstAid/Info.plist;
@@ -278,6 +358,7 @@
 		};
 		AD2010DD1EC4620E00682212 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 728F4C7D50C6CA38F6EB6651 /* Pods-firstAid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = firstAid/Info.plist;

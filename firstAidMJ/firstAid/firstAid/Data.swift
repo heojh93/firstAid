@@ -19,7 +19,7 @@ class Project: NSObject {
     }
 }
 
-
+/*
 class Book{
   
   var imageURL:String;
@@ -53,4 +53,4 @@ class Answer{
 
   init(){}
 }
-
+*/
