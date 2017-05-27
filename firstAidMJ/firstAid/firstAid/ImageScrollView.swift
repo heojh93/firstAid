@@ -19,6 +19,4 @@ class ImageScrollView: UIScrollView {
     contentSize.width = 600 //to dynamic
     
   }
-  
-
 }
