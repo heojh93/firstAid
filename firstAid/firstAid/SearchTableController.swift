@@ -18,15 +18,16 @@ class SearchTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup the Search Controller
+        // Setup
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         
-        // Setup the Scope Bar
+        
         tableView.tableHeaderView = searchController.searchBar
         
+        // 문제 리스트로 갔다가 돌아올 때, 검색 후 화면으로 가기 위해 split view를 사용
         if let splitViewController = splitViewController {
             let controllers = splitViewController.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? QuestionListController
@@ -38,15 +39,11 @@ class SearchTableController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredBook.count
         }
@@ -77,6 +74,7 @@ class SearchTableController: UITableViewController {
         tableView.reloadData()
     }
     
+    // 문제 리스트를 위한 table view에 data를 넘겨주기 위함.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetails" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -93,12 +91,16 @@ class SearchTableController: UITableViewController {
             }
         }
     }
+    // cell의 height을 64로 맞춰줌.
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
+    }
 
 }
 
 extension SearchTableController: UISearchBarDelegate {
     
-    // MARK: - UISearchBar Delegate
+    // UISearchBar Delegate
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!)
     }
@@ -106,7 +108,7 @@ extension SearchTableController: UISearchBarDelegate {
 
 extension SearchTableController: UISearchResultsUpdating {
 
-    // MARK: - UISearchResultsUpdating Delegate
+    // UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }

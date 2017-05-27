@@ -12,24 +12,19 @@ class QuestionListController: UIViewController {
 
     var detailBook: BookData? {
         didSet {
-            //configureView()
+            configureView()
         }
     }
-    /*
+    
     func configureView() {
         if let detailBook = detailBook {
-            if let detailDescriptionLabel = detailDescriptionLabel, let candyImageView = candyImageView {
-                detailDescriptionLabel.text = detailCandy.name
-                candyImageView.image = UIImage(named: detailCandy.name)
-                title = detailCandy.category
-            }
+                title = detailBook.bookName
         }
-    }*/
-
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //configureView()
+        configureView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,38 +39,3 @@ class QuestionListController: UIViewController {
     }
 
  }
-
-/*
-class DetailViewController: UIViewController {
-    
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-    @IBOutlet weak var candyImageView: UIImageView!
-    
-    var detailCandy: Candy? {
-        didSet {
-            configureView()
-        }
-    }
-    
-    func configureView() {
-        if let detailCandy = detailCandy {
-            if let detailDescriptionLabel = detailDescriptionLabel, let candyImageView = candyImageView {
-                detailDescriptionLabel.text = detailCandy.name
-                candyImageView.image = UIImage(named: detailCandy.name)
-                title = detailCandy.category
-            }
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureView()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-}
-
-*/
