@@ -18,3 +18,32 @@ class Project: NSObject {
         self.name = name
     }
 }
+
+class BookData : NSObject{
+    
+    var bookName: String
+    var bookWriter: String
+    var bookImage: String!
+    
+    init(bookName:String, bookWriter:String, bookImage:String){
+        self.bookName = bookName
+        self.bookWriter = bookWriter
+        self.bookImage = bookImage
+    }
+    init(bookName:String, bookWriter:String){
+        self.bookName = bookName
+        self.bookWriter = bookWriter
+    }
+
+}
+
+var BookList:[BookData] =
+    [BookData(bookName: "Algorithm",bookWriter: "abc"),
+    BookData(bookName: "Automata",bookWriter: "aaa"),
+    BookData(bookName: "DataStructure",bookWriter: "ddd")]
+
+
+
+
+
+

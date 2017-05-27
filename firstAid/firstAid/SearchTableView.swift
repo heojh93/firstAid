@@ -17,7 +17,8 @@ class SearchTableView : UITableView {
     var itemList : [AnyObject] {
         get {
             return getDataSource()
-        } set {
+        }
+        set {
             items = newValue
         }
     }
@@ -49,6 +50,7 @@ class SearchTableView : UITableView {
             self.searchController.dimsBackgroundDuringPresentation = false
             self.searchController.searchResultsUpdater = self
             self.searchController.searchBar.sizeToFit()
+            self.searchController
             self.tableHeaderView = self.searchController.searchBar
             let contentOffset = CGPoint(x: 0.0, y: self.contentOffset.y + self.searchController.searchBar.frame.height)
             self.setContentOffset(contentOffset, animated: false)
