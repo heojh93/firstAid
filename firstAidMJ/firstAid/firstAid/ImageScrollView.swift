@@ -15,8 +15,7 @@ class ImageScrollView: UIScrollView {
   // An empty implementation adversely affects performance during animation.
   override func draw(_ rect: CGRect) {
     // Drawing code
-    
-    contentSize.width = 600 //to dynamic
-    
   }
+  
+  
 }
