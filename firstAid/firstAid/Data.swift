@@ -42,7 +42,7 @@ class Question : BookData{
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
-        super.init(bookName: book.bookName,bookWriter: book.bookWriter,bookImage: book.bookImage)
+        super.init(bookName: book.bookName,bookWriter: book.bookWriter)
     }
 }
 
@@ -65,7 +65,6 @@ var question23 = Question(book: algorithm, chapter: 2, number: 5, tag: "#a #b #c
 var question110 = Question(book: automata, chapter: 1, number: 1, tag: "#auto", answer: 0)
 var question111 = Question(book: automata, chapter: 1, number: 3, tag: "#auto", answer: 0)
 
-algorithm.addQuestion(question10)
 
 
 

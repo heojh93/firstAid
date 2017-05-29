@@ -11,6 +11,7 @@
 		7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6B1ED96E6700F74213 /* SearchTableCell.swift */; };
 		7A862C6E1ED9914F00F74213 /* SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6D1ED9914F00F74213 /* SearchTableController.swift */; };
 		7A862C701ED9927400F74213 /* QuestionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6F1ED9927400F74213 /* QuestionListController.swift */; };
+		7A8B0CB71EDC0910001CC7F0 /* QuestionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B0CB61EDC0910001CC7F0 /* QuestionTable.swift */; };
 		7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */; };
 		7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08481ED9D49600E0566B /* QuestionTableController.swift */; };
 		AD2010CD1EC4620E00682212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2010CC1EC4620E00682212 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 		7A862C6B1ED96E6700F74213 /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		7A862C6D1ED9914F00F74213 /* SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableController.swift; sourceTree = "<group>"; };
 		7A862C6F1ED9927400F74213 /* QuestionListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListController.swift; sourceTree = "<group>"; };
+		7A8B0CB61EDC0910001CC7F0 /* QuestionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTable.swift; path = "../../../../Downloads/firstAid-temp/firstAid/firstAid/QuestionTable.swift"; sourceTree = "<group>"; };
 		7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableCell.swift; sourceTree = "<group>"; };
 		7ADB08481ED9D49600E0566B /* QuestionTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableController.swift; sourceTree = "<group>"; };
 		7EC6D49F6FB5EEA9415C84EA /* Pods-firstAid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.release.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		AD2010CB1EC4620E00682212 /* firstAid */ = {
 			isa = PBXGroup;
 			children = (
+				7A8B0CB61EDC0910001CC7F0 /* QuestionTable.swift */,
 				7A862C6B1ED96E6700F74213 /* SearchTableCell.swift */,
 				7A862C6D1ED9914F00F74213 /* SearchTableController.swift */,
 				7A862C6F1ED9927400F74213 /* QuestionListController.swift */,
@@ -234,6 +237,7 @@
 				7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */,
 				7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */,
 				7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */,
+				7A8B0CB71EDC0910001CC7F0 /* QuestionTable.swift in Sources */,
 				AD2010CF1EC4620E00682212 /* ViewController.swift in Sources */,
 				AD2010CD1EC4620E00682212 /* AppDelegate.swift in Sources */,
 				7A862C701ED9927400F74213 /* QuestionListController.swift in Sources */,
