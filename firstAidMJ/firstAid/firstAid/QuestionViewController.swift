@@ -8,20 +8,22 @@
 
 import UIKit
 import ImagePicker
-
+import SFFullscreenImageDetailViewController
 
 
 let picker = UIImagePickerController()
+
 let placeHolder = "질문을 입력하세요"
-//var viewsection = UIImageView()
 
 
-class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate {
+
+class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate{
   //@IBOutlet weak var viewsection: UIImageView!
   @IBOutlet weak var imageScrollView: ImageScrollView!
   
   @IBOutlet weak var textView: UITextView!
   
+  @IBOutlet weak var test: UIImageView!
   //@IBOutlet weak var navigator: UINavigationItem!
   
   @IBAction func CancelDismiss(_ sender: Any) {
@@ -29,6 +31,7 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   }
   
   @IBAction func DoneDIsmiss(_ sender: Any) {
+    //Something to do
     self.dismiss(animated: true, completion: nil)
   }
   
@@ -46,11 +49,19 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       let imageView = UIImageView()
       imageView.image = chosenImages[i]
       let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
+      //print(self.imageScrollView.frame.height)
       imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width * CGFloat(0.5), height: self.imageScrollView.frame.height)
+    
+      let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+      imageView.addGestureRecognizer(tapRecognizer)
+      imageView.isUserInteractionEnabled = true
+      
+      //imageView.addGestureRecognizer(tapRecognizer)
+      
+      
       imageScrollView.contentSize.width = imageScrollView.frame.width * CGFloat(0.5) * CGFloat(i + 1)
       imageScrollView.addSubview(imageView)
     }
-    
     
     //viewsection.contentMode = .scaleAspectFit
     //viewsection.image = chosenImages[0]
@@ -59,6 +70,14 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     self.dismiss(animated: true, completion: nil)
     //self.dismiss(animated: true, completion: nil)
   }
+  
+  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+    //tappedImageView is tapped image
+    let tappedImageView = gestureRecognizer.view! as! UIImageView
+    let viewController = SFFullscreenImageDetailViewController(imageView: tappedImageView)
+    viewController.presentInCurrentKeyWindow()
+  }
+  
   func cancelButtonDidPress(_ imagePicker: ImagePickerController){
     //self.dismiss(animated: true, completion: nil)
   }
@@ -80,7 +99,6 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.navigationBarTap))
     hideKeyboard.numberOfTapsRequired = 1
     navigationController?.navigationBar.addGestureRecognizer(hideKeyboard)
-    
     //self.navigationController?.setNavigationBarHidden(true, animated: true)
   }
 
@@ -123,7 +141,6 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     return true
   }
 
-  
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.textColor == UIColor.lightGray {
       textView.text = nil
@@ -149,7 +166,6 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
 
   @IBAction func photoFromLibrary(_ sender: Any) {
     let imagePickerController = ImagePickerController()
-    //imagePickerController.imageLimit = 5
     imagePickerController.delegate = self
     self.present(imagePickerController, animated: true, completion: nil)
     

@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SFFullscreenImageDetailViewController-SFFullscreenImageDetailViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SFFullscreenImageDetailViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -32,7 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E52D7419DBD4E2D7D19E4B2350E79F35</key>
+		<key>4387A95125E098637D8D1F18E01EB6AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6B382B6F69128FF1614ADE8123BD12FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AC7D7EB175E36B3B6ACD44B9927EE35D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
