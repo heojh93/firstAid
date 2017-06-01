@@ -1,0 +1,6 @@
+framework module GTZoomableImageView {
+  umbrella header "GTZoomableImageView-umbrella.h"
+
+  export *
+  module * { export * }
+}
