@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "firstAid/QuestionViewController.swift"
-            timestampString = "517680825.354385"
+            timestampString = "517766064.365018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "QuestionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,13 +26,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "firstAid/QuestionViewController.swift"
-            timestampString = "517680868.379566"
+            timestampString = "517768335.106513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "CancelDismiss(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "firstAid/QuestionViewController.swift"
+            timestampString = "517767447.282567"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "QuestionViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "firstAid.QuestionViewController.imageScrollView.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;firstAid.ImageScrollView&gt;"
+                  moduleName = "firstAid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
+                  timestampString = "517767272.282408"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "firstAid.QuestionViewController.imageScrollView.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;firstAid.ImageScrollView&gt;"
+                  moduleName = "firstAid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
+                  timestampString = "517767272.284288"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "firstAid.QuestionViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; firstAid.QuestionViewController"
+                  moduleName = "firstAid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
+                  timestampString = "517767272.28603"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "firstAid.QuestionViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;firstAid.QuestionViewController&gt;"
+                  moduleName = "firstAid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
+                  timestampString = "517767272.287836"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

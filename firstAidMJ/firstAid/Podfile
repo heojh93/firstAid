@@ -8,5 +8,6 @@ target 'firstAid' do
   # Pods for firstAid
 
   pod 'ImagePicker'
+  pod 'SFFullscreenImageDetailViewController'
 
 end
