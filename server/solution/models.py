@@ -37,6 +37,9 @@ class Quest(models.Model):
 	image = models.ImageField(blank=True, upload_to = 'quest')
 	tags = models.ManyToManyField(Tag)
 
+	def delete(self, *args, **kwargs):
+		self.image.delete()
+		super(Textbook, self).delete(*args, **kwargs)
 
 	def __str__(self):
 		return self.title
@@ -50,6 +53,9 @@ class Answer(models.Model):
 	created_at = models.DateTimeField(auto_now_add = True)
 	image = models.ImageField(blank=True, upload_to = 'answer')
 
+	def delete(self, *args, **kwargs):
+		self.image.delete()
+		super(Textbook, self).delete(*args, **kwargs)
 
 	def __str__(self):
 		return self.title

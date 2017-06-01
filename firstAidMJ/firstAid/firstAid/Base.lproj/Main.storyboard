@@ -106,6 +106,20 @@
                                     <segue destination="hYb-JL-rZV" kind="show" id="PaY-cz-CHe"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFO-Wp-AtE" customClass="GTZoomableImageView" customModule="firstAid" customModuleProvider="target">
+                                <rect key="frame" x="40" y="72" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="Image"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumZoomScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumZoomScale">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90182724510000001" green="0.90816476140000002" blue="0.90952225129999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -331,7 +345,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Bfs-u4-ao6" firstAttribute="top" secondItem="nu6-R2-6v6" secondAttribute="bottom" constant="44" id="1Wi-Ob-IiF"/>
                             <constraint firstItem="D4P-xN-huf" firstAttribute="centerX" secondItem="LLI-Ah-tid" secondAttribute="centerX" id="2ba-ah-6WE"/>
                             <constraint firstItem="FMx-ZN-RsF" firstAttribute="centerX" secondItem="LLI-Ah-tid" secondAttribute="centerX" id="8Tf-eP-vd5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FMx-ZN-RsF" secondAttribute="trailing" constant="6" id="FFz-da-v0G"/>
@@ -340,9 +353,10 @@
                             <constraint firstItem="FMx-ZN-RsF" firstAttribute="top" secondItem="D4P-xN-huf" secondAttribute="bottom" constant="8" id="Txf-fo-gj5"/>
                             <constraint firstItem="nu6-R2-6v6" firstAttribute="leading" secondItem="LLI-Ah-tid" secondAttribute="leading" id="Uth-Yx-XlX"/>
                             <constraint firstItem="D4P-xN-huf" firstAttribute="leading" secondItem="LLI-Ah-tid" secondAttribute="leadingMargin" constant="10" id="bvn-cL-Q01"/>
+                            <constraint firstItem="D4P-xN-huf" firstAttribute="top" secondItem="hqI-eJ-45l" secondAttribute="bottom" constant="8" id="hsG-Du-qR1"/>
                             <constraint firstItem="nu6-R2-6v6" firstAttribute="top" secondItem="FMx-ZN-RsF" secondAttribute="bottom" id="krL-XU-1mM"/>
-                            <constraint firstItem="D4P-xN-huf" firstAttribute="top" secondItem="hqI-eJ-45l" secondAttribute="bottom" constant="8" id="olP-Th-Llu"/>
                             <constraint firstAttribute="bottomMargin" secondItem="FMx-ZN-RsF" secondAttribute="bottom" constant="222" id="pg9-t4-FJc"/>
+                            <constraint firstItem="Bfs-u4-ao6" firstAttribute="top" secondItem="nu6-R2-6v6" secondAttribute="bottom" constant="44" id="qEp-kO-Wsj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D4P-xN-huf" secondAttribute="trailing" constant="10" id="zTP-aq-6Ue"/>
                         </constraints>
                     </view>
@@ -363,6 +377,7 @@
                     <connections>
                         <outlet property="imageScrollView" destination="nu6-R2-6v6" id="0Ij-ns-S9Y"/>
                         <outlet property="textView" destination="FMx-ZN-RsF" id="dyf-R1-403"/>
+                        <outlet property="titleText" destination="D4P-xN-huf" id="4X2-nE-Rew"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P0w-Cm-WTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
