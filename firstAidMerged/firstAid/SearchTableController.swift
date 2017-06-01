@@ -32,6 +32,20 @@ class SearchTableController: UITableViewController {
             let controllers = splitViewController.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? QuestionListController
         }
+        
+        // dummy 데이터들
+        algorithm.addQuestion(question10)
+        algorithm.addQuestion(question11)
+        algorithm.addQuestion(question12)
+        algorithm.addQuestion(question13)
+        algorithm.addQuestion(question20)
+        algorithm.addQuestion(question21)
+        algorithm.addQuestion(question22)
+        algorithm.addQuestion(question23)
+        
+        automata.addQuestion(question110)
+        automata.addQuestion(question111)
+
     }
 
     override func didReceiveMemoryWarning() {

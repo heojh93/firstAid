@@ -23,8 +23,10 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   
   @IBOutlet weak var textView: UITextView!
   
-  
   @IBOutlet weak var titleText: UITextField!
+  
+  var selectedBook:BookData!
+  var table:QuestionTable!
   
   // @IBOutlet weak var test: UIImageView!
   //@IBOutlet weak var navigator: UINavigationItem!
@@ -41,13 +43,15 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let title = titleText.text
     let text = textView.text
     let images = chosenImages
+
+    let questionDetail = QuestionPage(number: 1, title: title!, tag: "", text: text!)
+    questionDetail.image = images
+
+    let q = Question(book: selectedBook, chapter: 1, number: 1, tag: "", answer: 1)
+    q.addPage(questionDetail)
+    selectedBook.addQuestion(q)
     
-    
-    
-    print("title : " + title!)
-    print("text : " + text!)
-    print(images)
-    
+    table.reloadData()
     
     self.dismiss(animated: true, completion: nil)
   }

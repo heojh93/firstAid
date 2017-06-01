@@ -34,19 +34,7 @@ class QuestionListController: UIViewController {
                 questionTable.selectedBook = singleBook
             }
         }
-
-        // dummy 데이터들
-        algorithm.addQuestion(question10)
-        algorithm.addQuestion(question11)
-        algorithm.addQuestion(question12)
-        algorithm.addQuestion(question13)
-        algorithm.addQuestion(question20)
-        algorithm.addQuestion(question21)
-        algorithm.addQuestion(question22)
-        algorithm.addQuestion(question23)
-        
-        automata.addQuestion(question110)
-        automata.addQuestion(question111)
+        questionTable.dataSource = self
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -55,9 +43,23 @@ class QuestionListController: UIViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    // 문제를 번호 순대로 sorting함.
+    func questionSorting(index:Int) -> Question{
+        let orderedQuestion = questionTable.selectedBook.bookQuestion.sorted(by: {$0.0.questionNumber < $0.1.questionNumber})
+        return orderedQuestion[index]
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addQuestion" {
+            let addView = (segue.destination as!UINavigationController).topViewController as! QuestionViewController
+            addView.selectedBook = questionTable.selectedBook
+            addView.table = questionTable
+        }
     }
 
  }
@@ -68,7 +70,7 @@ extension QuestionListController: UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableCell") as! QuestionTableCell
-        let question = questionTable.selectedBook.bookQuestion[indexPath.row]
+        let question = questionSorting(index: indexPath.row)
         cell.QuestionNumber.text = String(question.questionNumber)
         cell.QuestionTag.text = question.questionTag
         cell.NumberOfAnswer.text = String(question.numberOfAnswer)

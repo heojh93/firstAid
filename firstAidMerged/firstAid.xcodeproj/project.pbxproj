@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6914FF1ED29F7000FAF1A5 /* Data.swift */; };
+		7A7C1DD11EE05C5500374AC4 /* QNAPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C1DD01EE05C5500374AC4 /* QNAPageCell.swift */; };
+		7A7C1DD31EE05C9B00374AC4 /* QNAPageTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C1DD21EE05C9B00374AC4 /* QNAPageTableController.swift */; };
 		7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6B1ED96E6700F74213 /* SearchTableCell.swift */; };
 		7A862C6E1ED9914F00F74213 /* SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6D1ED9914F00F74213 /* SearchTableController.swift */; };
 		7A862C701ED9927400F74213 /* QuestionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6F1ED9927400F74213 /* QuestionListController.swift */; };
@@ -28,6 +30,8 @@
 		089A56540B3D3D78A67DFD05 /* Pods-firstAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.debug.xcconfig"; sourceTree = "<group>"; };
 		42EEC530FEAEF9925A148DF8 /* Pods_firstAid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_firstAid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6914FF1ED29F7000FAF1A5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		7A7C1DD01EE05C5500374AC4 /* QNAPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNAPageCell.swift; sourceTree = "<group>"; };
+		7A7C1DD21EE05C9B00374AC4 /* QNAPageTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNAPageTableController.swift; sourceTree = "<group>"; };
 		7A862C6B1ED96E6700F74213 /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		7A862C6D1ED9914F00F74213 /* SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableController.swift; sourceTree = "<group>"; };
 		7A862C6F1ED9927400F74213 /* QuestionListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListController.swift; sourceTree = "<group>"; };
@@ -35,7 +39,7 @@
 		7ADB08481ED9D49600E0566B /* QuestionTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableController.swift; sourceTree = "<group>"; };
 		7EC6D49F6FB5EEA9415C84EA /* Pods-firstAid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.release.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.release.xcconfig"; sourceTree = "<group>"; };
 		AD06954D1EE00317004B52C9 /* QuestionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTable.swift; sourceTree = "<group>"; };
-		AD0695511EE0077B004B52C9 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		AD0695511EE0077B004B52C9 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		AD0695531EE0082F004B52C9 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		AD2010C91EC4620E00682212 /* firstAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = firstAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD2010CC1EC4620E00682212 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -98,9 +102,9 @@
 			children = (
 				AD0695531EE0082F004B52C9 /* ImageScrollView.swift */,
 				AD0695511EE0077B004B52C9 /* QuestionViewController.swift */,
-				AD06954D1EE00317004B52C9 /* QuestionTable.swift */,
 				7A862C6B1ED96E6700F74213 /* SearchTableCell.swift */,
 				7A862C6D1ED9914F00F74213 /* SearchTableController.swift */,
+				AD06954D1EE00317004B52C9 /* QuestionTable.swift */,
 				7A862C6F1ED9927400F74213 /* QuestionListController.swift */,
 				7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */,
 				7ADB08481ED9D49600E0566B /* QuestionTableController.swift */,
@@ -111,6 +115,8 @@
 				AD2010D31EC4620E00682212 /* Assets.xcassets */,
 				AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */,
 				AD2010D81EC4620E00682212 /* Info.plist */,
+				7A7C1DD01EE05C5500374AC4 /* QNAPageCell.swift */,
+				7A7C1DD21EE05C9B00374AC4 /* QNAPageTableController.swift */,
 			);
 			path = firstAid;
 			sourceTree = "<group>";
@@ -240,10 +246,12 @@
 			files = (
 				AD06954E1EE00317004B52C9 /* QuestionTable.swift in Sources */,
 				7A862C6E1ED9914F00F74213 /* SearchTableController.swift in Sources */,
+				7A7C1DD31EE05C9B00374AC4 /* QNAPageTableController.swift in Sources */,
 				7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */,
 				7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */,
 				7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */,
 				AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */,
+				7A7C1DD11EE05C5500374AC4 /* QNAPageCell.swift in Sources */,
 				7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */,
 				AD0695521EE0077B004B52C9 /* QuestionViewController.swift in Sources */,
 				AD2010CF1EC4620E00682212 /* ViewController.swift in Sources */,
