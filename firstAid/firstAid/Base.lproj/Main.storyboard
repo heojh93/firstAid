@@ -70,7 +70,7 @@
                     <navigationItem key="navigationItem" id="BYs-de-pph">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="8n4-k9-qsL">
-                            <rect key="frame" x="65" y="5.5" width="245" height="33"/>
+                            <rect key="frame" x="65" y="6" width="245" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Aid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIL-Cz-CF1">
@@ -240,7 +240,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Introduction to Algorithm 5th" id="Bgb-Qy-8fy"/>
+                    <navigationItem key="navigationItem" title="Introduction to Algorithm 5th" id="Bgb-Qy-8fy">
+                        <barButtonItem key="rightBarButtonItem" title="chapter" id="MRr-aj-ab1">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="questionTable" destination="zTV-GV-ocX" id="wkQ-yM-mkK"/>
                         <outlet property="view" destination="zTV-GV-ocX" id="X9K-57-fPA"/>

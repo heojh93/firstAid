@@ -36,6 +36,8 @@ class Question : BookData{
     var questionNumber: Int
     var questionTag: String
     var numberOfAnswer: Int
+    // 문제 한개당 달려있는 답변페이지.
+    var questionPage:[AddQuestionPage] = []
     
     init(book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
         self.chapter = chapter
@@ -43,6 +45,26 @@ class Question : BookData{
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
         super.init(bookName: book.bookName,bookWriter: book.bookWriter)
+    }
+}
+
+class AddQuestionPage{
+    var tag:String
+    var title:String
+    var text: String
+    var image:String?
+    
+    init(question:Question, title:String, tag:String, text:String){
+        self.title = title
+        self.text = text
+        self.tag = tag
+    }
+    
+    init(question:Question, title:String, tag:String, text:String, image:String){
+        self.title = title
+        self.text = text
+        self.tag = tag
+        self.image = image
     }
 }
 
@@ -65,6 +87,9 @@ var question23 = Question(book: algorithm, chapter: 2, number: 5, tag: "#a #b #c
 var question110 = Question(book: automata, chapter: 1, number: 1, tag: "#auto", answer: 0)
 var question111 = Question(book: automata, chapter: 1, number: 3, tag: "#auto", answer: 0)
 
-
+var addQuestionPage00 = AddQuestionPage(question: question10, title: "나 질문있다 왈왈", tag: "어렵다 3학년 1학기",
+ text: "안녕하세요 반가워요 다시 만나요 즐거웠어요 잘가요")
+var addQuestionPage01 = AddQuestionPage(question: question11, title: "이거 어떻게 푸냐", tag: "아우 참나",
+                                        text: "이게 이렇게 이렇게 되서 이렇게 되는거 같은데 아닌가요? 나 좀 멍청한듯...")
 
 
