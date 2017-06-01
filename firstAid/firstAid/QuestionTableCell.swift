@@ -13,7 +13,7 @@ class QuestionTableCell: UITableViewCell {
     @IBOutlet weak var QuestionNumber: UILabel!
     @IBOutlet weak var QuestionTag: UILabel!
     @IBOutlet weak var NumberOfAnswer: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
