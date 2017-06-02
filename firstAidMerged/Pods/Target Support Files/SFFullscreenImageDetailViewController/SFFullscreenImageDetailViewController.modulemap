@@ -1,6 +1,0 @@
-framework module SFFullscreenImageDetailViewController {
-  umbrella header "SFFullscreenImageDetailViewController-umbrella.h"
-
-  export *
-  module * { export * }
-}

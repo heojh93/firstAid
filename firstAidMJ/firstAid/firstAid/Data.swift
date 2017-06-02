@@ -3,54 +3,68 @@
 //  firstAid
 //
 //  Created by heoju on 2017. 5. 22..
-//  Copyright © 2017년 KimMJ. All rights reserved.
+//  Copyright © 2017년 HJ. All rights reserved.
 //
 
 import Foundation
 
-class Project: NSObject {
+class BookData : NSObject{
     
-    var projectId: Int
-    var name: String
+    var bookName: String
+    var bookWriter: String
+    var bookImage: String!
+    var bookQuestion:[Question] = []
     
-    init(projectId: Int, name: String) {
-        self.projectId = projectId
-        self.name = name
+    init(bookName:String, bookWriter:String, bookImage:String){
+        self.bookName = bookName
+        self.bookWriter = bookWriter
+        self.bookImage = bookImage
+    }
+    init(bookName:String, bookWriter:String){
+        self.bookName = bookName
+        self.bookWriter = bookWriter
+    }
+    func addQuestion(_ question:Question) -> Void{
+        self.bookQuestion.append(question)
+    }
+
+}
+
+class Question : BookData{
+    
+    var chapter: Int
+    var questionNumber: Int
+    var questionTag: String
+    var numberOfAnswer: Int
+    
+    init(book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
+        self.chapter = chapter
+        self.questionNumber = questionNumber
+        self.questionTag = questionTag
+        self.numberOfAnswer = numberOfAnswer
+        super.init(bookName: book.bookName,bookWriter: book.bookWriter)
     }
 }
 
-/*
-class Book{
-  
-  var imageURL:String;
-  var title:String;
-  var author:String;
-  var exercises:[Exercise];
-  
-  init(){}
-}
 
-class Exercise{
-  var exercise_num:String;
-  var tags:[String];
-  var questions:[Questions];
+let algorithm = BookData(bookName: "Algorithm",bookWriter: "abc")
+let automata = BookData(bookName: "Automata",bookWriter: "aaa")
+let datastructure = BookData(bookName: "DataStructure",bookWriter: "ddd")
 
-  init(){}
-}
+var BookList:[BookData] = [algorithm, automata, datastructure]
 
-class Questions{
-  var imageURL:String;
-  var title:String;
-  var answers:[Answer];
-  var text:String;
-  
-  init(){}
-}
+var question10 = Question(book: algorithm, chapter: 1, number: 1, tag: "#a #b #c", answer: 3)
+var question11 = Question(book: algorithm, chapter: 1, number: 2, tag: "#c #b #c", answer: 0)
+var question12 = Question(book: algorithm, chapter: 1, number: 4, tag: "#a #b #c", answer: 2)
+var question13 = Question(book: algorithm, chapter: 1, number: 10, tag: "#a #b #c", answer: 1)
+var question20 = Question(book: algorithm, chapter: 2, number: 1, tag: "#a #b #c", answer: 1)
+var question21 = Question(book: algorithm, chapter: 2, number: 2, tag: "#a #b #c", answer: 2)
+var question22 = Question(book: algorithm, chapter: 2, number: 3, tag: "#b #c", answer: 1)
+var question23 = Question(book: algorithm, chapter: 2, number: 5, tag: "#a #b #c", answer: 0)
 
-class Answer{
-  var imageURL:String;
-  var text:String;
+var question110 = Question(book: automata, chapter: 1, number: 1, tag: "#auto", answer: 0)
+var question111 = Question(book: automata, chapter: 1, number: 3, tag: "#auto", answer: 0)
 
-  init(){}
-}
-*/
+
+
+

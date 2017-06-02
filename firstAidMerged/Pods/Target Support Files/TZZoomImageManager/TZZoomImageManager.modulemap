@@ -1,6 +1,0 @@
-framework module TZZoomImageManager {
-  umbrella header "TZZoomImageManager-umbrella.h"
-
-  export *
-  module * { export * }
-}

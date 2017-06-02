@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3E64B0151C7F838475A9ED647709CDE4'
+               BlueprintIdentifier = '0E94CE448ECA21FC85A2393A57EE30DC'
                BlueprintName = 'TZZoomImageManager'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'TZZoomImageManager.framework'>

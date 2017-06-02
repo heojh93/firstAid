@@ -10,122 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "firstAid/QuestionViewController.swift"
-            timestampString = "517992720.670235"
+            timestampString = "518016533.66253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "QuestionViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "firstAid/QuestionViewController.swift"
-            timestampString = "517992977.904282"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "CancelDismiss(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "firstAid/QuestionViewController.swift"
-            timestampString = "517992516.778607"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "QuestionViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "firstAid.QuestionViewController.imageScrollView.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;firstAid.ImageScrollView&gt;"
-                  moduleName = "firstAid"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
-                  timestampString = "517767272.282408"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "firstAid.QuestionViewController.imageScrollView.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;firstAid.ImageScrollView&gt;"
-                  moduleName = "firstAid"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
-                  timestampString = "517767272.284288"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "firstAid.QuestionViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; firstAid.QuestionViewController"
-                  moduleName = "firstAid"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
-                  timestampString = "517767272.28603"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "70">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "firstAid.QuestionViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;firstAid.QuestionViewController&gt;"
-                  moduleName = "firstAid"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kimmj/Documents/hyu/SoftwareStudio/firstAid/firstAidMJ/firstAid/firstAid/QuestionViewController.swift"
-                  timestampString = "517767272.287836"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "31">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "firstAid/QuestionViewController.swift"
-            timestampString = "517993849.265796"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "DoneDIsmiss(_:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "doneButtonDidPress(_:images:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -10,6 +10,7 @@ import UIKit
 import ImagePicker
 import GTZoomableImageView
 import TZZoomImageManager
+import WSTagsField
 
 let picker = UIImagePickerController()
 
@@ -97,6 +98,10 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   func imageTapped(gestureRecognizer: UITapGestureRecognizer){
     //tappedImageView is tapped image
     let tappedImageView = gestureRecognizer.view! as! UIImageView
+    //print(tappedImageView)
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+    self.present(controller, animated: true, completion: nil)
     
   }
   
