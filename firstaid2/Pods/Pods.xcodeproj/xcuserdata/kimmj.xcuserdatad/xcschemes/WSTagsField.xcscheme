@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BCF15868FECF9706CD1A16DA7F2347EF'
-               BlueprintName = 'SFFullscreenImageDetailViewController'
+               BlueprintIdentifier = 'C232580A44B06BEDD21E243165E7F34B'
+               BlueprintName = 'WSTagsField'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SFFullscreenImageDetailViewController.framework'>
+               BuildableName = 'WSTagsField.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

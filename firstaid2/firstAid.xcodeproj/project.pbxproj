@@ -23,6 +23,9 @@
 		AD2010D21EC4620E00682212 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D01EC4620E00682212 /* Main.storyboard */; };
 		AD2010D41EC4620E00682212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D31EC4620E00682212 /* Assets.xcassets */; };
 		AD2010D71EC4620E00682212 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */; };
+		ADC8C3B31EE150DD00936896 /* WSTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8C3AF1EE150DD00936896 /* WSTag.swift */; };
+		ADC8C3B41EE150DD00936896 /* WSTagsField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8C3B11EE150DD00936896 /* WSTagsField.swift */; };
+		ADC8C3B51EE150DD00936896 /* WSTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8C3B21EE150DD00936896 /* WSTagView.swift */; };
 		B1A5594766B0A3910CA0D36D /* Pods_firstAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EEC530FEAEF9925A148DF8 /* Pods_firstAid.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,10 @@
 		AD2010D31EC4620E00682212 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD2010D61EC4620E00682212 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2010D81EC4620E00682212 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADC8C3AF1EE150DD00936896 /* WSTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSTag.swift; path = ../Pods/WSTagsField/Source/WSTag.swift; sourceTree = "<group>"; };
+		ADC8C3B01EE150DD00936896 /* WSTagsField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSTagsField.h; path = ../Pods/WSTagsField/WSTagsField/WSTagsField.h; sourceTree = "<group>"; };
+		ADC8C3B11EE150DD00936896 /* WSTagsField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSTagsField.swift; path = ../Pods/WSTagsField/Source/WSTagsField.swift; sourceTree = "<group>"; };
+		ADC8C3B21EE150DD00936896 /* WSTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSTagView.swift; path = ../Pods/WSTagsField/Source/WSTagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +122,10 @@
 				AD2010D31EC4620E00682212 /* Assets.xcassets */,
 				AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */,
 				AD2010D81EC4620E00682212 /* Info.plist */,
+				ADC8C3AF1EE150DD00936896 /* WSTag.swift */,
+				ADC8C3B01EE150DD00936896 /* WSTagsField.h */,
+				ADC8C3B11EE150DD00936896 /* WSTagsField.swift */,
+				ADC8C3B21EE150DD00936896 /* WSTagView.swift */,
 				7A7C1DD01EE05C5500374AC4 /* QNAPageCell.swift */,
 				7A7C1DD21EE05C9B00374AC4 /* QNAPageTableController.swift */,
 			);
@@ -250,13 +261,16 @@
 				7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */,
 				7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */,
 				7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */,
+				ADC8C3B31EE150DD00936896 /* WSTag.swift in Sources */,
 				AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */,
 				7A7C1DD11EE05C5500374AC4 /* QNAPageCell.swift in Sources */,
 				7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */,
 				AD0695521EE0077B004B52C9 /* QuestionViewController.swift in Sources */,
+				ADC8C3B51EE150DD00936896 /* WSTagView.swift in Sources */,
 				AD2010CF1EC4620E00682212 /* ViewController.swift in Sources */,
 				AD2010CD1EC4620E00682212 /* AppDelegate.swift in Sources */,
 				7A862C701ED9927400F74213 /* QuestionListController.swift in Sources */,
+				ADC8C3B41EE150DD00936896 /* WSTagsField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

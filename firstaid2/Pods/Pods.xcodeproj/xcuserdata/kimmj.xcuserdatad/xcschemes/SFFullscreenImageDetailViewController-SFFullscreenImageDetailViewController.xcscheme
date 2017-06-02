@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '622DA3B6F86DEB7E17F3B3F88A7AAD11'
+               BlueprintIdentifier = '5A0C409476AD6383B99E7544C856B91E'
                BlueprintName = 'SFFullscreenImageDetailViewController-SFFullscreenImageDetailViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SFFullscreenImageDetailViewController.bundle'>

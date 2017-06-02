@@ -11,5 +11,6 @@ target 'firstAid' do
   pod 'SFFullscreenImageDetailViewController'
   pod 'TZZoomImageManager'
   pod 'GTZoomableImageView'
+  pod 'WSTagsField'
 
 end
