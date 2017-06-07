@@ -1,0 +1,108 @@
+--- firstAid/QuestionViewController.swift	2017-06-08 03:52:25.000000000 +0900
++++ ../firstAidMJ/firstAid/firstAid/QuestionViewController.swift	2017-06-08 03:48:53.000000000 +0900
+@@ -10,13 +10,12 @@
+ import ImagePicker
+ import GTZoomableImageView
+ import TZZoomImageManager
++import WSTagsField
+ 
+ let picker = UIImagePickerController()
+ 
+ let placeHolder = "질문을 입력하세요"
+ 
+-
+-
+ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate{
+   //@IBOutlet weak var viewsection: UIImageView!
+   @IBOutlet weak var imageScrollView: ImageScrollView!
+@@ -25,12 +24,9 @@
+   
+   @IBOutlet weak var titleText: UITextField!
+   
+-  @IBOutlet weak var numberText: UITextField!
+-  
+-  var selectedBook:BookData!
+-  var table:QuestionTable!
+-  
+-  // @IBOutlet weak var test: UIImageView!
++  @IBOutlet weak var tagsView: UIScrollView!
++  @IBOutlet weak var tagsField: WSTagsField!
++  //@IBOutlet weak var test: UIImageView!
+   //@IBOutlet weak var navigator: UINavigationItem!
+   
+   var chosenImages: [UIImage] = []
+@@ -45,36 +41,24 @@
+     let title = titleText.text
+     let text = textView.text
+     let images = chosenImages
+-    let number = Int(numberText.text!)
+-    
++    let tags = tagsField.tagViews
+     
+-    let questionDetail = QuestionPage(number: number!, title: title!, tag: "", text: text!)
+-    questionDetail.image = images
+-
+-    // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
+-    var find:Bool = false
+-    for i in selectedBook.bookQuestion{
+-      if(i.questionNumber == number){
+-        i.addPage(questionDetail)
+-        find = true
+-      }
++    var tagArray:[String] = []
++    var k = 0
++    for _ in tags {
++      print(tags[tags.index(k, offsetBy: 0)].displayText)
++      tagArray.append(tags[tags.index(k, offsetBy: 0)].displayText)
++      k += 1
+     }
+-    if(!find){
+-      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
+-      q.addPage(questionDetail)
+-      selectedBook.addQuestion(q)
+-    }
+-    /*
+-    let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
+-    q.addPage(questionDetail)
+-    selectedBook.addQuestion(q)
+-    */
+-    table.reloadData()
++    
++    print("title : " + title!)
++    print("text : " + text!)
++    print(images)
++    print(tagArray)
+     
+     self.dismiss(animated: true, completion: nil)
+   }
+   
+-  
+   func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+     //self.dismiss(animated: true, completion: nil)
+   }
+@@ -119,6 +103,14 @@
+   func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+     //tappedImageView is tapped image
+     let tappedImageView = gestureRecognizer.view! as! UIImageView
++    //print(tappedImageView)
++    let storyboard = UIStoryboard(name: "Main", bundle: nil)
++    let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
++    let tmp = controller as! ImageZoomNavigationViewController
++    tmp.tappedImage = tappedImageView.image
++
++    
++    self.present(tmp, animated: true, completion: nil)
+     
+   }
+   
+@@ -143,7 +135,10 @@
+     let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.navigationBarTap))
+     hideKeyboard.numberOfTapsRequired = 1
+     navigationController?.navigationBar.addGestureRecognizer(hideKeyboard)
++    
++    //tagsView.contentSize = CGSize(width: 300, height: 300)
+     //self.navigationController?.setNavigationBarHidden(true, animated: true)
++    tagsView.contentSize = CGSize(width: 300, height: 135)
+   }
+ 
+   

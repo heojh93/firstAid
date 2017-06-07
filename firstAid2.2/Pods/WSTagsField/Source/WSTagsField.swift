@@ -16,7 +16,7 @@ open class WSTagsField: UIView {
     fileprivate static let MINIMUM_TEXTFIELD_WIDTH: CGFloat = 56.0
     fileprivate static let STANDARD_ROW_HEIGHT: CGFloat = 25.0
     fileprivate static let FIELD_MARGIN_X: CGFloat = WSTagView.xPadding
-  
+
     fileprivate let textField = BackspaceDetectingTextField()
 
     open override var tintColor: UIColor! {
@@ -334,9 +334,7 @@ open class WSTagsField: UIView {
         let oldContentHeight: CGFloat = self.intrinsicContentHeight
         intrinsicContentHeight = max(totalHeight, textFieldRect.maxY + padding.bottom)
         invalidateIntrinsicContentSize()
-        //contents SIZE!!!
-//        let superView = superview as! UIView
-//        superView.contentSize = intrinsicContentSize
+
         if oldContentHeight != self.intrinsicContentHeight {
             let newContentHeight = intrinsicContentSize.height
             if let didChangeHeightToEvent = self.onDidChangeHeightTo {

@@ -10,6 +10,7 @@ import UIKit
 import ImagePicker
 import GTZoomableImageView
 import TZZoomImageManager
+import WSTagsField
 
 let picker = UIImagePickerController()
 
@@ -26,6 +27,9 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   @IBOutlet weak var titleText: UITextField!
   
   @IBOutlet weak var numberText: UITextField!
+  
+  @IBOutlet weak var tagsField: WSTagsField!
+  @IBOutlet weak var tagsView: UIScrollView!
   
   var selectedBook:BookData!
   var table:QuestionTable!
@@ -47,10 +51,21 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let images = chosenImages
     let number = Int(numberText.text!)
     
-    
-    let questionDetail = QuestionPage(number: number!, title: title!, tag: "", text: text!)
-    questionDetail.image = images
+    let tags = tagsField.tagViews
 
+    //tag -> array
+    var tagArray:[String] = []
+    var tagString:String = ""
+    var k = 0
+    for _ in tags {
+      tagArray.append(tags[tags.index(k, offsetBy: 0)].displayText)
+      tagString += tags[tags.index(k, offsetBy: 0)].displayText + " "
+      k += 1
+    }
+    
+    let questionDetail = QuestionPage(number: number!, title: title!, tag: tagString, text: text!)
+    questionDetail.image = images
+    
     // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
     var find:Bool = false
     for i in selectedBook.bookQuestion{
@@ -60,10 +75,11 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       }
     }
     if(!find){
-      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
+      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: tagString, answer: 1)
       q.addPage(questionDetail)
       selectedBook.addQuestion(q)
     }
+    
     /*
     let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
     q.addPage(questionDetail)
@@ -119,7 +135,13 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   func imageTapped(gestureRecognizer: UITapGestureRecognizer){
     //tappedImageView is tapped image
     let tappedImageView = gestureRecognizer.view! as! UIImageView
+    let storyboard = UIStoryboard(name:
+      "Main", bundle: nil)
+    let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+    let tmp = controller as! ImageZoomNavigationViewController
+    tmp.tappedImage = tappedImageView.image
     
+    self.present(tmp, animated: true, completion: nil)
   }
   
   func cancelButtonDidPress(_ imagePicker: ImagePickerController){

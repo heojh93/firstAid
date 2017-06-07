@@ -5,6 +5,7 @@ PODS:
   - SFFullscreenImageDetailViewController (0.1.2)
   - SwiftyJSON (3.1.4)
   - TZZoomImageManager (1.0.0)
+  - WSTagsField (2.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - SFFullscreenImageDetailViewController
   - SwiftyJSON (~> 3.1)
   - TZZoomImageManager
+  - WSTagsField
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -21,7 +23,8 @@ SPEC CHECKSUMS:
   SFFullscreenImageDetailViewController: d584030e78413d8c9cfb82b71b746ff6f3b48bfa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TZZoomImageManager: e650f10f0596c329bc9e49d0c3bc2232b4a7852b
+  WSTagsField: 184e47df41bea27a0305c575a3f95c3f369adafc
 
-PODFILE CHECKSUM: 5e60c0ba501d3e1a0ba4e451a33352565a583e92
+PODFILE CHECKSUM: 43fa458b4a90f69069981eba08f5fe9c481f5633
 
 COCOAPODS: 1.2.1

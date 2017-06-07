@@ -13,5 +13,6 @@ target 'firstAid' do
   pod 'GTZoomableImageView'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON', '~> 3.1'
+  pod 'WSTagsField'
 
 end

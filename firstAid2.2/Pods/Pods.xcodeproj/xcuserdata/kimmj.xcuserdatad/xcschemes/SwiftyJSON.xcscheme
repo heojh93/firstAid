@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '964B4AA7DBFD9FB21B8FEE2C29BD98A1'
-               BlueprintName = 'SFFullscreenImageDetailViewController'
+               BlueprintIdentifier = 'BBD7CD4CC179654AA0BCDA89AA62C528'
+               BlueprintName = 'SwiftyJSON'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SFFullscreenImageDetailViewController.framework'>
+               BuildableName = 'SwiftyJSON.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

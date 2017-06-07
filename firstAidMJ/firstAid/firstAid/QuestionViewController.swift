@@ -16,18 +16,17 @@ let picker = UIImagePickerController()
 
 let placeHolder = "질문을 입력하세요"
 
-
-
 class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate{
   //@IBOutlet weak var viewsection: UIImageView!
   @IBOutlet weak var imageScrollView: ImageScrollView!
   
   @IBOutlet weak var textView: UITextView!
   
-  
   @IBOutlet weak var titleText: UITextField!
   
-  // @IBOutlet weak var test: UIImageView!
+  @IBOutlet weak var tagsView: UIScrollView!
+  @IBOutlet weak var tagsField: WSTagsField!
+  //@IBOutlet weak var test: UIImageView!
   //@IBOutlet weak var navigator: UINavigationItem!
   
   var chosenImages: [UIImage] = []
@@ -42,17 +41,23 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let title = titleText.text
     let text = textView.text
     let images = chosenImages
+    let tags = tagsField.tagViews
     
-    
+    var tagArray:[String] = []
+    var k = 0
+    for _ in tags {
+      print(tags[tags.index(k, offsetBy: 0)].displayText)
+      tagArray.append(tags[tags.index(k, offsetBy: 0)].displayText)
+      k += 1
+    }
     
     print("title : " + title!)
     print("text : " + text!)
     print(images)
-    
+    print(tagArray)
     
     self.dismiss(animated: true, completion: nil)
   }
-  
   
   func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
     //self.dismiss(animated: true, completion: nil)
@@ -101,7 +106,11 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     //print(tappedImageView)
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
-    self.present(controller, animated: true, completion: nil)
+    let tmp = controller as! ImageZoomNavigationViewController
+    tmp.tappedImage = tappedImageView.image
+
+    
+    self.present(tmp, animated: true, completion: nil)
     
   }
   
@@ -126,7 +135,10 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.navigationBarTap))
     hideKeyboard.numberOfTapsRequired = 1
     navigationController?.navigationBar.addGestureRecognizer(hideKeyboard)
+    
+    //tagsView.contentSize = CGSize(width: 300, height: 300)
     //self.navigationController?.setNavigationBarHidden(true, animated: true)
+    tagsView.contentSize = CGSize(width: 300, height: 135)
   }
 
   

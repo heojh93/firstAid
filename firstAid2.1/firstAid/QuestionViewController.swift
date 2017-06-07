@@ -101,17 +101,11 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       imageView.addGestureRecognizer(tapRecognizer)
       imageView.isUserInteractionEnabled = true
       
-      //imageView.addGestureRecognizer(tapRecognizer)
-      
       
       imageScrollView.contentSize.width = imageScrollView.frame.width * CGFloat(0.5) * CGFloat(i + 1)
       imageScrollView.addSubview(imageView)
     }
     
-    //viewsection.contentMode = .scaleAspectFit
-    //viewsection.image = chosenImages[0]
-    //viewsection.image =
-      
     self.dismiss(animated: true, completion: nil)
     //self.dismiss(animated: true, completion: nil)
   }

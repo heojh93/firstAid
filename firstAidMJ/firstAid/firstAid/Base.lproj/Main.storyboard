@@ -316,7 +316,7 @@
         <!--질문하기-->
         <scene sceneID="IC5-m4-rfw">
             <objects>
-                <viewController id="lst-jO-tbr" customClass="QuestionViewController" customModule="firstAid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="QuestionViewController" storyboardIdentifier="QuestionViewController" id="lst-jO-tbr" customClass="QuestionViewController" customModule="firstAid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7VI-kV-4Ac"/>
                         <viewControllerLayoutGuide type="bottom" id="yTo-HI-Xhf"/>
@@ -336,7 +336,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spk-Y8-7Mq" customClass="ImageScrollView" customModule="firstAid" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Spk-Y8-7Mq" customClass="ImageScrollView" customModule="firstAid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="445" width="375" height="134"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
@@ -355,11 +355,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZl-XL-7XZ" customClass="WSTagsField" customModule="firstAid" customModuleProvider="target">
-                                <rect key="frame" x="37" y="407" width="338" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.99564022929999996" blue="0.43277535789999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hSO-WA-zZa">
                                 <rect key="frame" x="16" y="72" width="47" height="30"/>
                                 <nil key="textColor"/>
@@ -370,6 +365,17 @@
                                 <rect key="frame" x="1" y="407" width="28" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Nx-ZD-1E9">
+                                <rect key="frame" x="52" y="400" width="323" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZl-XL-7XZ" customClass="WSTagsField" customModule="firstAid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -406,6 +412,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageScrollView" destination="Spk-Y8-7Mq" id="Pwp-mt-6TP"/>
+                        <outlet property="tagsField" destination="BZl-XL-7XZ" id="1wU-Py-BK1"/>
+                        <outlet property="tagsView" destination="1Nx-ZD-1E9" id="0oA-L8-bOQ"/>
                         <outlet property="textView" destination="ugW-TX-qQi" id="1RV-RJ-Oo4"/>
                         <outlet property="titleText" destination="A8g-Nj-4jC" id="PX2-Ag-ep9"/>
                     </connections>
@@ -417,7 +425,7 @@
         <!--Detail View-->
         <scene sceneID="WYg-72-dLM">
             <objects>
-                <viewController restorationIdentifier="ImageZoomViewController" id="7ob-4i-L4W" customClass="ImageZoomViewController" customModule="firstAid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ImageZoomViewController" storyboardIdentifier="ImageZoomViewController" id="7ob-4i-L4W" customClass="ImageZoomViewController" customModule="firstAid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="deh-Qh-dqU"/>
                         <viewControllerLayoutGuide type="bottom" id="SrA-fW-u35"/>
@@ -444,7 +452,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detail View" id="D1N-Xv-M3A">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="HkF-37-A3A">
+                        <barButtonItem key="leftBarButtonItem" title="취소" style="plain" id="HkF-37-A3A">
                             <connections>
                                 <action selector="backButtonClicked:" destination="7ob-4i-L4W" id="c0d-2Z-kN5"/>
                             </connections>
