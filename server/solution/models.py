@@ -29,6 +29,7 @@ class Tag(models.Model):
 
 class Quest(models.Model):
 	textbook = models.ForeignKey(Textbook)
+	chapter = models.CharField(max_length = 100)
 	number = models.CharField(max_length = 100)
 	author = models.CharField(max_length = 100)
 	title = models.CharField(max_length = 200)

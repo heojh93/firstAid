@@ -42,12 +42,28 @@ def quest_list(request, textbook_id):
 	data = json.dumps(quests_list, ensure_ascii=False)
 	return HttpResponse(data)
 
+
+
+
+
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def quest_post(request, textbook_id):
 	if request.method != "POST":
 		return HttpResponse("unvalid")
 
 	textbook_id = int(textbook_id)
+	chapter = request.POST.get('chapter', '')
+	number = request.POST.get('number', '')
+	author = request.POST.get('author', '')
+	title = request.POST.get('title', '')
+	content = request.POST.get('content', '')
 
+	quest = Qeust(textbook=textbook_id, chapter=chapter, number=number,
+			author=author, title=title, content=content)
+	quest.save()
+	
+	return HttpResponse("good")
 
 
 def quest_detail(request, quest_id):
