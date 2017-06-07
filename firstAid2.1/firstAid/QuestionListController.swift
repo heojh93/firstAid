@@ -61,12 +61,15 @@ class QuestionListController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // "질문 추가"
         if segue.identifier == "addQuestion" {
             let addView = (segue.destination as!UINavigationController).topViewController as! QuestionViewController
             addView.selectedBook = questionTable.selectedBook
             addView.table = questionTable
         }
         
+        // "문제 보기"
         if segue.identifier == "showQuestion" {
             let questionView = segue.destination as! QNAViewController
             let index = questionTable.indexPathForSelectedRow?.row

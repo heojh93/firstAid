@@ -25,6 +25,8 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   
   @IBOutlet weak var titleText: UITextField!
   
+  @IBOutlet weak var numberText: UITextField!
+  
   var selectedBook:BookData!
   var table:QuestionTable!
   
@@ -43,14 +45,30 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let title = titleText.text
     let text = textView.text
     let images = chosenImages
-
-    let questionDetail = QuestionPage(number: 1, title: title!, tag: "", text: text!)
+    let number = Int(numberText.text!)
+    
+    
+    let questionDetail = QuestionPage(number: number!, title: title!, tag: "", text: text!)
     questionDetail.image = images
 
-    let q = Question(book: selectedBook, chapter: 1, number: 1, tag: "", answer: 1)
+    // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
+    var find:Bool = false
+    for i in selectedBook.bookQuestion{
+      if(i.questionNumber == number){
+        i.addPage(questionDetail)
+        find = true
+      }
+    }
+    if(!find){
+      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
+      q.addPage(questionDetail)
+      selectedBook.addQuestion(q)
+    }
+    /*
+    let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
     q.addPage(questionDetail)
     selectedBook.addQuestion(q)
-    
+    */
     table.reloadData()
     
     self.dismiss(animated: true, completion: nil)
