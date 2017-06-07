@@ -39,6 +39,11 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>WSTagsField.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -48,6 +53,16 @@
 			<true/>
 		</dict>
 		<key>09A62655F66AE53A474D64E42E6E9DF9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0E94CE448ECA21FC85A2393A57EE30DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>19BBD64F76C72502D0628D87EEC998A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,7 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5A0C409476AD6383B99E7544C856B91E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>622DA3B6F86DEB7E17F3B3F88A7AAD11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BCF15868FECF9706CD1A16DA7F2347EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C232580A44B06BEDD21E243165E7F34B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
