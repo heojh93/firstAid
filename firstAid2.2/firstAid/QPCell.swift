@@ -1,17 +1,16 @@
 //
-//  QNAPageCell.swift
+//  QPCell.swift
 //  firstAid
 //
-//  Created by heoju on 2017. 6. 1..
-//  Copyright © 2017년 HJ. All rights reserved.
+//  Created by heoju on 2017. 6. 8..
+//  Copyright © 2017년 KimMJ. All rights reserved.
 //
 
 import UIKit
 
-class QNAPageCell: UITableViewCell {
+class QPCell: UITableViewCell {
 
-    @IBOutlet weak var textView: UITextView!
-    
+    @IBOutlet weak var numberOfAnswer: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

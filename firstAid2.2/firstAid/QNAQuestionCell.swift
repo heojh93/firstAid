@@ -10,13 +10,14 @@ import UIKit
 
 class QNAQuestionCell: UITableViewCell {
 
+    var pickedSection:Int!
+    
     @IBOutlet weak var tagLabel: UILabel!
     
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var textView: UITextView!
     
-  @IBOutlet weak var addButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

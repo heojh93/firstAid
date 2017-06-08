@@ -13,7 +13,7 @@ import TZZoomImageManager
 
 class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
 
-    var selectedQuestionPage:[QuestionPage]!
+    var selectedQuestionPage:QuestionPage!
     var table:UITableView!
     
     @IBOutlet weak var textView: UITextView!
@@ -32,15 +32,13 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     
     @IBAction func DoneDIsmiss(_ sender: Any) {
         
-        // AnswerPage로 값이 제대로 넘어오지 못함. Section 문제 떄문.
-        self.dismiss(animated:true, completion: nil)
-        return
-        
         let text = textView.text
         let image = chosenImages
         
-        var answerPage = AnswerPage(text: text!)
+        let answerPage = AnswerPage(text: text!)
         answerPage.image = image
+        
+        selectedQuestionPage.addAnswer(answerPage)
         
 /*
         //Something to do

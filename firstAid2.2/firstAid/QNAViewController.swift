@@ -12,7 +12,10 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var tableview: UITableView!
     var selectedQuestion:Question!
+    var pickedSection:Int!
 
+    var index:Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,13 +36,22 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1 + selectedQuestion.questionPage[section].answerPage.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
-        
-        return cell
+        if(indexPath.row == 0){
+            let cell = tableview.dequeueReusableCell(withIdentifier: "QPCell") as! QPCell
+            return cell
+        }
+        else{
+            let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
+            let qp = selectedQuestion.questionPage[indexPath.section]
+            cell.textView.text = qp.answerPage[indexPath.row].text
+            
+            return cell
+
+        }
     }
     
     // section header를 customize하기 위한 몸부림.
@@ -53,10 +65,23 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
       return sectionCell
     }
     
-    /*
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    @IBAction func pushButton(_ sender: Any) {
+        index = tableview.indexPathForSelectedRow?.section
+      
+    }
+
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-    }*/
+        if segue.identifier == "addAnswer" {
+            let addView = (segue.destination as!UINavigationController).topViewController as! AnswerViewController
+            print("####\(index)\n")
+            addView.selectedQuestionPage = selectedQuestion.questionPage[index!]
+            addView.table = tableview
+        }
+    }
+    
     
     /*
     // MARK: - Navigation

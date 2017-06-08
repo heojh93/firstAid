@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A112BAC1EE9714000849B18 /* QPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A112BAB1EE9714000849B18 /* QPCell.swift */; };
 		7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6914FF1ED29F7000FAF1A5 /* Data.swift */; };
 		7A76AB4D1EE7F3F90010C20F /* QNAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76AB4C1EE7F3F90010C20F /* QNAViewController.swift */; };
 		7A76AB531EE7F9E90010C20F /* QNAQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76AB521EE7F9E90010C20F /* QNAQuestionCell.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		089A56540B3D3D78A67DFD05 /* Pods-firstAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.debug.xcconfig"; sourceTree = "<group>"; };
 		42EEC530FEAEF9925A148DF8 /* Pods_firstAid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_firstAid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A112BAB1EE9714000849B18 /* QPCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPCell.swift; sourceTree = "<group>"; };
 		7A6914FF1ED29F7000FAF1A5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		7A76AB4C1EE7F3F90010C20F /* QNAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNAViewController.swift; sourceTree = "<group>"; };
 		7A76AB521EE7F9E90010C20F /* QNAQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNAQuestionCell.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				ADE20E291EE8857D00E5267E /* WSTagsField.swift */,
 				ADE20E2A1EE8857D00E5267E /* WSTagView.swift */,
 				7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */,
+				7A112BAB1EE9714000849B18 /* QPCell.swift */,
 			);
 			path = firstAid;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			files = (
 				7A76AB531EE7F9E90010C20F /* QNAQuestionCell.swift in Sources */,
 				AD06954E1EE00317004B52C9 /* QuestionTable.swift in Sources */,
+				7A112BAC1EE9714000849B18 /* QPCell.swift in Sources */,
 				7A862C6E1ED9914F00F74213 /* SearchTableController.swift in Sources */,
 				ADE20E301EE888AA00E5267E /* ImageZoomNavigationViewController.swift in Sources */,
 				7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */,
