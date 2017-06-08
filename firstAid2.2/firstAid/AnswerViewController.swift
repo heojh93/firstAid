@@ -119,12 +119,17 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         self.dismiss(animated: true, completion: nil)
         //self.dismiss(animated: true, completion: nil)
     }
+  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+    //tappedImageView is tapped image
+    let tappedImageView = gestureRecognizer.view! as! UIImageView
+    let storyboard = UIStoryboard(name:
+      "Main", bundle: nil)
+    let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+    let tmp = controller as! ImageZoomNavigationViewController
+    tmp.tappedImage = tappedImageView.image
     
-    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
-        //tappedImageView is tapped image
-        let tappedImageView = gestureRecognizer.view! as! UIImageView
-        
-    }
+    self.present(tmp, animated: true, completion: nil)
+  }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController){
         //self.dismiss(animated: true, completion: nil)
