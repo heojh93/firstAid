@@ -60,12 +60,25 @@ class QuestionPage{
     var tag:String
     var text:String
     var image:[UIImage]?
-    //var answerPage
+    var answerPage:[AnswerPage] = []
     
     init(number questionNumber:Int, title:String, tag:String, text:String){
         self.questionNumber = questionNumber
         self.title = title
         self.tag = tag
+        self.text = text
+    }
+    func addAnswer(_ answer:AnswerPage)->Void{
+        self.answerPage.append(answer)
+    }
+}
+
+class AnswerPage{
+    
+    var text:String
+    var image:[UIImage]?
+    
+    init(text:String){
         self.text = text
     }
 }

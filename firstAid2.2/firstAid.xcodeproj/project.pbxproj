@@ -16,6 +16,7 @@
 		7A862C701ED9927400F74213 /* QuestionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6F1ED9927400F74213 /* QuestionListController.swift */; };
 		7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */; };
 		7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08481ED9D49600E0566B /* QuestionTableController.swift */; };
+		7AE9A92B1EE9372F0088AA26 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */; };
 		AD06954E1EE00317004B52C9 /* QuestionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06954D1EE00317004B52C9 /* QuestionTable.swift */; };
 		AD0695521EE0077B004B52C9 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0695511EE0077B004B52C9 /* QuestionViewController.swift */; };
 		AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0695531EE0082F004B52C9 /* ImageScrollView.swift */; };
@@ -44,6 +45,7 @@
 		7A862C6F1ED9927400F74213 /* QuestionListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListController.swift; sourceTree = "<group>"; };
 		7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableCell.swift; sourceTree = "<group>"; };
 		7ADB08481ED9D49600E0566B /* QuestionTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableController.swift; sourceTree = "<group>"; };
+		7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		7EC6D49F6FB5EEA9415C84EA /* Pods-firstAid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.release.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.release.xcconfig"; sourceTree = "<group>"; };
 		AD06954D1EE00317004B52C9 /* QuestionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTable.swift; sourceTree = "<group>"; };
 		AD0695511EE0077B004B52C9 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -137,6 +139,7 @@
 				ADE20E281EE8857D00E5267E /* WSTagsField.h */,
 				ADE20E291EE8857D00E5267E /* WSTagsField.swift */,
 				ADE20E2A1EE8857D00E5267E /* WSTagView.swift */,
+				7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */,
 			);
 			path = firstAid;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */,
 				AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */,
 				7A7C1DD11EE05C5500374AC4 /* QNAPageCell.swift in Sources */,
+				7AE9A92B1EE9372F0088AA26 /* AnswerViewController.swift in Sources */,
 				ADE20E2C1EE8857D00E5267E /* WSTagsField.swift in Sources */,
 				7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */,
 				AD0695521EE0077B004B52C9 /* QuestionViewController.swift in Sources */,
