@@ -49,8 +49,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.titleLabel.text = selectedQuestion.questionPage[section].title
         sectionCell.tagLabel.text = selectedQuestion.questionPage[section].tag
         sectionCell.textView.text = selectedQuestion.questionPage[section].text
-        
-        return sectionCell
+      
+      return sectionCell
     }
     
     /*

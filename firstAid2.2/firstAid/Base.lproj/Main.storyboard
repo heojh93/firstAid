@@ -313,7 +313,11 @@
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lh-oU-UIi">
                                                             <rect key="frame" x="324" y="123" width="35" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <accessibility key="accessibilityConfiguration" label="1"/>
                                                             <state key="normal" image="Image"/>
+                                                            <connections>
+                                                                <segue destination="vTj-KQ-Cbw" kind="presentation" id="GYt-92-f9S"/>
+                                                            </connections>
                                                         </button>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7C6-1D-UuU">
                                                             <rect key="frame" x="8" y="37" width="359" height="85"/>
@@ -328,6 +332,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addButton" destination="8lh-oU-UIi" id="yp5-y9-CqN"/>
                                             <outlet property="tagLabel" destination="DMd-vj-fM9" id="m2k-zh-r8x"/>
                                             <outlet property="textView" destination="7C6-1D-UuU" id="iR0-W0-6Ns"/>
                                             <outlet property="titleLabel" destination="JjC-JL-bcR" id="nuE-eD-8sP"/>
@@ -373,7 +378,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oW-VR-wwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2020" y="1581"/>
+            <point key="canvasLocation" x="-2020" y="1567"/>
         </scene>
         <!--질문하기-->
         <scene sceneID="IC5-m4-rfw">
@@ -426,6 +431,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-NK-uSf">
+                                <rect key="frame" x="1" y="407" width="28" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVU-a6-fam">
                                 <rect key="frame" x="52" y="400" width="323" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -437,10 +446,6 @@
                                     </view>
                                 </subviews>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-NK-uSf">
-                                <rect key="frame" x="1" y="407" width="28" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -485,7 +490,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CH-WP-7LE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="1580.9595202398802"/>
+            <point key="canvasLocation" x="-1204" y="1567"/>
         </scene>
         <!--Detail View-->
         <scene sceneID="JSY-N9-3j9">
@@ -529,7 +534,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSL-qb-URf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1935.2" y="2556.9715142428786"/>
+            <point key="canvasLocation" x="-1204" y="2266"/>
         </scene>
         <!--Image Zoom Navigation View Controller-->
         <scene sceneID="maz-p7-SGn">
@@ -545,7 +550,119 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTH-2u-Vrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2871" y="2557"/>
+            <point key="canvasLocation" x="-2020" y="2267"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="33P-dN-KYu">
+            <objects>
+                <navigationController storyboardIdentifier="Answer" id="vTj-KQ-Cbw" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="0Dh-5h-74f"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wDJ-Qa-ByQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6nG-od-zzY" kind="relationship" relationship="rootViewController" id="Ipk-9d-GNA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d2H-lg-7z2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1204" y="27"/>
+        </scene>
+        <!--질문하기-->
+        <scene sceneID="ztt-eW-EKb">
+            <objects>
+                <viewController id="6nG-od-zzY" customClass="QuestionViewController" customModule="firstAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OF7-Va-JOX"/>
+                        <viewControllerLayoutGuide type="bottom" id="2uy-qv-4Hd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DwL-bA-2mo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vxp-xX-PZ2">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="59R-Q0-FpJ">
+                                        <connections>
+                                            <action selector="photoFromLibrary:" destination="6nG-od-zzY" id="AeD-uW-JLK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oj9-1a-hb3" customClass="ImageScrollView" customModule="firstAid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="445" width="375" height="134"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </scrollView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7We-rF-ZUa">
+                                <rect key="frame" x="71" y="72" width="283" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="WLO-yP-ccF"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ltu-DF-5ta">
+                                <rect key="frame" x="21" y="110" width="332" height="335"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3VJ-Gp-guf">
+                                <rect key="frame" x="21" y="72" width="42" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="xdz-Db-tQK"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7We-rF-ZUa" firstAttribute="leading" secondItem="3VJ-Gp-guf" secondAttribute="trailing" constant="8" id="Aqp-n9-gm4"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="ltu-DF-5ta" secondAttribute="bottom" constant="222" id="Egi-eF-jmY"/>
+                            <constraint firstItem="3VJ-Gp-guf" firstAttribute="baseline" secondItem="7We-rF-ZUa" secondAttribute="baseline" id="EzE-FC-p4p"/>
+                            <constraint firstItem="3VJ-Gp-guf" firstAttribute="leading" secondItem="DwL-bA-2mo" secondAttribute="leadingMargin" constant="5" id="GU1-Im-h0M"/>
+                            <constraint firstItem="ltu-DF-5ta" firstAttribute="top" secondItem="7We-rF-ZUa" secondAttribute="bottom" constant="8" id="KN9-Ke-8s3"/>
+                            <constraint firstAttribute="trailing" secondItem="Oj9-1a-hb3" secondAttribute="trailing" id="Wrp-Y0-ubq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ltu-DF-5ta" secondAttribute="trailing" constant="6" id="bUa-Xx-zVS"/>
+                            <constraint firstItem="2uy-qv-4Hd" firstAttribute="top" secondItem="Oj9-1a-hb3" secondAttribute="bottom" constant="44" id="eCn-kd-dm6"/>
+                            <constraint firstItem="7We-rF-ZUa" firstAttribute="top" secondItem="OF7-Va-JOX" secondAttribute="bottom" constant="8" id="fYf-6w-Ef4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7We-rF-ZUa" secondAttribute="trailing" constant="5" id="hOP-ac-u8v"/>
+                            <constraint firstItem="ltu-DF-5ta" firstAttribute="leading" secondItem="DwL-bA-2mo" secondAttribute="leadingMargin" constant="5" id="kQ4-i7-NFh"/>
+                            <constraint firstItem="Oj9-1a-hb3" firstAttribute="top" secondItem="ltu-DF-5ta" secondAttribute="bottom" id="mN1-gp-zMH"/>
+                            <constraint firstItem="ltu-DF-5ta" firstAttribute="centerX" secondItem="DwL-bA-2mo" secondAttribute="centerX" id="vpy-l6-GH5"/>
+                            <constraint firstItem="Oj9-1a-hb3" firstAttribute="leading" secondItem="DwL-bA-2mo" secondAttribute="leading" id="xHE-O9-ke2"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="질문하기" id="xYZ-RA-Lu0">
+                        <barButtonItem key="leftBarButtonItem" title="취소" style="plain" id="p2y-hF-yz0">
+                            <connections>
+                                <action selector="CancelDismiss:" destination="6nG-od-zzY" id="E1X-d5-q3k"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="완료" style="plain" id="o68-bk-Kz6" userLabel="완료">
+                            <connections>
+                                <action selector="DoneDIsmiss:" destination="6nG-od-zzY" id="Rhx-6s-Xi9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="imageScrollView" destination="Oj9-1a-hb3" id="5MV-Gt-25t"/>
+                        <outlet property="numberText" destination="3VJ-Gp-guf" id="A3V-q5-I8y"/>
+                        <outlet property="textView" destination="ltu-DF-5ta" id="zuA-zR-3mI"/>
+                        <outlet property="titleText" destination="7We-rF-ZUa" id="ALs-Tp-uZI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJa-dF-R2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-388" y="27"/>
         </scene>
     </scenes>
     <resources>

@@ -159,16 +159,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bob-pA-SM6">
                                 <rect key="frame" x="290" y="585" width="85" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYk-fL-Yo1">
-                                        <rect key="frame" x="8" y="0.0" width="77" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Image"/>
-                                        <connections>
-                                            <segue destination="sd9-hc-bc0" kind="presentation" identifier="addQuestion" id="TsM-Zj-mJW"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="41" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTV-GV-ocX" customClass="QuestionTable" customModule="firstAid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="526"/>
@@ -250,7 +240,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="BOOK TITLE" id="Bgb-Qy-8fy"/>
+                    <navigationItem key="navigationItem" title="BOOK TITLE" id="Bgb-Qy-8fy">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="XMH-i9-69Q">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cYk-fL-Yo1">
+                                <rect key="frame" x="282" y="-18" width="77" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Image"/>
+                                <connections>
+                                    <segue destination="sd9-hc-bc0" kind="presentation" identifier="addQuestion" id="TsM-Zj-mJW"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="questionTable" destination="zTV-GV-ocX" id="wkQ-yM-mkK"/>
                         <outlet property="view" destination="zTV-GV-ocX" id="X9K-57-fPA"/>
