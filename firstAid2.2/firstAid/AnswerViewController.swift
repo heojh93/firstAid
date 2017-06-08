@@ -11,6 +11,8 @@ import ImagePicker
 import GTZoomableImageView
 import TZZoomImageManager
 
+let answerPlaceHolder = "답변을 입력하세요"
+
 class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
 
     var selectedQuestionPage:QuestionPage!
@@ -31,10 +33,11 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     }
     
     @IBAction func DoneDIsmiss(_ sender: Any) {
-        
+      
         let text = textView.text
+      
         let image = chosenImages
-        
+      if (!(text == answerPlaceHolder && image.isEmpty)){
         let answerPage = AnswerPage(text: text!)
         answerPage.image = image
         
@@ -73,6 +76,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
  */
  
         table.reloadData()
+      }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -141,7 +145,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         textView.delegate = self
-        textView.text = placeHolder
+        textView.text = answerPlaceHolder
         textView.textColor = UIColor.lightGray
         
         //textView.becomeFirstResponder()
@@ -159,7 +163,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         let updateText = currentText?.replacingCharacters(in: range, with: text)
         
         if (updateText?.isEmpty)! {
-            textView.text = placeHolder
+            textView.text = answerPlaceHolder
             textView.textColor = UIColor.lightGray
             
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
@@ -184,7 +188,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = placeHolder
+            textView.text = answerPlaceHolder
             textView.textColor = UIColor.lightGray
         }
     }

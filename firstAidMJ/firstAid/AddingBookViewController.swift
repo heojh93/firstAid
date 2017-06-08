@@ -100,15 +100,16 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
   
   func imageTapped(gestureRecognizer: UITapGestureRecognizer){
     //tappedImageView is tapped image
-    print("hello")
     let tappedImageView = gestureRecognizer.view! as! UIImageView
-    let storyboard = UIStoryboard(name:
-      "Main", bundle: nil)
-    let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
-    let tmp = controller as! ImageZoomNavigationViewController
-    tmp.tappedImage = tappedImageView.image
-    
-    self.present(tmp, animated: true, completion: nil)
+    if (tappedImageView.image != nil) {
+      let storyboard = UIStoryboard(name:
+        "Main", bundle: nil)
+      let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+      let tmp = controller as! ImageZoomNavigationViewController
+      tmp.tappedImage = tappedImageView.image
+      
+      self.present(tmp, animated: true, completion: nil)
+    }
   }
   
   func cancelButtonDidPress(_ imagePicker: ImagePickerController){

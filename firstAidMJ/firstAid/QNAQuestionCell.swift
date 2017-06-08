@@ -16,6 +16,7 @@ class QNAQuestionCell: UITableViewCell {
     
     @IBOutlet weak var textView: UITextView!
     
+  @IBOutlet weak var scrollView: ImageScrollView!
   @IBOutlet weak var addButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()

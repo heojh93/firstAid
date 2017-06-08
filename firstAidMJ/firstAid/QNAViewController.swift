@@ -12,6 +12,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var tableview: UITableView!
     var selectedQuestion:Question!
+  var images:[UIImage] = []//for question
+  var answerImages:[UIImage] = []//for answer
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableview.dataSource = self
         
         tableview.sectionHeaderHeight = 170
+      
+      images.append(UIImage(named: "Image")!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +54,49 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.tagLabel.text = selectedQuestion.questionPage[section].tag
         sectionCell.textView.text = selectedQuestion.questionPage[section].text
       
+      
+      var Images: [UIImage] = []
+      
+      if !Images.isEmpty {
+        for v in sectionCell.scrollView.subviews {
+          v.removeFromSuperview()
+        }
+      }
+      
+      Images = images
+      //let imagePickerController = ImagePickerController()
+      
+      
+      for i in 0 ..< Images.count{
+        let imageView = UIImageView()
+        imageView.image = Images[i]
+        let xPosition = self.view.frame.height * CGFloat(i)
+        //print(self.imageScrollView.frame.height)
+        imageView.frame = CGRect(x: xPosition, y: 0, width: sectionCell.scrollView.frame.height, height: sectionCell.scrollView.frame.height)
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+        imageView.addGestureRecognizer(tapRecognizer)
+        imageView.isUserInteractionEnabled = true
+        
+        //imageView.addGestureRecognizer(tapRecognizer)
+        
+        
+        sectionCell.scrollView.contentSize.width = sectionCell.scrollView.frame.height * CGFloat(i + 1)
+        sectionCell.scrollView.addSubview(imageView)
+      }
+      
       return sectionCell
     }
     
+  @IBAction func answerThisQuestion(_ sender: Any) {
+    // 사용자의 탭 좌표에 해당하는 테이블 뷰 셀을 얻을 수 있음.
+    //그 셀의 인덱스패쓰로부터 섹션 번호를 얻어냄.
+    
+    //print(self.tableview.indexPathForSelectedRow)
+//    let selectedINdexPaht = self.tableview.indexPathForSelectedRow
+//    
+//    print(selectedINdexPaht?.section)
+  }
     /*
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -67,5 +111,19 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Pass the selected object to the new view controller.
     }
     */
+  
+  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+    //tappedImageView is tapped image
+    let tappedImageView = gestureRecognizer.view! as! UIImageView
+    if (tappedImageView.image != nil) {
+      let storyboard = UIStoryboard(name:
+        "Main", bundle: nil)
+      let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+      let tmp = controller as! ImageZoomNavigationViewController
+      tmp.tappedImage = tappedImageView.image
+      
+      self.present(tmp, animated: true, completion: nil)
+    }
+  }
 
 }

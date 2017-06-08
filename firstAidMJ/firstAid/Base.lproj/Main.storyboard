@@ -326,16 +326,22 @@
                                                             <accessibility key="accessibilityConfiguration" label="1"/>
                                                             <state key="normal" image="Image"/>
                                                             <connections>
+                                                                <action selector="answerThisQuestion:" destination="4ae-Bp-NNQ" eventType="touchUpInside" id="Fiv-90-cps"/>
                                                                 <segue destination="vTj-KQ-Cbw" kind="presentation" id="GYt-92-f9S"/>
                                                             </connections>
                                                         </button>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7C6-1D-UuU">
-                                                            <rect key="frame" x="8" y="37" width="359" height="85"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7C6-1D-UuU">
+                                                            <rect key="frame" x="8" y="37" width="359" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
+                                                        <scrollView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9Q-ak-T3V" customClass="ImageScrollView" customModule="firstAid" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="75" width="375" height="47"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </scrollView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -343,6 +349,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addButton" destination="8lh-oU-UIi" id="yp5-y9-CqN"/>
+                                            <outlet property="scrollView" destination="L9Q-ak-T3V" id="nwv-df-YHe"/>
                                             <outlet property="tagLabel" destination="DMd-vj-fM9" id="m2k-zh-r8x"/>
                                             <outlet property="textView" destination="7C6-1D-UuU" id="iR0-W0-6Ns"/>
                                             <outlet property="titleLabel" destination="JjC-JL-bcR" id="nuE-eD-8sP"/>
@@ -363,6 +370,11 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <scrollView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW1-6M-mZ3" customClass="ImageScrollView" customModule="firstAid" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="166" width="375" height="47"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                </scrollView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -449,7 +461,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-NK-uSf">
                                 <rect key="frame" x="1" y="407" width="28" height="28"/>
