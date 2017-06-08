@@ -1,15 +1,38 @@
 # firstAid
 
-대학생들의 문제풀이 공유를 위한 앱입니다.
+대학생들의 문제풀이 공유를 위한 앱입니다. 대학교에 올라와서 공부를 할 때, 전공서적에는 연습문제에 대한 답이 일부 밖에 나와있지 않은 점을 불편하게 생각해서 이런 앱을 구상하게 되었습니다.
 
-Git 주소
+## 사용법
+1. 질문 & 답변  
+~~전공 책 검색 -> 챕터 선택 -> 문제 선택 -> 질문 or 답변~~
+2. 책, 질문, 답변 추가  
+~~+ 버튼 이용~~
 
-필요한 기술 : 
-1. 간단한 서버 구현
-2. 델리게이트(사진 업로드)
-3. 테이블 커스터마이징
-4. 기타 등등
 
-허주환 : heojh93@naver.com
-김명진 : ss59s@nate.com
-김기황 : eun104103@hanmail.net
+## 필요한 기술
+
+1. Scene 디자인 및 계층 구조 디자인
+2. 서버와 어플간의 통신
+3. 사진 업로드
+4. tag field 구현
+5. Segue를 통한 화면간의 데이터 전달
+6. Search Bar 구현
+
+## 구현 진행 상황
+- [ ] Search Bar를 통한 TextBook List 검색
+- [ ] Data간의 계층 구조 디자인
+- [ ] 질문하기, 답변하기 Scene
+- [ ] Django를 통한 서버 구축
+- [x] json을 통해 서버, 어플간 통신
+- [ ] Image 업로드
+- [ ] Image 클릭으로 확대 기능
+- [x] Tag field 구현
+- [ ] QNA view 구성
+- [x] QNA view에서 Data 전달 ...section구분 문제...
+- [x] Chapter별 문제 구분
+
+## contributor
+
+허주환 : heojh93@naver.com  
+김명진 : ss59s@nate.com  
+김기황 : eun104103@hanmail.net 
