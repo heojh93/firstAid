@@ -16,6 +16,7 @@
 		7A862C701ED9927400F74213 /* QuestionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A862C6F1ED9927400F74213 /* QuestionListController.swift */; };
 		7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */; };
 		7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08481ED9D49600E0566B /* QuestionTableController.swift */; };
+		7AE9A92B1EE9372F0088AA26 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */; };
 		AD06954E1EE00317004B52C9 /* QuestionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06954D1EE00317004B52C9 /* QuestionTable.swift */; };
 		AD0695521EE0077B004B52C9 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0695511EE0077B004B52C9 /* QuestionViewController.swift */; };
 		AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0695531EE0082F004B52C9 /* ImageScrollView.swift */; };
@@ -24,7 +25,7 @@
 		AD2010D21EC4620E00682212 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D01EC4620E00682212 /* Main.storyboard */; };
 		AD2010D41EC4620E00682212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D31EC4620E00682212 /* Assets.xcassets */; };
 		AD2010D71EC4620E00682212 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */; };
-		AD5798C01EE934AF007808C2 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5798BF1EE934AF007808C2 /* AnswerViewController.swift */; };
+		AD5798C21EE93FBA007808C2 /* AddingBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5798C11EE93FBA007808C2 /* AddingBookViewController.swift */; };
 		ADE20E2B1EE8857D00E5267E /* WSTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE20E271EE8857D00E5267E /* WSTag.swift */; };
 		ADE20E2C1EE8857D00E5267E /* WSTagsField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE20E291EE8857D00E5267E /* WSTagsField.swift */; };
 		ADE20E2D1EE8857D00E5267E /* WSTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE20E2A1EE8857D00E5267E /* WSTagView.swift */; };
@@ -45,6 +46,7 @@
 		7A862C6F1ED9927400F74213 /* QuestionListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListController.swift; sourceTree = "<group>"; };
 		7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableCell.swift; sourceTree = "<group>"; };
 		7ADB08481ED9D49600E0566B /* QuestionTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableController.swift; sourceTree = "<group>"; };
+		7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		7EC6D49F6FB5EEA9415C84EA /* Pods-firstAid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.release.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.release.xcconfig"; sourceTree = "<group>"; };
 		AD06954D1EE00317004B52C9 /* QuestionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTable.swift; sourceTree = "<group>"; };
 		AD0695511EE0077B004B52C9 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -56,7 +58,7 @@
 		AD2010D31EC4620E00682212 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD2010D61EC4620E00682212 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2010D81EC4620E00682212 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD5798BF1EE934AF007808C2 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		AD5798C11EE93FBA007808C2 /* AddingBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingBookViewController.swift; sourceTree = "<group>"; };
 		ADE20E271EE8857D00E5267E /* WSTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSTag.swift; path = ../Pods/WSTagsField/Source/WSTag.swift; sourceTree = "<group>"; };
 		ADE20E281EE8857D00E5267E /* WSTagsField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSTagsField.h; path = ../Pods/WSTagsField/WSTagsField/WSTagsField.h; sourceTree = "<group>"; };
 		ADE20E291EE8857D00E5267E /* WSTagsField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSTagsField.swift; path = ../Pods/WSTagsField/Source/WSTagsField.swift; sourceTree = "<group>"; };
@@ -119,7 +121,6 @@
 				ADE20E2F1EE888AA00E5267E /* ImageZoomViewController.swift */,
 				AD0695531EE0082F004B52C9 /* ImageScrollView.swift */,
 				AD0695511EE0077B004B52C9 /* QuestionViewController.swift */,
-				AD5798BF1EE934AF007808C2 /* AnswerViewController.swift */,
 				7A862C6B1ED96E6700F74213 /* SearchTableCell.swift */,
 				7A862C6D1ED9914F00F74213 /* SearchTableController.swift */,
 				AD06954D1EE00317004B52C9 /* QuestionTable.swift */,
@@ -130,6 +131,7 @@
 				AD2010CE1EC4620E00682212 /* ViewController.swift */,
 				7A6914FF1ED29F7000FAF1A5 /* Data.swift */,
 				AD2010D01EC4620E00682212 /* Main.storyboard */,
+				AD5798C11EE93FBA007808C2 /* AddingBookViewController.swift */,
 				AD2010D31EC4620E00682212 /* Assets.xcassets */,
 				AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */,
 				AD2010D81EC4620E00682212 /* Info.plist */,
@@ -140,6 +142,7 @@
 				ADE20E281EE8857D00E5267E /* WSTagsField.h */,
 				ADE20E291EE8857D00E5267E /* WSTagsField.swift */,
 				ADE20E2A1EE8857D00E5267E /* WSTagView.swift */,
+				7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */,
 			);
 			path = firstAid;
 			sourceTree = "<group>";
@@ -276,10 +279,11 @@
 				ADE20E2B1EE8857D00E5267E /* WSTag.swift in Sources */,
 				7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */,
 				ADE20E311EE888AA00E5267E /* ImageZoomViewController.swift in Sources */,
+				AD5798C21EE93FBA007808C2 /* AddingBookViewController.swift in Sources */,
 				7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */,
 				AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */,
 				7A7C1DD11EE05C5500374AC4 /* QNAPageCell.swift in Sources */,
-				AD5798C01EE934AF007808C2 /* AnswerViewController.swift in Sources */,
+				7AE9A92B1EE9372F0088AA26 /* AnswerViewController.swift in Sources */,
 				ADE20E2C1EE8857D00E5267E /* WSTagsField.swift in Sources */,
 				7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */,
 				AD0695521EE0077B004B52C9 /* QuestionViewController.swift in Sources */,
