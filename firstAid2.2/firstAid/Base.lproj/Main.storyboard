@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RJ6-aV-hEf">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RJ6-aV-hEf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -392,9 +392,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o1N-yC-9Ez">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o1N-yC-9Ez">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="camera" id="oYp-aq-XiZ">
                                         <connections>
@@ -436,6 +435,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVU-a6-fam">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVU-a6-fam">
                                 <rect key="frame" x="52" y="400" width="323" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -445,7 +445,21 @@
                                         <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="FgN-7y-8cJ" secondAttribute="trailing" id="5uQ-Ph-0aj"/>
+                                    <constraint firstItem="FgN-7y-8cJ" firstAttribute="leading" secondItem="vVU-a6-fam" secondAttribute="leading" id="9Oc-9X-kSi"/>
+                                    <constraint firstAttribute="bottom" secondItem="FgN-7y-8cJ" secondAttribute="bottom" id="9Q3-9r-d7u"/>
+                                    <constraint firstItem="FgN-7y-8cJ" firstAttribute="centerY" secondItem="vVU-a6-fam" secondAttribute="centerY" id="U2U-CQ-ucj"/>
+                                    <constraint firstItem="FgN-7y-8cJ" firstAttribute="centerX" secondItem="vVU-a6-fam" secondAttribute="centerX" id="kCg-xY-NHw"/>
+                                    <constraint firstItem="FgN-7y-8cJ" firstAttribute="top" secondItem="vVU-a6-fam" secondAttribute="top" id="kSp-I5-Dm7"/>
+                                </constraints>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-NK-uSf">
+                                <rect key="frame" x="1" y="407" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="mta-k1-reh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -456,12 +470,22 @@
                             <constraint firstItem="A8g-Nj-4jC" firstAttribute="leading" secondItem="mbs-bZ-REg" secondAttribute="trailing" constant="8" id="O6S-dX-WmF"/>
                             <constraint firstItem="ugW-TX-qQi" firstAttribute="leading" secondItem="d3R-SX-j5z" secondAttribute="leadingMargin" constant="5" id="Qxd-Hj-kPk"/>
                             <constraint firstItem="mbs-bZ-REg" firstAttribute="leading" secondItem="d3R-SX-j5z" secondAttribute="leadingMargin" constant="5" id="WGU-vX-KE5"/>
+                            <constraint firstItem="vVU-a6-fam" firstAttribute="trailing" secondItem="o1N-yC-9Ez" secondAttribute="trailing" id="WUt-63-waT"/>
+                            <constraint firstItem="o1N-yC-9Ez" firstAttribute="top" secondItem="yTo-HI-Xhf" secondAttribute="top" id="Xcs-tS-qqp"/>
                             <constraint firstItem="ugW-TX-qQi" firstAttribute="centerX" secondItem="d3R-SX-j5z" secondAttribute="centerX" id="YSl-0P-WU8"/>
+                            <constraint firstItem="Spk-Y8-7Mq" firstAttribute="top" secondItem="d8E-NK-uSf" secondAttribute="bottom" constant="10" id="bDq-lq-iPL"/>
+                            <constraint firstItem="vVU-a6-fam" firstAttribute="leading" secondItem="d3R-SX-j5z" secondAttribute="leading" constant="52" id="dgk-CP-BT5"/>
                             <constraint firstItem="A8g-Nj-4jC" firstAttribute="top" secondItem="7VI-kV-4Ac" secondAttribute="bottom" constant="8" id="eda-Gs-8Qo"/>
                             <constraint firstItem="yTo-HI-Xhf" firstAttribute="top" secondItem="Spk-Y8-7Mq" secondAttribute="bottom" constant="44" id="hOg-Ei-5ao"/>
+                            <constraint firstItem="vVU-a6-fam" firstAttribute="bottom" secondItem="ugW-TX-qQi" secondAttribute="bottom" id="ift-Gh-2kD"/>
+                            <constraint firstItem="vVU-a6-fam" firstAttribute="trailing" secondItem="Spk-Y8-7Mq" secondAttribute="trailing" id="jen-jp-3fo"/>
+                            <constraint firstItem="d8E-NK-uSf" firstAttribute="leading" secondItem="d3R-SX-j5z" secondAttribute="leadingMargin" constant="-15" id="jhr-BC-Q3V"/>
                             <constraint firstItem="Spk-Y8-7Mq" firstAttribute="top" secondItem="ugW-TX-qQi" secondAttribute="bottom" id="keu-67-ufu"/>
+                            <constraint firstItem="vVU-a6-fam" firstAttribute="leading" secondItem="d8E-NK-uSf" secondAttribute="trailing" constant="23" id="laP-b7-8ot"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ugW-TX-qQi" secondAttribute="bottom" constant="222" id="lef-k7-uCe"/>
+                            <constraint firstItem="vVU-a6-fam" firstAttribute="top" secondItem="d3R-SX-j5z" secondAttribute="top" constant="400" id="mD7-Fm-hhd"/>
                             <constraint firstItem="mbs-bZ-REg" firstAttribute="baseline" secondItem="A8g-Nj-4jC" secondAttribute="baseline" id="sGb-vf-eMl"/>
+                            <constraint firstItem="o1N-yC-9Ez" firstAttribute="leading" secondItem="Spk-Y8-7Mq" secondAttribute="leading" id="udI-lE-GDt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ugW-TX-qQi" secondAttribute="trailing" constant="6" id="xCZ-x4-rHe"/>
                         </constraints>
                     </view>

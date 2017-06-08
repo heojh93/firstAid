@@ -48,6 +48,12 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let number = Int(numberText.text!)
     
     
+    // number에 nil이 들어오는 경우 오류 발생.
+    if(number == nil){
+        self.dismiss(animated: true, completion: nil)
+      return
+    }
+    
     let questionDetail = QuestionPage(number: number!, title: title!, tag: "", text: text!)
     questionDetail.image = images
 
@@ -101,11 +107,17 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       imageView.addGestureRecognizer(tapRecognizer)
       imageView.isUserInteractionEnabled = true
       
+      //imageView.addGestureRecognizer(tapRecognizer)
+      
       
       imageScrollView.contentSize.width = imageScrollView.frame.width * CGFloat(0.5) * CGFloat(i + 1)
       imageScrollView.addSubview(imageView)
     }
     
+    //viewsection.contentMode = .scaleAspectFit
+    //viewsection.image = chosenImages[0]
+    //viewsection.image =
+      
     self.dismiss(animated: true, completion: nil)
     //self.dismiss(animated: true, completion: nil)
   }
