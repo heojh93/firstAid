@@ -25,6 +25,7 @@
 		AD2010D21EC4620E00682212 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D01EC4620E00682212 /* Main.storyboard */; };
 		AD2010D41EC4620E00682212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D31EC4620E00682212 /* Assets.xcassets */; };
 		AD2010D71EC4620E00682212 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */; };
+		AD5798C21EE93FBA007808C2 /* AddingBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5798C11EE93FBA007808C2 /* AddingBookViewController.swift */; };
 		ADE20E2B1EE8857D00E5267E /* WSTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE20E271EE8857D00E5267E /* WSTag.swift */; };
 		ADE20E2C1EE8857D00E5267E /* WSTagsField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE20E291EE8857D00E5267E /* WSTagsField.swift */; };
 		ADE20E2D1EE8857D00E5267E /* WSTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE20E2A1EE8857D00E5267E /* WSTagView.swift */; };
@@ -57,6 +58,7 @@
 		AD2010D31EC4620E00682212 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD2010D61EC4620E00682212 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2010D81EC4620E00682212 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD5798C11EE93FBA007808C2 /* AddingBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingBookViewController.swift; sourceTree = "<group>"; };
 		ADE20E271EE8857D00E5267E /* WSTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSTag.swift; path = ../Pods/WSTagsField/Source/WSTag.swift; sourceTree = "<group>"; };
 		ADE20E281EE8857D00E5267E /* WSTagsField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSTagsField.h; path = ../Pods/WSTagsField/WSTagsField/WSTagsField.h; sourceTree = "<group>"; };
 		ADE20E291EE8857D00E5267E /* WSTagsField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSTagsField.swift; path = ../Pods/WSTagsField/Source/WSTagsField.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				AD2010CE1EC4620E00682212 /* ViewController.swift */,
 				7A6914FF1ED29F7000FAF1A5 /* Data.swift */,
 				AD2010D01EC4620E00682212 /* Main.storyboard */,
+				AD5798C11EE93FBA007808C2 /* AddingBookViewController.swift */,
 				AD2010D31EC4620E00682212 /* Assets.xcassets */,
 				AD2010D51EC4620E00682212 /* LaunchScreen.storyboard */,
 				AD2010D81EC4620E00682212 /* Info.plist */,
@@ -276,6 +279,7 @@
 				ADE20E2B1EE8857D00E5267E /* WSTag.swift in Sources */,
 				7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */,
 				ADE20E311EE888AA00E5267E /* ImageZoomViewController.swift in Sources */,
+				AD5798C21EE93FBA007808C2 /* AddingBookViewController.swift in Sources */,
 				7A862C6C1ED96E6700F74213 /* SearchTableCell.swift in Sources */,
 				AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */,
 				7A7C1DD11EE05C5500374AC4 /* QNAPageCell.swift in Sources */,

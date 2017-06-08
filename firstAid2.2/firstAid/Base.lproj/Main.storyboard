@@ -18,6 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qvw-7K-HlB">
+                            <rect key="frame" x="0.0" y="92" width="375" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <segue destination="lp3-ZL-jvo" kind="presentation" id="tKB-sP-Leo"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="64" id="khC-oZ-NNN" customClass="SearchCell" customModule="firstAid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="64"/>
@@ -68,6 +76,7 @@
                             <outlet property="delegate" destination="A3B-K5-rVG" id="OIo-6D-lMo"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="BYs-de-pph">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="8n4-k9-qsL">
@@ -84,6 +93,7 @@
                             </subviews>
                         </view>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjp-1g-ckv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -652,13 +662,96 @@
             </objects>
             <point key="canvasLocation" x="546.39999999999998" y="787.55622188905556"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="76Q-9o-NXx">
+            <objects>
+                <navigationController id="lp3-ZL-jvo" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Szb-zj-Pl4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lo4-Tt-imo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5RE-G2-xMg" kind="relationship" relationship="rootViewController" id="RlE-lD-nCK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TsZ-dE-E3Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1030" y="32"/>
+        </scene>
+        <!--책 추가-->
+        <scene sceneID="791-4y-fn7">
+            <objects>
+                <viewController id="5RE-G2-xMg" customClass="AddingBookViewController" customModule="firstAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qyk-nb-mqB"/>
+                        <viewControllerLayoutGuide type="bottom" id="srV-F3-KHQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aWl-p3-8os">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="up4-2L-SUl">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="6Gy-X4-gSr">
+                                        <connections>
+                                            <action selector="photoFromLibrary:" destination="5RE-G2-xMg" id="GZI-cy-bke"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kez-wO-R2g">
+                                <rect key="frame" x="21" y="72" width="333" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="저자" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WXV-hV-yKL">
+                                <rect key="frame" x="21" y="110" width="333" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFf-cX-CRv">
+                                <rect key="frame" x="0.0" y="156" width="375" height="354"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="책 추가" id="hun-0W-TJM">
+                        <barButtonItem key="leftBarButtonItem" title="취소" style="plain" id="Oil-7r-400">
+                            <connections>
+                                <action selector="CancelDismiss:" destination="5RE-G2-xMg" id="iqL-r9-nVs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="완료" style="plain" id="8aU-WY-BOZ" userLabel="완료">
+                            <connections>
+                                <action selector="DoneDIsmiss:" destination="5RE-G2-xMg" id="NOH-OT-GYh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bookImage" destination="zFf-cX-CRv" id="5ne-xS-HSI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hWt-Mu-Rjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-194" y="32"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Image" width="75" height="75"/>
         <image name="Image-1" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BcI-lU-KOc"/>
+        <segue reference="Z6E-2g-kpI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.24313725490196078" green="0.5725490196078431" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
 </document>
