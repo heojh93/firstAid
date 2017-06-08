@@ -12,9 +12,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var tableview: UITableView!
     var selectedQuestion:Question!
-    var pickedSection:Int!
-
-    var index:Int!
+    var addView:AnswerViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,19 +34,20 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("@@@@@@@@@@@@@@@\(1 + selectedQuestion.questionPage[section].answerPage.count)\n")
         return 1 + selectedQuestion.questionPage[section].answerPage.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0){
             let cell = tableview.dequeueReusableCell(withIdentifier: "QPCell") as! QPCell
+            cell.button.tag = indexPath.section
             return cell
         }
         else{
             let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
             let qp = selectedQuestion.questionPage[indexPath.section]
-            cell.textView.text = qp.answerPage[indexPath.row].text
-            
+            cell.textView.text = qp.answerPage[indexPath.row-1].text
             return cell
 
         }
@@ -66,8 +65,11 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func pushButton(_ sender: Any) {
-        index = tableview.indexPathForSelectedRow?.section
-      
+        let button = sender as! UIButton
+        let section = button.tag
+        addView.table = tableview
+        addView.selectedQuestionPage = selectedQuestion.questionPage[section]
+        print("####\(section)\n")
     }
 
     
@@ -75,10 +77,9 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "addAnswer" {
-            let addView = (segue.destination as!UINavigationController).topViewController as! AnswerViewController
-            print("####\(index)\n")
-            addView.selectedQuestionPage = selectedQuestion.questionPage[index!]
-            addView.table = tableview
+            addView = (segue.destination as!UINavigationController).topViewController as! AnswerViewController
+            //addView.selectedQuestionPage = selectedQuestion.questionPage[index!]
+            //addView.table = tableview
         }
     }
     

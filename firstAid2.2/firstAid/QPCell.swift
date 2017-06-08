@@ -10,6 +10,7 @@ import UIKit
 
 class QPCell: UITableViewCell {
 
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var numberOfAnswer: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

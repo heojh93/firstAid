@@ -372,10 +372,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="button" destination="8lh-oU-UIi" id="VLB-fR-eSB"/>
                                             <outlet property="numberOfAnswer" destination="j0N-DO-ku4" id="IWY-HR-rpz"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="213" id="9sz-J6-ae5" customClass="QNAPageCell" customModule="firstAid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QNAPageCell" rowHeight="213" id="9sz-J6-ae5" customClass="QNAPageCell" customModule="firstAid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="276" width="375" height="213"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9sz-J6-ae5" id="FjQ-ix-RCT">
