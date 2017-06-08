@@ -49,23 +49,25 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.titleLabel.text = selectedQuestion.questionPage[section].title
         sectionCell.tagLabel.text = selectedQuestion.questionPage[section].tag
         sectionCell.textView.text = selectedQuestion.questionPage[section].text
+        sectionCell.sectionNum = section
         
         return sectionCell
     }
-    
-    /*
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-    }*/
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
+        if segue.identifier == "addAnswer" {
+            let addView = (segue.destination as!UINavigationController).topViewController as! AnswerViewController
+            let cell = tableview.dequeueReusableCell(withIdentifier: "QNAQuestionCell") as! QNAQuestionCell
+            
+            //let section = tableview.section
+            addView.selectedQuestionPage = selectedQuestion.questionPage
+            addView.table = tableview
+        }
+
+        
     }
-    */
+ 
 
 }

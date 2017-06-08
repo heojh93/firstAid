@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>GTZoomableImageView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -34,10 +39,20 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>TZZoomImageManager.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
+		</dict>
+		<key>WSTagsField.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -67,7 +82,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>41565608626D18461C0473F12D5DD07F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>43666185AC096E28E5133D3C1B1B6ECF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>622DA3B6F86DEB7E17F3B3F88A7AAD11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>964B4AA7DBFD9FB21B8FEE2C29BD98A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A338C93506F15213BDD0856574AB0FAE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBD7CD4CC179654AA0BCDA89AA62C528</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,6 +123,11 @@
 			<true/>
 		</dict>
 		<key>E52D7419DBD4E2D7D19E4B2350E79F35</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD353D003F2C68B872D1F5B39A4300B1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
