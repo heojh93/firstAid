@@ -15,7 +15,8 @@ def textbook_list(request):
 		t['title'] = textbook.title
 		t['author'] = textbook.author
 		t['id'] = textbook.id
-		t['image_url'] = textbook.image.url
+		try: t['image_url'] = textbook.image.url
+		except: t['image_url'] = ""
 		textbooks_list.append(t)
 	data = json.dumps(textbooks_list, ensure_ascii=False)
 	return HttpResponse(data)
@@ -24,20 +25,22 @@ def textbook_list(request):
 
 
 
-def quest_list(request, textbook_id):
+def problem_list(request, textbook_id):
 	textbook_id = int(textbook_id)
-	quests_list = []
-	quests = Quest.objects.filter(textbook=textbook_id)
-	for quest in quests:
-		q = {}
-		q['id'] = quest.id
-		q['number'] = quest.number
-		q['title'] = quest.title
-		q['author'] = quest.author
-		q['tag'] = []
-		for tag in quest.tags.all():
-			q['tag'].append(tag.title)
-		q['answer_number'] = len(Answer.objects.filter(quest=quest.id))
+	problem_list = []
+	problems = Problem.objects.filter(textbook=textbook_id)
+	for problem in problems:
+		p = {}
+		p['id'] = problem.id
+		p['number'] = problem.number
+		p['chapter'] = problem.chapter
+		p['author'] = problem.author
+		p['tag'] = ""
+		for tag in problem.tags.all():
+			p['tag'] = p['tag'] + "#" + str(tag.title) + " "
+			#q['tag'].append(tag.title)
+		p['tag'] = p['tag'][:-1]
+#p['answer_number'] = len(Answer.objects.filter(quest=quest.id))
 		quests_list.append(q)
 	data = json.dumps(quests_list, ensure_ascii=False)
 	return HttpResponse(data)
@@ -48,7 +51,7 @@ def quest_list(request, textbook_id):
 
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
-def quest_post(request, textbook_id):
+def problem_post(request, textbook_id):
 	if request.method != "POST":
 		return HttpResponse("unvalid")
 
@@ -66,7 +69,7 @@ def quest_post(request, textbook_id):
 	return HttpResponse("good")
 
 
-def quest_detail(request, quest_id):
+def problem_detail(request, quest_id):
 	quest_id = int(quest_id)
 	quest = Quest.objects.get(id=quest_id)
 	q = {}
