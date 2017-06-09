@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class BookData : NSObject{
     
@@ -29,6 +30,7 @@ class BookData : NSObject{
         self.bookWriter = bookWriter
     }
     func addQuestion(_ question:Question) -> Void{
+        
         self.bookQuestion.append(question)
     }
 
@@ -41,6 +43,7 @@ class Question : BookData{
     var questionNumber: Int
     var questionTag: String
     var numberOfAnswer: Int
+    var imageURL: [String]
     var questionPage: [QuestionPage] = []
     
     init(book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
@@ -49,6 +52,7 @@ class Question : BookData{
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
+        self.imageURL = []
         super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     
@@ -58,6 +62,7 @@ class Question : BookData{
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
+        self.imageURL = []
         super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     

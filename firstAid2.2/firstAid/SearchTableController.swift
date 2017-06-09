@@ -36,6 +36,7 @@ class SearchTableController: UITableViewController {
         }
         
         // dummy 데이터들
+        
         algorithm.addQuestion(question10)
         algorithm.addQuestion(question11)
         algorithm.addQuestion(question12)

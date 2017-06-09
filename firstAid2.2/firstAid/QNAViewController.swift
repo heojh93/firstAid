@@ -28,6 +28,12 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableview.estimatedRowHeight = 100
         
         tableview.sectionHeaderHeight = 170
+        
+        
+        
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {

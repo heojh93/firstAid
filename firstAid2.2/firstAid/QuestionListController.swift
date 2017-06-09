@@ -37,19 +37,14 @@ class QuestionListController: UIViewController {
                 questionTable.selectedBook = singleBook
             }
         }
-        print(detailBook!.bookName)
-        print(detailBook!.bookId)
+        
         
         let url:String = "http://220.85.167.57:2288/solution/textbook/" + String(detailBook!.bookId) + "/problem_list/"
         
-        questionTable.selectedBook.bookQuestion = []
+        //questionTable.selectedBook.bookQuestion = []
         Alamofire.request(url).responseJSON { response in
             
-            print(response.result)
-            
             if let j = response.result.value {
-                print("JSON: \(j)")
-                
                 let jsons = JSON(j)
                 for (_, json) in jsons {
                     

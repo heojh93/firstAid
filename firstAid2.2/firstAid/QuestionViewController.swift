@@ -12,6 +12,9 @@ import GTZoomableImageView
 import TZZoomImageManager
 import WSTagsField
 
+import Alamofire
+
+
 let picker = UIImagePickerController()
 
 let placeHolder = "질문을 입력하세요"
@@ -63,10 +66,11 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       k += 1
     }
     
-    let questionDetail = QuestionPage(number: number!, title: title!, tag: tagString, text: text!)
-    questionDetail.image = images
+    //let questionDetail = QuestionPage(number: number!, title: title!, tag: tagString, text: text!)
+    //questionDetail.image = images
     
     // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
+    /*
     var find:Bool = false
     for i in selectedBook.bookQuestion{
       if(i.questionNumber == number){
@@ -74,11 +78,24 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
         find = true
       }
     }
-    if(!find){
-      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: tagString, answer: 1)
-      q.addPage(questionDetail)
-      selectedBook.addQuestion(q)
+     */
+    
+    //let q = Question(book: selectedBook, chapter: 1, number: number!, tag: tagString, answer: 1)
+    
+    let url = "http://220.85.167.57:2288/solution/problem_post/"
+    let param: Parameters = [
+      "textbook_id":selectedBook.bookId,
+      "number":number!,
+      "tag":tagString,
+      "title":title!,
+      "content":text!
+    ]
+    Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseString { response in
+      //print("response : \(response.result.value)")
     }
+    
+
+    
     
     /*
     let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
