@@ -11,6 +11,7 @@ import UIKit
 
 class BookData : NSObject{
     
+    var id:Int = 0
     var bookName: String
     var bookWriter: String
     var bookImage: String!
@@ -33,6 +34,7 @@ class BookData : NSObject{
 
 class Question : BookData{
     
+    var id:Int = 0
     var chapter: Int
     var questionNumber: Int
     var questionTag: String
@@ -55,6 +57,7 @@ class Question : BookData{
 // QuestionPage 추가 -> Question class구성 후, Question List에 추가, questionPage배열에 추가.
 class QuestionPage{
     
+    var id:Int = 0
     var questionNumber:Int
     var title:String
     var tag:String
@@ -75,6 +78,7 @@ class QuestionPage{
 
 class AnswerPage{
     
+    var id:Int = 0
     var text:String
     var image:[UIImage]?
     
