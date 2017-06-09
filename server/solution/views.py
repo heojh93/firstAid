@@ -41,8 +41,9 @@ def problem_list(request, textbook_id):
 			#q['tag'].append(tag.title)
 		p['tag'] = p['tag'][:-1]
 #p['answer_number'] = len(Answer.objects.filter(quest=quest.id))
-		quests_list.append(q)
-	data = json.dumps(quests_list, ensure_ascii=False)
+		p['answer_number'] = 0
+		problem_list.append(p)
+	data = json.dumps(problem_list, ensure_ascii=False)
 	return HttpResponse(data)
 
 
