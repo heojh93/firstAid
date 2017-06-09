@@ -23,7 +23,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button"/>
                             <connections>
-                                <segue destination="lp3-ZL-jvo" kind="presentation" id="tKB-sP-Leo"/>
+                                <segue destination="lp3-ZL-jvo" kind="presentation" identifier="addTextbook" id="tKB-sP-Leo"/>
                             </connections>
                         </button>
                         <prototypes>

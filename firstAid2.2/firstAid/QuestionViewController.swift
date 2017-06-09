@@ -13,6 +13,7 @@ import TZZoomImageManager
 import WSTagsField
 
 import Alamofire
+import SwiftyJSON
 
 
 let picker = UIImagePickerController()
@@ -90,8 +91,29 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       "title":title!,
       "content":text!
     ]
-    Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseString { response in
-      //print("response : \(response.result.value)")
+    Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
+      if let j = response.result.value {
+        let json = JSON(j)
+        guard let id = json["id"].int else {
+          return
+        }
+        guard let number = json["number"].int else {
+          return
+        }
+        guard let chapter = json["chapter"].int else {
+          return
+        }
+        guard let tag = json["tag"].string else {
+          return
+        }
+        guard let answer_number = json["answer_number"].int else {
+          return
+        }
+        self.selectedBook.addQuestion(Question(questionId: id, book: self.selectedBook, chapter: chapter, number: number, tag: tag, answer: answer_number))
+        self.table.reloadData()
+      }
+
+      
     }
     
 

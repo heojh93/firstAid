@@ -122,6 +122,7 @@ class SearchTableController: UITableViewController {
     
     // 문제 리스트를 위한 table view에 data를 넘겨주기 위함.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 책 선택
         if segue.identifier == "ShowDetails" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 var book: BookData
@@ -135,6 +136,12 @@ class SearchTableController: UITableViewController {
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        }
+        // 책 추가
+        
+        if segue.identifier == "addTextbook" {
+            let addView = (segue.destination as!UINavigationController).topViewController as! AddingBookViewController
+            addView.table = tableView
         }
     }
     // cell의 height을 64로 맞춰줌.

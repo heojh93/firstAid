@@ -12,6 +12,7 @@ import GTZoomableImageView
 import TZZoomImageManager
 
 import Alamofire
+import SwiftyJSON
 
 class AddingBookViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
     
@@ -65,14 +66,28 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
         
         let url = "http://220.85.167.57:2288/solution/textbook_post/"
         let param: Parameters = [
-            "author":author,
-            "title":title,
+            "author":author!,
+            "title":title!,
         ]
-        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseString { response in
-            //print("response : \(response.result.value)")
+        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
+            if let j = response.result.value {
+                let json = JSON(j)
+                guard let bookName = json["title"].string else {
+                    return
+                }
+                guard let bookWriter = json["author"].string else {
+                    return
+                }
+                guard let bookImage = json["image_url"].string else {
+                    return
+                }
+                guard let bookId = json["id"].int else {
+                    return
+                }
+                BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                self.table.reloadData()
+            }
         }
-        
-        
         self.dismiss(animated: true, completion: nil)
     }
     
