@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
 
 import json
+import time
 
 # Create your views here.
 
@@ -47,27 +49,74 @@ def problem_list(request, textbook_id):
 	return HttpResponse(data)
 
 
-
-
-
-from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
-def problem_post(request, textbook_id):
+def textbook_post(request):
 	if request.method != "POST":
 		return HttpResponse("unvalid")
 
-	textbook_id = int(textbook_id)
-	chapter = request.POST.get('chapter', '')
-	number = request.POST.get('number', '')
-	author = request.POST.get('author', '')
-	title = request.POST.get('title', '')
-	content = request.POST.get('content', '')
+	data = json.loads(request.body.decode())
 
-	quest = Qeust(textbook=textbook_id, chapter=chapter, number=number,
+	author = data.get('author', '')
+	title = data.get('title', '')
+
+	textbook =Textbook(author=author, title=title)
+	textbook.save()
+
+	t = {}
+	t['title'] = textbook.title
+	t['author'] = textbook.author
+	t['id'] = textbook.id
+	try: t['image_url'] = textbook.image.url
+	except: t['image_url'] = ""
+	data = json.dumps(t, ensure_ascii=False)
+	return HttpResponse(data)
+
+
+@csrf_exempt
+def problem_post(request):
+	if request.method != "POST":
+		return HttpResponse("unvalid")
+
+	data = json.loads(request.body.decode())
+
+	textbook_id = int(data.get('textbook_id', 0))
+	chapter = int(data.get('chapter', 0))
+	number = int(data.get('number', 0))
+	author = data.get('author', '')
+	title = data.get('title', '')
+	content = data.get('content', '')
+	tag = data.get('tag', '')
+
+	tag_list = tag.split(' ')
+	tag_list = [ tag.strip(' #') for tag in tag_list ]
+
+
+	problem = Problem(textbook=Textbook.objects.get(id=textbook_id), chapter=chapter, number=number,
 			author=author, title=title, content=content)
-	quest.save()
+	problem.save()
+
+	for tag in tag_list:
+		if tag == '': break
+		try:
+			t = Tag.objects.get(title=tag)
+		except:
+			t = Tag(title=tag)
+			t.save()
+		problem.tags.add(t)
+
 	
-	return HttpResponse("good")
+	p = {}
+	p['id'] = problem.id
+	p['number'] = problem.number
+	p['chapter'] = problem.chapter
+	p['author'] = problem.author
+	p['tag'] = ""
+	for tag in problem.tags.all():
+		p['tag'] = p['tag'] + "#" + str(tag.title) + " "
+	p['tag'] = p['tag'][:-1]
+	p['answer_number'] = 0
+	data = json.dumps(p, ensure_ascii=False)
+	return HttpResponse(data)
 
 
 def problem_detail(request, quest_id):
