@@ -50,12 +50,10 @@ class SearchTableController: UITableViewController {
         
         question10.addPage(questionPage11)
         
-        Alamofire.request("http://220.85.167.57:2288/solution/").responseJSON { response in
-            
-            print(response.result)
+        //BookList.removeAll()
+        Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in
             
             if let j = response.result.value {
-                print("JSON: \(j)")
                 
                 let jsons = JSON(j)
                 for (_, json) in jsons {
@@ -72,15 +70,8 @@ class SearchTableController: UITableViewController {
                     guard let bookId = json["id"].int else {
                         continue
                     }
-                    
-                    print(bookName)
-                    print(bookWriter)
-                    print(bookImage)
-                    print(bookId)
-                    
-                    BookList.append(BookData(bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
-                    
-                    
+                    BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                    self.tableView.reloadData()
                 }
                 
             }

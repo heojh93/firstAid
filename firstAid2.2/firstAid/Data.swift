@@ -11,18 +11,20 @@ import UIKit
 
 class BookData : NSObject{
     
-    var bookId:Int = 0
+    var bookId:Int
     var bookName: String
     var bookWriter: String
     var bookImage: String!
     var bookQuestion:[Question] = []
     
-    init(bookName:String, bookWriter:String, bookImage:String){
+    init(bookId:Int, bookName:String, bookWriter:String, bookImage:String){
+        self.bookId = bookId
         self.bookName = bookName
         self.bookWriter = bookWriter
         self.bookImage = bookImage
     }
-    init(bookName:String, bookWriter:String){
+    init(bookId:Int, bookName:String, bookWriter:String){
+        self.bookId = bookId
         self.bookName = bookName
         self.bookWriter = bookWriter
     }
@@ -34,7 +36,7 @@ class BookData : NSObject{
 
 class Question : BookData{
     
-    var questionId:Int = 0
+    var questionId:Int
     var chapter: Int
     var questionNumber: Int
     var questionTag: String
@@ -42,11 +44,21 @@ class Question : BookData{
     var questionPage: [QuestionPage] = []
     
     init(book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
+        self.questionId = 0
         self.chapter = chapter
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
-        super.init(bookName: book.bookName,bookWriter: book.bookWriter)
+        super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
+    }
+    
+    init(questionId:Int, book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
+        self.questionId = questionId
+        self.chapter = chapter
+        self.questionNumber = questionNumber
+        self.questionTag = questionTag
+        self.numberOfAnswer = numberOfAnswer
+        super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     
     func addPage(_ question:QuestionPage) -> Void{
@@ -57,7 +69,7 @@ class Question : BookData{
 // QuestionPage 추가 -> Question class구성 후, Question List에 추가, questionPage배열에 추가.
 class QuestionPage{
     
-    var queestionPageId:Int = 0
+    var queestionPageId:Int
     var questionNumber:Int
     var title:String
     var tag:String
@@ -66,6 +78,7 @@ class QuestionPage{
     var answerPage:[AnswerPage] = []
     
     init(number questionNumber:Int, title:String, tag:String, text:String){
+        self.queestionPageId = 0
         self.questionNumber = questionNumber
         self.title = title
         self.tag = tag
@@ -87,9 +100,9 @@ class AnswerPage{
     }
 }
 
-let algorithm = BookData(bookName: "Algorithm",bookWriter: "abc")
-let automata = BookData(bookName: "Automata",bookWriter: "aaa")
-let datastructure = BookData(bookName: "DataStructure",bookWriter: "ddd")
+let algorithm = BookData(bookId: 100, bookName: "Algorithm",bookWriter: "abc")
+let automata = BookData(bookId: 200, bookName: "Automata",bookWriter: "aaa")
+let datastructure = BookData(bookId: 300, bookName: "DataStructure",bookWriter: "ddd")
 
 var BookList:[BookData] = [algorithm, automata, datastructure]
 
