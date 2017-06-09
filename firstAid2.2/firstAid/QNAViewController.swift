@@ -20,9 +20,16 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableview.delegate = self
         tableview.dataSource = self
         
+        // cell의 AutoLayout을 위해.
+        tableview.setNeedsLayout()
+        tableview.layoutIfNeeded()
+
+        tableview.rowHeight = UITableViewAutomaticDimension
+        tableview.estimatedRowHeight = 100
+        
         tableview.sectionHeaderHeight = 170
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,7 +41,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("@@@@@@@@@@@@@@@\(1 + selectedQuestion.questionPage[section].answerPage.count)\n")
+        //print("@@@@@@@@@@@@@@@\(1 + selectedQuestion.questionPage[section].answerPage.count)\n")
         return 1 + selectedQuestion.questionPage[section].answerPage.count
     }
     
@@ -45,9 +52,15 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             return cell
         }
         else{
+            // 답변 Cell에 관한 설정들.
             let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
             let qp = selectedQuestion.questionPage[indexPath.section]
             cell.textView.text = qp.answerPage[indexPath.row-1].text
+            
+            cell.sizeToFit()
+            cell.updateConstraintsIfNeeded()
+            cell.textView?.numberOfLines = 0
+            
             return cell
 
         }
@@ -62,6 +75,10 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.textView.text = selectedQuestion.questionPage[section].text
       
       return sectionCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     @IBAction func pushButton(_ sender: Any) {

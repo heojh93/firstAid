@@ -74,8 +74,10 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
          selectedBook.addQuestion(q)
          */
  */
- 
         table.reloadData()
+        table.setNeedsLayout()
+        table.layoutIfNeeded()
+
       }
         self.dismiss(animated: true, completion: nil)
     }

@@ -10,7 +10,9 @@ import UIKit
 
 class QNAPageCell: UITableViewCell {
 
-    @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var textView: UILabel!
+    @IBOutlet weak var viewForImage: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
