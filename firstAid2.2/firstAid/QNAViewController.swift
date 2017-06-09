@@ -21,15 +21,24 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableview.dataSource = self
         
         // cell의 AutoLayout을 위해.
-        tableview.setNeedsLayout()
-        tableview.layoutIfNeeded()
+        //tableview.setNeedsLayout()
+        //tableview.layoutIfNeeded()
 
         tableview.rowHeight = UITableViewAutomaticDimension
         tableview.estimatedRowHeight = 100
         
         tableview.sectionHeaderHeight = 170
+        
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableview.setNeedsLayout()
+        tableview.layoutIfNeeded()
+        tableview.rowHeight = UITableViewAutomaticDimension
+        tableview.estimatedRowHeight = 100
+
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,13 +67,26 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.textView.text = qp.answerPage[indexPath.row-1].text
             
             cell.sizeToFit()
-            cell.updateConstraintsIfNeeded()
+            //cell.updateConstraintsIfNeeded()
             cell.textView?.numberOfLines = 0
-            
+            if(qp.answerPage[indexPath.row-1].image?.count == 0){
+                cell.viewForImage.isHidden = true
+                
+                //cell.viewForImage.removeFromSuperview()
+                
+                //cell.QPCConstraint4NoImage.isActive = true
+                /*
+                cell.QPCConstraint4Image1.isActive = false
+                cell.QPCConstraint4Image2.isActive = false
+                cell.QPCConstraint4Image3.isActive = false
+                cell.QPCConstraint4Image4.isActive = false
+                cell.QPCConstraint4Image5.isActive = false*/
+            }
             return cell
-
         }
     }
+    
+
     
     // section header를 customize하기 위한 몸부림.
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

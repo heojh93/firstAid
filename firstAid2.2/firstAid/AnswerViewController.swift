@@ -75,8 +75,8 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
          */
  */
         table.reloadData()
-        table.setNeedsLayout()
-        table.layoutIfNeeded()
+        //table.setNeedsLayout()
+        //table.layoutIfNeeded()
 
       }
         self.dismiss(animated: true, completion: nil)

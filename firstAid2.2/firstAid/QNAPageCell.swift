@@ -13,6 +13,13 @@ class QNAPageCell: UITableViewCell {
     
     @IBOutlet weak var textView: UILabel!
     @IBOutlet weak var viewForImage: UIView!
+    @IBOutlet weak var QPCConstraint4NoImage: NSLayoutConstraint!
+    
+    @IBOutlet weak var QPCConstraint4Image1: NSLayoutConstraint!
+    @IBOutlet weak var QPCConstraint4Image2: NSLayoutConstraint!
+    @IBOutlet weak var QPCConstraint4Image3: NSLayoutConstraint!
+    @IBOutlet weak var QPCConstraint4Image4: NSLayoutConstraint!
+    @IBOutlet weak var QPCConstraint4Image5: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
