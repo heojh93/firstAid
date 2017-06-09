@@ -17,12 +17,12 @@ class BookData : NSObject{
     var bookImage: String!
     var bookQuestion:[Question] = []
     
-    init(bookName:String, bookWriter:String, bookImage:String){
+    init(bookId:Int, bookName:String, bookWriter:String, bookImage:String){
         self.bookName = bookName
         self.bookWriter = bookWriter
         self.bookImage = bookImage
     }
-    init(bookName:String, bookWriter:String){
+    init(bookId:Int, bookName:String, bookWriter:String){
         self.bookName = bookName
         self.bookWriter = bookWriter
     }
@@ -46,7 +46,7 @@ class Question : BookData{
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
-        super.init(bookName: book.bookName,bookWriter: book.bookWriter)
+        super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     
     func addPage(_ question:QuestionPage) -> Void{
@@ -87,9 +87,9 @@ class AnswerPage{
     }
 }
 
-let algorithm = BookData(bookName: "Algorithm",bookWriter: "abc")
-let automata = BookData(bookName: "Automata",bookWriter: "aaa")
-let datastructure = BookData(bookName: "DataStructure",bookWriter: "ddd")
+let algorithm = BookData(bookId: 100, bookName: "Algorithm",bookWriter: "abc")
+let automata = BookData(bookId: 200, bookName: "Automata",bookWriter: "aaa")
+let datastructure = BookData(bookId: 300, bookName: "DataStructure",bookWriter: "ddd")
 
 var BookList:[BookData] = [algorithm, automata, datastructure]
 
