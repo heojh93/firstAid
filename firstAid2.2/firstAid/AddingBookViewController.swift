@@ -112,9 +112,16 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func imageTapped(gestureRecognizer: UITapGestureRecognizer){
-        //tappedImageView is tapped image
-        let tappedImageView = gestureRecognizer.view! as! UIImageView
-        
+      //tappedImageView is tapped image
+      let tappedImageView = gestureRecognizer.view! as! UIImageView
+      if (tappedImageView.image != nil) {
+        let storyboard = UIStoryboard(name:"Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+        let tmp = controller as! ImageZoomNavigationViewController
+        tmp.tappedImage = tappedImageView.image
+      
+        self.present(tmp, animated: true, completion: nil)
+      }
     }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController){
@@ -128,7 +135,11 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+        bookImage.addGestureRecognizer(tapRecognizer)
+      
+        bookImage.isUserInteractionEnabled = true
+      
         
         let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.navigationBarTap))
         hideKeyboard.numberOfTapsRequired = 1
@@ -150,6 +161,7 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func photoFromLibrary(_ sender: Any) {
         let imagePickerController = ImagePickerController()
         imagePickerController.delegate = self
+        imagePickerController.imageLimit = 1
         self.present(imagePickerController, animated: true, completion: nil)
         
     }
