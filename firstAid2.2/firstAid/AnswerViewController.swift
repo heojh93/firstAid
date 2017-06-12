@@ -37,11 +37,12 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         let text = textView.text
       
         let image = chosenImages
-      if (!(text == answerPlaceHolder && image.isEmpty)){
-        let answerPage = AnswerPage(text: text!)
-        answerPage.image = image
         
-        selectedQuestionPage.addAnswer(answerPage)
+        if (!(text == answerPlaceHolder && image.isEmpty)){
+            let answerPage = AnswerPage(text: text!)
+            answerPage.image = image
+        
+            selectedQuestionPage.addAnswer(answerPage)
         
 /*
         //Something to do
@@ -55,24 +56,6 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         let questionDetail = QuestionPage(number: number!, title: title!, tag: "", text: text!)
         questionDetail.image = images
         
-        // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
-        var find:Bool = false
-        for i in selectedBook.bookQuestion{
-            if(i.questionNumber == number){
-                i.addPage(questionDetail)
-                find = true
-            }
-        }
-        if(!find){
-            let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
-            q.addPage(questionDetail)
-            selectedBook.addQuestion(q)
-        }
-        /*
-         let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
-         q.addPage(questionDetail)
-         selectedBook.addQuestion(q)
-         */
  */
         table.reloadData()
         //table.setNeedsLayout()

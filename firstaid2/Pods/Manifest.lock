@@ -1,0 +1,24 @@
+PODS:
+  - GTZoomableImageView (1.0.0)
+  - ImagePicker (2.1.1)
+  - SFFullscreenImageDetailViewController (0.1.2)
+  - TZZoomImageManager (1.0.0)
+  - WSTagsField (2.1.1)
+
+DEPENDENCIES:
+  - GTZoomableImageView
+  - ImagePicker
+  - SFFullscreenImageDetailViewController
+  - TZZoomImageManager
+  - WSTagsField
+
+SPEC CHECKSUMS:
+  GTZoomableImageView: 5a474ae18e0b7b03b8633c521fadecaed7e04879
+  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
+  SFFullscreenImageDetailViewController: d584030e78413d8c9cfb82b71b746ff6f3b48bfa
+  TZZoomImageManager: e650f10f0596c329bc9e49d0c3bc2232b4a7852b
+  WSTagsField: 184e47df41bea27a0305c575a3f95c3f369adafc
+
+PODFILE CHECKSUM: 1855058bccb6b0545aae128ae4484d8e98d63f47
+
+COCOAPODS: 1.2.1

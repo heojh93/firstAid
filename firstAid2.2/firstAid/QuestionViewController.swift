@@ -79,6 +79,15 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
         find = true
       }
     }
+    if(!find){
+      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
+      q.addPage(questionDetail)
+      selectedBook.addQuestion(q)
+    }
+    
+     let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
+     q.addPage(questionDetail)
+     selectedBook.addQuestion(q)
      */
     
     //let q = Question(book: selectedBook, chapter: 1, number: number!, tag: tagString, answer: 1)

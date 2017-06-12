@@ -122,9 +122,18 @@ extension QuestionListController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableCell") as! QuestionTableCell
         let question = questionSorting(index: indexPath.row)
         //let question = orderedQ[indexPath.row]
+        
+        cell.QNAview.backgroundColor = UIColor(patternImage: UIImage(named: "QNABox.png")!)
         cell.QuestionNumber.text = String(question.questionNumber)
         cell.QuestionTag.text = question.questionTag
-        cell.NumberOfAnswer.text = String(question.numberOfAnswer)
+        //cell.NumberOfAnswer.text = String(question.numberOfAnswer)
+        cell.numberQuestion.text = String(question.questionPage.count)
+        
+        var answerNum:Int = 0
+        for i in question.questionPage{
+            answerNum += i.answerPage.count
+        }
+        cell.numberAnswer.text = String(answerNum)
         
         return cell
     }
