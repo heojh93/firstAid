@@ -97,6 +97,7 @@ class QuestionPage{
 class AnswerPage{
     
     var answerId:Int = 0
+    var boom:Int = 0
     var text:String
     var image:[UIImage]?
     

@@ -57,7 +57,11 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0){
             let cell = tableview.dequeueReusableCell(withIdentifier: "QPCell") as! QPCell
+            let answer = selectedQuestion.questionPage[indexPath.section].answerPage
+            
             cell.button.tag = indexPath.section
+            cell.numberOfAnswer.text = String(answer.count)
+            
             return cell
         }
         else{
@@ -65,23 +69,18 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
             let qp = selectedQuestion.questionPage[indexPath.section]
             cell.textView.text = qp.answerPage[indexPath.row-1].text
+            cell.boomNum.text = String(qp.answerPage[indexPath.row-1].boom)
             
             cell.sizeToFit()
             //cell.updateConstraintsIfNeeded()
             cell.textView?.numberOfLines = 0
             if(qp.answerPage[indexPath.row-1].image?.count == 0){
                 cell.viewForImage.isHidden = true
-                
-                //cell.viewForImage.removeFromSuperview()
-                
-                //cell.QPCConstraint4NoImage.isActive = true
-                /*
-                cell.QPCConstraint4Image1.isActive = false
-                cell.QPCConstraint4Image2.isActive = false
-                cell.QPCConstraint4Image3.isActive = false
-                cell.QPCConstraint4Image4.isActive = false
-                cell.QPCConstraint4Image5.isActive = false*/
             }
+            
+            cell.upButton.tag = indexPath.section * 100 + indexPath.row
+            cell.downButton.tag = indexPath.section * 100 + indexPath.row
+            
             return cell
         }
     }
@@ -111,7 +110,26 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         print("####\(section)\n")
     }
 
+    // 추천 기능.
+    @IBAction func boomUp(_ sender: Any) {
+        let button = sender as! UIButton
+        let section = button.tag / 100
+        let row = button.tag % 100
     
+        let question = selectedQuestion.questionPage[section]
+        question.answerPage[row-1].boom += 1
+        self.tableview.reloadData()
+    }
+    
+    @IBAction func boomDown(_ sender: Any) {
+        let button = sender as! UIButton
+        let section = button.tag / 100
+        let row = button.tag % 100
+        
+        let question = selectedQuestion.questionPage[section]
+        question.answerPage[row-1].boom -= 1
+        self.tableview.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

@@ -21,6 +21,10 @@ class QNAPageCell: UITableViewCell {
     @IBOutlet weak var QPCConstraint4Image4: NSLayoutConstraint!
     @IBOutlet weak var QPCConstraint4Image5: NSLayoutConstraint!
     
+    @IBOutlet weak var boomNum: UILabel!
+    @IBOutlet weak var upButton: UIButton!
+    @IBOutlet weak var downButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
