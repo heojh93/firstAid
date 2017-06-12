@@ -11,6 +11,9 @@ import ImagePicker
 import GTZoomableImageView
 import TZZoomImageManager
 
+import Alamofire
+import SwiftyJSON
+
 let answerPlaceHolder = "답변을 입력하세요"
 
 class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
@@ -33,17 +36,50 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     }
     
     @IBAction func DoneDIsmiss(_ sender: Any) {
-      
         let text = textView.text
       
         let image = chosenImages
         
+        /*
         if (!(text == answerPlaceHolder && image.isEmpty)){
             let answerPage = AnswerPage(text: text!)
             answerPage.image = image
         
             selectedQuestionPage.addAnswer(answerPage)
+        */
         
+        let url = "http://220.85.167.57:2288/solution/answer_post/"
+        let param: Parameters = [
+            "quest_id":selectedQuestionPage.questionPageId,
+            "content":text
+        ]
+        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
+            if let j = response.result.value {
+                let json = JSON(j)
+                /*
+                guard let id = json["id"].int else {
+                    return
+                }
+                guard let number = json["number"].int else {
+                    return
+                }
+                guard let chapter = json["chapter"].int else {
+                    return
+                }
+                guard let tag = json["tag"].string else {
+                    return
+                }
+                guard let answer_number = json["answer_number"].int else {
+                    return
+                }
+                self.selectedBook.addQuestion(Question(questionId: id, book: self.selectedBook, chapter: chapter, number: number, tag: tag, answer: answer_number))
+
+                 */
+                self.table.reloadData()
+            }
+            
+            
+        }
 /*
         //Something to do
         //class Questions send json request
@@ -61,7 +97,6 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         //table.setNeedsLayout()
         //table.layoutIfNeeded()
 
-      }
         self.dismiss(animated: true, completion: nil)
     }
     

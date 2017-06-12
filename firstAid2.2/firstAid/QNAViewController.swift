@@ -56,10 +56,10 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     var question = QuestionPage(questionPagdId: questionPageId, number: 0, title: title, tag: tag, text: text)
                     
                     for answer in answerPages{
-                        guard let text = json["content"].string else {
+                        guard let text = answer["content"].string else {
                             continue
                         }
-                        guard let boom = json["like"].int else {
+                        guard let boom = answer["like"].int else {
                             continue
                         }
                         var answerPage = AnswerPage(text: text, boom: boom)
