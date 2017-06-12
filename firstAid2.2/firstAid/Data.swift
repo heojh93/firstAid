@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Alamofire
+import SwiftyJSON
 
-/*
+
 class BookList : NSObject{
     var booklist:[BookData]
     
@@ -18,14 +19,39 @@ class BookList : NSObject{
         booklist = []
     }
     
-    func setBookList(){
-        
+    func setBookList(table:UITableView){
+        self.booklist.removeAll()
+        Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in
+            
+            if let j = response.result.value {
+                
+                let jsons = JSON(j)
+                for (_, json) in jsons {
+                    
+                    guard let bookName = json["title"].string else {
+                        continue
+                    }
+                    guard let bookWriter = json["author"].string else {
+                        continue
+                    }
+                    guard let bookImage = json["image_url"].string else {
+                        continue
+                    }
+                    guard let bookId = json["id"].int else {
+                        continue
+                    }
+                    self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                    table.reloadData()
+                }
+            }
+        }
     }
 }
-*/
+
+
+
 
 class BookData : NSObject{
-    
     var bookId:Int
     var bookName: String
     var bookWriter: String
@@ -47,39 +73,75 @@ class BookData : NSObject{
         
         self.bookQuestion.append(question)
     }
-
 }
 
-class Question : BookData{
+
+class QuestionList : NSObject{
+    var questionlist:[Question]
     
-    var questionId:Int
-    var chapter: Int
-    var questionNumber: Int
-    var questionTag: String
-    var numberOfAnswer: Int
-    var questionPage: [QuestionPage] = []
-    
-    init(book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
-        self.questionId = 0
-        self.chapter = chapter
-        self.questionNumber = questionNumber
-        self.questionTag = questionTag
-        self.numberOfAnswer = numberOfAnswer
-        super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
+    override init(){
+        questionlist = []
     }
     
-    init(questionId:Int, book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
+    func setQuestionList(bookId:Int, table:UITableView){
+        self.questionlist.removeAll()
+        let url:String = "http://220.85.167.57:2288/solution/textbook/" + String(bookId) + "/problem_list/"
+        Alamofire.request(url).responseJSON { response in
+            
+            if let j = response.result.value {
+                let jsons = JSON(j)
+                for (_, json) in jsons {
+                    
+                    guard let questionId = json["id"].int else {
+                        continue
+                    }
+                    guard let questionNumber = json["number"].int else {
+                        continue
+                    }
+                    guard let questionTag = json["tag"].string else {
+                        continue
+                    }
+                    guard let numberOfAnswer = json["answer_number"].int else {
+                        continue
+                    }
+                    guard let numberOfQuest = json["quest_number"].int else {
+                        continue
+                    }
+                    guard let chapter = json["chapter"].int else {
+                        continue
+                    }
+                    self.questionlist.append(Question(questionId:questionId, number:questionNumber, tag:questionTag, quest: numberOfQuest, answer:numberOfAnswer))
+                    table.reloadData()
+                }
+
+            }
+        }
+    }
+}
+
+
+class Question{
+    var questionId:Int
+    var questionNumber: Int
+    var questionTag: String
+    var numberOfQuest: Int
+    var numberOfAnswer: Int
+    
+    var questionPage: [QuestionPage] = []
+    
+    init(questionId:Int, number questionNumber:Int, tag questionTag:String, quest numberOfQuest:Int, answer numberOfAnswer:Int){
         self.questionId = questionId
-        self.chapter = chapter
         self.questionNumber = questionNumber
         self.questionTag = questionTag
+        self.numberOfQuest = numberOfQuest
         self.numberOfAnswer = numberOfAnswer
-        super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     
     func addPage(_ question:QuestionPage) -> Void{
         self.questionPage.append(question)
     }
+    
+    
 }
 
 // QuestionPage 추가 -> Question class구성 후, Question List에 추가, questionPage배열에 추가.
@@ -129,12 +191,12 @@ class AnswerPage{
         self.boom = boom
     }
 }
-
+/*
 let algorithm = BookData(bookId: 100, bookName: "Algorithm",bookWriter: "abc")
 let automata = BookData(bookId: 200, bookName: "Automata",bookWriter: "aaa")
 let datastructure = BookData(bookId: 300, bookName: "DataStructure",bookWriter: "ddd")
 
-var BookList:[BookData] = [algorithm, automata, datastructure]
+//var BookList:[BookData] = [] // = [algorithm, automata, datastructure]
 
 var question10 = Question(book: algorithm, chapter: 1, number: 1, tag: "#a #b #c", answer: 3)
 var question11 = Question(book: algorithm, chapter: 1, number: 2, tag: "#c #b #c", answer: 0)
@@ -147,7 +209,7 @@ var question23 = Question(book: algorithm, chapter: 2, number: 5, tag: "#a #b #c
 
 var question110 = Question(book: automata, chapter: 1, number: 1, tag: "#auto", answer: 0)
 var question111 = Question(book: automata, chapter: 1, number: 3, tag: "#auto", answer: 0)
-
+*/
 var questionPage11 = QuestionPage(number: 1, title: "이것 좀 풀어달라!", tag: "#자 #고 #싶 #다", text: "이것을 이렇게 이렇게 풀어봤는데 이게 이것떄문에 이렇게 안되더라 이것을 어떻게 하면 좋을까?")
 var questionPage12 = QuestionPage(number: 1, title: "나는가수다", tag: "#솔아솔아 #푸르른 #솔아", text: "동해물과 백두산이 마르고 닳도록 하나님이 보우하사 우리나라만세!")
 

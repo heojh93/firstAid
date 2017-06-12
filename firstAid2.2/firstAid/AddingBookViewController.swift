@@ -20,6 +20,7 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
     var selectedQuestionPage:[QuestionPage]!
     
     var table:UITableView!
+    var bookList:BookList!
     
     
     
@@ -50,6 +51,8 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
         //var answerPage = AnswerPage(text: text!)
         //answerPage.image = image
         
+        var bookList = self.bookList
+        var table = self.table
         
         //Something to do
         //class Questions send json request
@@ -64,6 +67,7 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
         ]
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
             if let j = response.result.value {
+                /*
                 let json = JSON(j)
                 guard let bookName = json["title"].string else {
                     return
@@ -76,9 +80,11 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
                 }
                 guard let bookId = json["id"].int else {
                     return
-                }
-                BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
-                self.table.reloadData()
+                }*/
+                //BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                print("???????????????????????")
+                bookList?.setBookList(table: table!)
+                table?.reloadData()
             }
         }
         self.dismiss(animated: true, completion: nil)

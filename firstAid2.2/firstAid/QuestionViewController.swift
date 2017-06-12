@@ -109,16 +109,13 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
         guard let number = json["number"].int else {
           return
         }
-        guard let chapter = json["chapter"].int else {
-          return
-        }
         guard let tag = json["tag"].string else {
           return
         }
         guard let answer_number = json["answer_number"].int else {
           return
         }
-        self.selectedBook.addQuestion(Question(questionId: id, book: self.selectedBook, chapter: chapter, number: number, tag: tag, answer: answer_number))
+        self.selectedBook.addQuestion(Question(questionId: id, number: number, tag: tag, quest: 0, answer: answer_number))
         self.table.reloadData()
       }
 

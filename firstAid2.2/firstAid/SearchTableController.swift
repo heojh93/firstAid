@@ -16,8 +16,10 @@ class SearchTableController: UITableViewController {
     var filteredBook = [BookData]()
     var detailViewController: QuestionListController? = nil
     let searchController = UISearchController(searchResultsController: nil)
+    let bookList = BookList()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Setup
@@ -36,7 +38,7 @@ class SearchTableController: UITableViewController {
         }
         
         // dummy 데이터들
-        
+        /*
         algorithm.addQuestion(question10)
         algorithm.addQuestion(question11)
         algorithm.addQuestion(question12)
@@ -51,34 +53,12 @@ class SearchTableController: UITableViewController {
         
         question10.addPage(questionPage11)
         question10.addPage(questionPage12)
-        
+        */
         //BookList.removeAll()
-        Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in
-            
-            if let j = response.result.value {
-                
-                let jsons = JSON(j)
-                for (_, json) in jsons {
-                    
-                    guard let bookName = json["title"].string else {
-                        continue
-                    }
-                    guard let bookWriter = json["author"].string else {
-                        continue
-                    }
-                    guard let bookImage = json["image_url"].string else {
-                        continue
-                    }
-                    guard let bookId = json["id"].int else {
-                        continue
-                    }
-                    BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
-                    self.tableView.reloadData()
-                }
-                
-            }
-        }
-
+        
+        bookList.setBookList(table: self.tableView)
+        
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,7 +74,7 @@ class SearchTableController: UITableViewController {
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredBook.count
         }
-        return BookList.count
+        return bookList.booklist.count
     }
 
     
@@ -105,7 +85,7 @@ class SearchTableController: UITableViewController {
         if searchController.isActive && searchController.searchBar.text != "" {
             book = filteredBook[indexPath.row]
         } else {
-            book = BookList[indexPath.row]
+            book = bookList.booklist[indexPath.row]
         }
         
         cell.bookName.text = book.bookName
@@ -117,7 +97,7 @@ class SearchTableController: UITableViewController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredBook = BookList.filter({( book: BookData) -> Bool in
+        filteredBook = bookList.booklist.filter({( book: BookData) -> Bool in
             return book.bookName.lowercased().contains(searchText.lowercased())
         })
         tableView.reloadData()
@@ -132,7 +112,7 @@ class SearchTableController: UITableViewController {
                 if searchController.isActive && searchController.searchBar.text != "" {
                     book = filteredBook[indexPath.row]
                 } else {
-                    book = BookList[indexPath.row]
+                    book = bookList.booklist[indexPath.row]
                 }
                 let controller = (segue.destination as! UINavigationController).topViewController as! QuestionListController
                 controller.detailBook = book
@@ -144,7 +124,8 @@ class SearchTableController: UITableViewController {
         
         if segue.identifier == "addTextbook" {
             let addView = (segue.destination as!UINavigationController).topViewController as! AddingBookViewController
-            addView.table = tableView
+            addView.table = self.tableView
+            addView.bookList = self.bookList
         }
     }
     // cell의 height을 64로 맞춰줌.
