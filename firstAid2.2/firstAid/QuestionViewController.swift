@@ -37,6 +37,7 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   
   var selectedBook:BookData!
   var table:QuestionTable!
+  var questionList:QuestionList!
   
   // @IBOutlet weak var test: UIImageView!
   //@IBOutlet weak var navigator: UINavigationItem!
@@ -54,6 +55,8 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let text = textView.text
     let images = chosenImages
     let number = Int(numberText.text!)
+    
+    
     
     let tags = tagsField.tagViews
 
@@ -103,19 +106,8 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
       if let j = response.result.value {
         let json = JSON(j)
-        guard let id = json["id"].int else {
-          return
-        }
-        guard let number = json["number"].int else {
-          return
-        }
-        guard let tag = json["tag"].string else {
-          return
-        }
-        guard let answer_number = json["answer_number"].int else {
-          return
-        }
-        self.selectedBook.addQuestion(Question(questionId: id, number: number, tag: tag, quest: 0, answer: answer_number))
+        
+        self.questionList.setQuestionList(bookId: self.selectedBook.bookId, table: self.table)
         self.table.reloadData()
       }
 

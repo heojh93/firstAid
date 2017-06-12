@@ -12,10 +12,10 @@ import Alamofire
 import SwiftyJSON
 
 
-class BookList : NSObject{
+class BookList {
     var booklist:[BookData]
     
-    override init(){
+    init(){
         booklist = []
     }
     
@@ -76,10 +76,10 @@ class BookData : NSObject{
 }
 
 
-class QuestionList : NSObject{
+class QuestionList{
     var questionlist:[Question]
     
-    override init(){
+    init(){
         questionlist = []
     }
     
@@ -143,6 +143,59 @@ class Question{
     
     
 }
+
+class QnAList{
+    var qnalist:[QuestionPage]
+    
+    init(){
+        qnalist = []
+    }
+    
+    func setQnAList(problemId:Int, table:UITableView){
+        self.qnalist.removeAll()
+        
+        var url = "http://220.85.167.57:2288/solution/problem/" + String(problemId) + "/"
+        Alamofire.request(url).responseJSON { response in
+            
+            if let j = response.result.value {
+                
+                let jsons = JSON(j)
+                for (_, json) in jsons {
+                    guard let questionPageId = json["id"].int else {
+                        continue
+                    }
+                    guard let title = json["title"].string else {
+                        continue
+                    }
+                    guard let tag = json["tag"].string else {
+                        continue
+                    }
+                    guard let text = json["content"].string else {
+                        continue
+                    }
+                    guard let answerPages = json["answer_list"].array else {
+                        continue
+                    }
+                    var question = QuestionPage(questionPagdId: questionPageId, number: 0, title: title, tag: tag, text: text)
+                    
+                    for answer in answerPages{
+                        guard let text = answer["content"].string else {
+                            continue
+                        }
+                        guard let boom = answer["like"].int else {
+                            continue
+                        }
+                        var answerPage = AnswerPage(text: text, boom: boom)
+                        question.answerPage.append(answerPage)
+                    }
+                    self.qnalist.append(question)
+                    table.reloadData()
+                }
+            }
+        }
+    }
+}
+
 
 // QuestionPage 추가 -> Question class구성 후, Question List에 추가, questionPage배열에 추가.
 class QuestionPage{

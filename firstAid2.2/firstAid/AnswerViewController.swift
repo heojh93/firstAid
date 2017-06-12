@@ -20,6 +20,8 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
 
     var selectedQuestionPage:QuestionPage!
     var table:UITableView!
+    var qnalist:QnAList!
+    var problemId:Int!
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var imageScrollView: ImageScrollView!
@@ -75,6 +77,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
                 self.selectedBook.addQuestion(Question(questionId: id, book: self.selectedBook, chapter: chapter, number: number, tag: tag, answer: answer_number))
 
                  */
+                self.qnalist.setQnAList(problemId: self.problemId, table: self.table)
                 self.table.reloadData()
             }
             

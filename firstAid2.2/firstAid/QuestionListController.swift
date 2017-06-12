@@ -76,6 +76,7 @@ class QuestionListController: UIViewController {
             let addView = (segue.destination as!UINavigationController).topViewController as! QuestionViewController
             addView.selectedBook = questionTable.selectedBook
             addView.table = questionTable
+            addView.questionList = questionList
         }
         
         // "문제 보기"

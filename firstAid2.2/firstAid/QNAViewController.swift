@@ -16,6 +16,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var selectedQuestion:Question!
     var addView:AnswerViewController!
     
+    var qnalist = QnAList()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,48 +33,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         tableview.sectionHeaderHeight = 170
         
-        var url = "http://220.85.167.57:2288/solution/problem/" + String(selectedQuestion.questionId) + "/"
-        Alamofire.request(url).responseJSON { response in
-            
-            if let j = response.result.value {
-                
-                let jsons = JSON(j)
-                for (_, json) in jsons {
-                    guard let questionPageId = json["id"].int else {
-                        continue
-                    }
-                    guard let title = json["title"].string else {
-                        continue
-                    }
-                    guard let tag = json["tag"].string else {
-                        continue
-                    }
-                    guard let text = json["content"].string else {
-                        continue
-                    }
-                    guard let answerPages = json["answer_list"].array else {
-                        continue
-                    }
-                    var question = QuestionPage(questionPagdId: questionPageId, number: 0, title: title, tag: tag, text: text)
-                    
-                    for answer in answerPages{
-                        guard let text = answer["content"].string else {
-                            continue
-                        }
-                        guard let boom = answer["like"].int else {
-                            continue
-                        }
-                        var answerPage = AnswerPage(text: text, boom: boom)
-                        question.addAnswer(answerPage)
-                    }
-                    self.selectedQuestion.addPage(question)
-                    self.tableview.reloadData()
-                }
-                
-            }
-        }
-        
-        
+        qnalist.setQnAList(problemId: selectedQuestion.questionId, table: tableview)
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -91,18 +52,20 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // section의 개수 = 질문의 개수. section당 달린 cell = 답변.
     func numberOfSections(in tableView: UITableView) -> Int {
-        return selectedQuestion.questionPage.count
+        //return selectedQuestion.questionPage.count
+        return qnalist.qnalist.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print("@@@@@@@@@@@@@@@\(1 + selectedQuestion.questionPage[section].answerPage.count)\n")
-        return 1 + selectedQuestion.questionPage[section].answerPage.count
+        //return 1 + selectedQuestion.questionPage[section].answerPage.count
+        return 1 + qnalist.qnalist[section].answerPage.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0){
             let cell = tableview.dequeueReusableCell(withIdentifier: "QPCell") as! QPCell
-            let answer = selectedQuestion.questionPage[indexPath.section].answerPage
+            let answer = qnalist.qnalist[indexPath.section].answerPage
             
             cell.button.tag = indexPath.section
             cell.numberOfAnswer.text = String(answer.count)
@@ -112,7 +75,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         else{
             // 답변 Cell에 관한 설정들.
             let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
-            let qp = selectedQuestion.questionPage[indexPath.section]
+            //let qp = selectedQuestion.questionPage[indexPath.section]
+            let qp = qnalist.qnalist[indexPath.section]
             cell.textView.text = qp.answerPage[indexPath.row-1].text
             cell.boomNum.text = String(qp.answerPage[indexPath.row-1].boom)
             
@@ -136,9 +100,13 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionCell:QNAQuestionCell = tableview.dequeueReusableCell(withIdentifier: "QNAQuestionCell") as! QNAQuestionCell
         
-        sectionCell.titleLabel.text = selectedQuestion.questionPage[section].title
-        sectionCell.tagLabel.text = selectedQuestion.questionPage[section].tag
-        sectionCell.textView.text = selectedQuestion.questionPage[section].text
+        //sectionCell.titleLabel.text = selectedQuestion.questionPage[section].title
+        //sectionCell.tagLabel.text = selectedQuestion.questionPage[section].tag
+        //sectionCell.textView.text = selectedQuestion.questionPage[section].text
+        
+        sectionCell.titleLabel.text = qnalist.qnalist[section].title
+        sectionCell.tagLabel.text = qnalist.qnalist[section].tag
+        sectionCell.textView.text = qnalist.qnalist[section].text
       
       return sectionCell
     }
@@ -151,7 +119,9 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let button = sender as! UIButton
         let section = button.tag
         addView.table = tableview
-        addView.selectedQuestionPage = selectedQuestion.questionPage[section]
+        addView.selectedQuestionPage = qnalist.qnalist[section]
+        addView.qnalist = qnalist
+        addView.problemId = selectedQuestion.questionId
         print("####\(section)\n")
     }
 
@@ -161,7 +131,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let section = button.tag / 100
         let row = button.tag % 100
     
-        let question = selectedQuestion.questionPage[section]
+        let question = qnalist.qnalist[section]
         question.answerPage[row-1].boom += 1
         self.tableview.reloadData()
     }
@@ -171,7 +141,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let section = button.tag / 100
         let row = button.tag % 100
         
-        let question = selectedQuestion.questionPage[section]
+        let question = qnalist.qnalist[section]
         question.answerPage[row-1].boom -= 1
         self.tableview.reloadData()
     }
@@ -180,6 +150,9 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         if segue.identifier == "addAnswer" {
             addView = (segue.destination as!UINavigationController).topViewController as! AnswerViewController
+            addView.table = tableview
+            addView.qnalist = qnalist
+            addView.problemId = selectedQuestion.questionId
             //addView.selectedQuestionPage = selectedQuestion.questionPage[index!]
             //addView.table = tableview
         }
