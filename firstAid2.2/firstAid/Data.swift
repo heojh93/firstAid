@@ -179,13 +179,17 @@ class QnAList{
                     var question = QuestionPage(questionPagdId: questionPageId, number: 0, title: title, tag: tag, text: text)
                     
                     for answer in answerPages{
+                        guard let answerId = answer["id"].int else {
+                            continue
+                        }
+
                         guard let text = answer["content"].string else {
                             continue
                         }
                         guard let boom = answer["like"].int else {
                             continue
                         }
-                        var answerPage = AnswerPage(text: text, boom: boom)
+                        var answerPage = AnswerPage(text: text, boom: boom, answerId: answerId)
                         question.answerPage.append(answerPage)
                     }
                     self.qnalist.append(question)
@@ -239,9 +243,10 @@ class AnswerPage{
     init(text:String){
         self.text = text
     }
-    init(text:String, boom:Int){
+    init(text:String, boom:Int, answerId:Int){
         self.text = text
         self.boom = boom
+        self.answerId = answerId
     }
 }
 /*

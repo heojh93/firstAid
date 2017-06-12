@@ -133,6 +133,15 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
         let question = qnalist.qnalist[section]
         question.answerPage[row-1].boom += 1
+        
+        let url = "http://220.85.167.57:2288/solution/like/" + String(question.answerPage[row-1].answerId) + "/"
+        Alamofire.request(url).responseJSON { response in
+            
+            if let j = response.result.value {
+                
+            }
+        }
+        
         self.tableview.reloadData()
     }
     
@@ -143,6 +152,15 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let question = qnalist.qnalist[section]
         question.answerPage[row-1].boom -= 1
+        
+        let url = "http://220.85.167.57:2288/solution/hate/" + String(question.answerPage[row-1].answerId) + "/"
+        Alamofire.request(url).responseJSON { response in
+            
+            if let j = response.result.value {
+                
+            }
+        }
+        
         self.tableview.reloadData()
     }
     
