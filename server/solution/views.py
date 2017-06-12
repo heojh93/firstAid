@@ -42,8 +42,10 @@ def problem_list(request, textbook_id):
 			p['tag'] = p['tag'] + "#" + str(tag.title) + " "
 			#q['tag'].append(tag.title)
 		p['tag'] = p['tag'][:-1]
-#p['answer_number'] = len(Answer.objects.filter(quest=quest.id))
+		p['quest_number'] = len(Quest.objects.filter(problem=problem.id))
 		p['answer_number'] = 0
+		for quest in Quest.objects.filter(problem=problem.id):
+			p['answer_number'] += len(Answer.objects.filter(quest=quest.id))
 		problem_list.append(p)
 	data = json.dumps(problem_list, ensure_ascii=False)
 	return HttpResponse(data)
@@ -59,7 +61,11 @@ def textbook_post(request):
 	author = data.get('author', '')
 	title = data.get('title', '')
 
-	textbook =Textbook(author=author, title=title)
+	if request.FILES:
+		image = request.FILES['cover']
+		textbook = Textbook(author=author, title=title, image=image)
+	else:
+		textbook = Textbook(author=author, title=title)
 	textbook.save()
 
 	t = {}
@@ -90,10 +96,16 @@ def problem_post(request):
 	tag_list = tag.split(' ')
 	tag_list = [ tag.strip(' #') for tag in tag_list ]
 
+	try:
+		problem = Problem.objects.get(number=number)
+		flag = 1
+	except:
+		problem = Problem(textbook=Textbook.objects.get(id=textbook_id), chapter=chapter, number=number, author=author)
+		problem.save()
+		flag = 0
 
-	problem = Problem(textbook=Textbook.objects.get(id=textbook_id), chapter=chapter, number=number,
-			author=author, title=title, content=content)
-	problem.save()
+	quest = Quest(problem=problem, title=title, content=content)
+
 
 	for tag in tag_list:
 		if tag == '': break
@@ -103,6 +115,7 @@ def problem_post(request):
 			t = Tag(title=tag)
 			t.save()
 		problem.tags.add(t)
+		quest.tags.add(t)
 
 	
 	p = {}
@@ -115,27 +128,79 @@ def problem_post(request):
 		p['tag'] = p['tag'] + "#" + str(tag.title) + " "
 	p['tag'] = p['tag'][:-1]
 	p['answer_number'] = 0
+	p['append'] = flag
 	data = json.dumps(p, ensure_ascii=False)
-	return HttpResponse(data)
-
-
-def problem_detail(request, quest_id):
-	quest_id = int(quest_id)
-	quest = Quest.objects.get(id=quest_id)
-	q = {}
-	q['id'] = quest.id
-	q['number'] = quest.number
-	q['author'] = quest.author
-	q['title'] = quest.title
-	q['content'] = quest.content
-	q['created_at'] = str(quest.created_at)
-	q['tag'] = []
-	q['image_url'] = quest.image.url
-	for tag in quest.tags.all():
-		q['tag'].append(tag.title)
 	
-	data = json.dumps(q, ensure_ascii=False)
 	return HttpResponse(data)
 
 
 
+def problem_detail(request, problem_id):
+	problem_id = int(problem_id)
+
+	data = []
+	problem = Problem.objects.get(id=problem_id)
+	quests = Quest.objects.filter(problem=problem)
+	for quest in quests:
+		q = {}
+		q['id'] = quest.id
+		q['title'] = quest.title
+		q['content'] = quest.content
+		q['tag'] = ""
+		for tag in quest.tags.all():
+			q['tag'] = q['tag'] + "#" + str(tag.title) + " "
+		q['tag'] = q['tag'][:-1]
+		q['answer_list'] = []
+
+		answers = Answer.objects.filter(quest=quest)
+		for answer in answers:
+			a = {}
+			a['id'] = answer.id
+			a['content'] = answer.content
+			#a['image_url'] = answer.image.url
+			a['like'] = answer.like
+			q['answer_list'].append(a)
+		
+		data.append(q)
+
+	
+	data = json.dumps(data, ensure_ascii=False)
+	return HttpResponse(data)
+
+
+@csrf_exempt
+def answer_post(request):
+	if request.method != "POST":
+		return HttpResponse("unvalid")
+
+	data = json.loads(request.body.decode())
+
+
+	quest_id = int(data.get('quest_id', 0))
+	content = data.get('content', '')
+
+	quest = Quest.objects.get(id=quest_id)
+
+	answer = Answer(quest=quest, content=content, like=0)
+	answer.save()
+	
+	data = "success"
+	data = json.dumps(data, ensure_ascii=False)
+
+	return HttpResponse(data)
+
+
+
+def like(request, answer_id):
+	answer = Answer.objects.get(id=answer_id)
+	answer.like = answer.like + 1
+	answer.save()
+
+	return HttpResponse("")
+
+def hate(request, answer_id):
+	answer = Answer.objects.get(id=answer_id)
+	answer.like = answer.like - 1
+	answer.save()
+	
+	return HttpResponse("")

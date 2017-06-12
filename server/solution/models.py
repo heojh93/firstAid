@@ -43,7 +43,7 @@ class Problem(models.Model):
 		super(Textbook, self).delete(*args, **kwargs)
 
 	def __str__(self):
-		return self.title
+		return self.textbook.title
 
 class Quest(models.Model):
 	problem = models.ForeignKey(Problem)
@@ -77,5 +77,5 @@ class Answer(models.Model):
 		super(Textbook, self).delete(*args, **kwargs)
 
 	def __str__(self):
-		return self.title
+		return self.content
 

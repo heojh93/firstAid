@@ -8,6 +8,9 @@ urlpatterns = [
 	url(r'^problem/(?P<problem_id>[0-9]+)/$', views.problem_detail, name='problem_detail'),
 	url(r'^problem_post/$', views.problem_post, name='problem_post'),
 	url(r'^textbook_post/$', views.textbook_post, name='textbook_post'),
+	url(r'^answer_post/$', views.answer_post, name='answer_post'),
+	url(r'^like/(?P<answer_id>[0-9]+)/$', views.like, name='like'),
+	url(r'^hate/(?P<answer_id>[0-9]+)/$', views.hate, name='hate'),
 ]
 
 
