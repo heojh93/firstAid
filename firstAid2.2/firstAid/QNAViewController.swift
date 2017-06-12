@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -28,6 +30,49 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableview.estimatedRowHeight = 100
         
         tableview.sectionHeaderHeight = 170
+        
+        var url = "http://220.85.167.57:2288/solution/problem/" + String(selectedQuestion.questionId) + "/"
+        Alamofire.request(url).responseJSON { response in
+            
+            if let j = response.result.value {
+                
+                let jsons = JSON(j)
+                for (_, json) in jsons {
+                    guard let questionPageId = json["id"].int else {
+                        continue
+                    }
+                    guard let title = json["title"].string else {
+                        continue
+                    }
+                    guard let tag = json["tag"].string else {
+                        continue
+                    }
+                    guard let text = json["content"].string else {
+                        continue
+                    }
+                    guard let answerPages = json["answer_list"].array else {
+                        continue
+                    }
+                    var question = QuestionPage(questionPagdId: questionPageId, number: 0, title: title, tag: tag, text: text)
+                    
+                    for answer in answerPages{
+                        guard let text = json["content"].string else {
+                            continue
+                        }
+                        guard let boom = json["like"].int else {
+                            continue
+                        }
+                        var answerPage = AnswerPage(text: text, boom: boom)
+                        question.addAnswer(answerPage)
+                    }
+                    self.selectedQuestion.addPage(question)
+                    self.tableview.reloadData()
+                }
+                
+            }
+        }
+        
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {

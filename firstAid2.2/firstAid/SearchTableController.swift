@@ -50,6 +50,7 @@ class SearchTableController: UITableViewController {
         automata.addQuestion(question111)
         
         question10.addPage(questionPage11)
+        question10.addPage(questionPage12)
         
         //BookList.removeAll()
         Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in

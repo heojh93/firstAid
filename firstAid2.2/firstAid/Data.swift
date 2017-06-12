@@ -10,6 +10,20 @@ import Foundation
 import UIKit
 import Alamofire
 
+/*
+class BookList : NSObject{
+    var booklist:[BookData]
+    
+    override init(){
+        booklist = []
+    }
+    
+    func setBookList(){
+        
+    }
+}
+*/
+
 class BookData : NSObject{
     
     var bookId:Int
@@ -43,7 +57,6 @@ class Question : BookData{
     var questionNumber: Int
     var questionTag: String
     var numberOfAnswer: Int
-    var imageURL: [String]
     var questionPage: [QuestionPage] = []
     
     init(book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
@@ -52,7 +65,6 @@ class Question : BookData{
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
-        self.imageURL = []
         super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     
@@ -62,7 +74,6 @@ class Question : BookData{
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
-        self.imageURL = []
         super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     
@@ -74,7 +85,7 @@ class Question : BookData{
 // QuestionPage 추가 -> Question class구성 후, Question List에 추가, questionPage배열에 추가.
 class QuestionPage{
     
-    var queestionPageId:Int
+    var questionPageId:Int
     var questionNumber:Int
     var title:String
     var tag:String
@@ -83,12 +94,21 @@ class QuestionPage{
     var answerPage:[AnswerPage] = []
     
     init(number questionNumber:Int, title:String, tag:String, text:String){
-        self.queestionPageId = 0
+        self.questionPageId = 0
         self.questionNumber = questionNumber
         self.title = title
         self.tag = tag
         self.text = text
     }
+    
+    init(questionPagdId:Int, number questionNumber:Int, title:String, tag:String, text:String){
+        self.questionPageId = questionPagdId
+        self.questionNumber = questionNumber
+        self.title = title
+        self.tag = tag
+        self.text = text
+    }
+    
     func addAnswer(_ answer:AnswerPage)->Void{
         self.answerPage.append(answer)
     }
@@ -103,6 +123,10 @@ class AnswerPage{
     
     init(text:String){
         self.text = text
+    }
+    init(text:String, boom:Int){
+        self.text = text
+        self.boom = boom
     }
 }
 
@@ -125,7 +149,7 @@ var question110 = Question(book: automata, chapter: 1, number: 1, tag: "#auto", 
 var question111 = Question(book: automata, chapter: 1, number: 3, tag: "#auto", answer: 0)
 
 var questionPage11 = QuestionPage(number: 1, title: "이것 좀 풀어달라!", tag: "#자 #고 #싶 #다", text: "이것을 이렇게 이렇게 풀어봤는데 이게 이것떄문에 이렇게 안되더라 이것을 어떻게 하면 좋을까?")
-var questionPage12 = QuestionPage(number: 7, title: "나는가수다", tag: "#솔아솔아 #푸르른 #솔아", text: "동해물과 백두산이 마르고 닳도록 하나님이 보우하사 우리나라만세!")
+var questionPage12 = QuestionPage(number: 1, title: "나는가수다", tag: "#솔아솔아 #푸르른 #솔아", text: "동해물과 백두산이 마르고 닳도록 하나님이 보우하사 우리나라만세!")
 
 
 
