@@ -110,6 +110,8 @@ class SearchTableController: UITableViewController {
         cell.bookName.text = book.bookName
         cell.bookWriter.text = book.bookWriter
         
+        cell.bookName.numberOfLines = 0
+        
         return cell
     }
     
@@ -146,7 +148,7 @@ class SearchTableController: UITableViewController {
     }
     // cell의 height을 64로 맞춰줌.
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 64
+        return 90
     }
 
 }

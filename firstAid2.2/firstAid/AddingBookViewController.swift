@@ -26,16 +26,9 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var authorText: UITextField!
     @IBOutlet weak var titleText: UITextField!
     
-    
-    
     var chosenImages: [UIImage] = []
     
-    
-    
     @IBOutlet weak var bookImage: UIImageView!
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
