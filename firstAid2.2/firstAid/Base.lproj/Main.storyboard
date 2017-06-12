@@ -412,20 +412,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjp-LD-FBo">
-                                                    <rect key="frame" x="8" y="8" width="46" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjp-LD-FBo">
+                                                    <rect key="frame" x="19" y="21" width="25" height="13"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="up"/>
+                                                    <state key="normal" title="up" image="upButton"/>
                                                     <connections>
                                                         <action selector="boomUp:" destination="4ae-Bp-NNQ" eventType="touchUpInside" id="7Rc-So-I5a"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gJ-fV-eFh">
-                                                    <rect key="frame" x="8" y="53" width="46" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="down"/>
-                                                    <connections>
-                                                        <action selector="boomDown:" destination="4ae-Bp-NNQ" eventType="touchUpInside" id="a3g-mo-W8T"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWw-Lo-lXe">
@@ -435,6 +427,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gJ-fV-eFh">
+                                                    <rect key="frame" x="19" y="57" width="25" height="13"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="down" image="downButton"/>
+                                                    <connections>
+                                                        <action selector="boomDown:" destination="4ae-Bp-NNQ" eventType="touchUpInside" id="a3g-mo-W8T"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wSN-lm-Hqs" secondAttribute="bottom" constant="0.5" identifier="image1" id="1Rj-ct-lWi"/>
@@ -838,8 +838,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="75" height="75"/>
+        <image name="Image" width="67" height="66"/>
         <image name="Image-1" width="640" height="640"/>
+        <image name="downButton" width="278" height="188"/>
+        <image name="upButton" width="278" height="188"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z6E-2g-kpI"/>
