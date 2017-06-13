@@ -82,22 +82,23 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         
         
         for i in 0 ..< chosenImages.count{
-            let imageView = UIImageView()
-            imageView.image = chosenImages[i]
-            let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
-            //print(self.imageScrollView.frame.height)
-            imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width * CGFloat(0.5), height: self.imageScrollView.frame.height)
-            
-            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-            imageView.addGestureRecognizer(tapRecognizer)
-            imageView.isUserInteractionEnabled = true
-            
-            //imageView.addGestureRecognizer(tapRecognizer)
-            
-            
-            imageScrollView.contentSize.width = imageScrollView.frame.width * CGFloat(0.5) * CGFloat(i + 1)
-            imageScrollView.addSubview(imageView)
-        }
+          let imageView = UIImageView()
+          imageView.image = chosenImages[i]
+          let xPosition = (self.imageScrollView.frame.height - 5)  * CGFloat(i) + 5
+          //print(self.imageScrollView.frame.height)
+          imageView.frame = CGRect(x: xPosition, y: 5, width: self.imageScrollView.frame.height - 10, height: self.imageScrollView.frame.height - 10)
+          
+          let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+          imageView.addGestureRecognizer(tapRecognizer)
+          imageView.isUserInteractionEnabled = true
+          
+          //imageView.addGestureRecognizer(tapRecognizer)
+          
+          imageView.contentMode = .scaleAspectFill
+          imageView.clipsToBounds = true
+          imageScrollView.contentSize.width = (imageScrollView.frame.height-5) * CGFloat(i + 1) + 5
+          imageScrollView.addSubview(imageView)
+      }
         
         //viewsection.contentMode = .scaleAspectFit
         //viewsection.image = chosenImages[0]

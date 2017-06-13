@@ -85,19 +85,22 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
           //for image in answer
           var chosenImages:[UIImage] = qp.answerPage[indexPath.row-1].image!
           for i in 0 ..< chosenImages.count{
+            
             let imageView = UIImageView()
             imageView.image = chosenImages[i]
-            let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
+            let xPosition = (self.view.frame.height - 5)  * CGFloat(i) + 5
             //print(self.imageScrollView.frame.height)
-            imageView.frame = CGRect(x: xPosition, y: 0, width: cell.imageScrollView.frame.height, height: cell.imageScrollView.frame.height)
+            imageView.frame = CGRect(x: xPosition, y: 5, width: cell.imageScrollView.frame.height - 10, height: cell.imageScrollView.frame.height - 10)
             
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
             imageView.addGestureRecognizer(tapRecognizer)
-            
             imageView.isUserInteractionEnabled = true
             
+            //imageView.addGestureRecognizer(tapRecognizer)
             
-            cell.imageScrollView.contentSize.width = cell.imageScrollView.frame.height * CGFloat(i + 1)
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            cell.imageScrollView.contentSize.width = (cell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 5
             cell.imageScrollView.addSubview(imageView)
           }
 
@@ -120,11 +123,12 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
       if (selectedQuestion.questionPage[section].image != nil){
         let chosenImages = selectedQuestion.questionPage[section].image!
         for i in 0 ..< chosenImages.count{
+          
           let imageView = UIImageView()
           imageView.image = chosenImages[i]
-          let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
+          let xPosition = (sectionCell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
           //print(self.imageScrollView.frame.height)
-          imageView.frame = CGRect(x: xPosition, y: 0, width: sectionCell.imageScrollView.frame.height, height: sectionCell.imageScrollView.frame.height)
+          imageView.frame = CGRect(x: xPosition, y: 2, width: sectionCell.imageScrollView.frame.height - 4, height: sectionCell.imageScrollView.frame.height - 4)
           
           let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
           imageView.addGestureRecognizer(tapRecognizer)
@@ -132,9 +136,12 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
           
           //imageView.addGestureRecognizer(tapRecognizer)
           
-          
-          sectionCell.imageScrollView.contentSize.width = sectionCell.imageScrollView.frame.height * CGFloat(i + 1)
+          imageView.contentMode = .scaleAspectFill
+          imageView.clipsToBounds = true
+          sectionCell.imageScrollView.contentSize.width = (sectionCell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
           sectionCell.imageScrollView.addSubview(imageView)
+          
+          
         }
       }
       

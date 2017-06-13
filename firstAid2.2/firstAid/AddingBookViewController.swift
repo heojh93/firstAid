@@ -104,8 +104,10 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
         
         chosenImages = images
         bookImage.image = chosenImages[0]
-        
-        
+      bookImage.contentMode = .scaleAspectFill
+      bookImage.clipsToBounds = true
+      
+      
         self.dismiss(animated: true, completion: nil)
         //self.dismiss(animated: true, completion: nil)
     }
