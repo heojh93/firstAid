@@ -107,9 +107,6 @@ class QuestionList{
                     guard let numberOfQuest = json["quest_number"].int else {
                         continue
                     }
-                    guard let chapter = json["chapter"].int else {
-                        continue
-                    }
                     self.questionlist.append(Question(questionId:questionId, number:questionNumber, tag:questionTag, quest: numberOfQuest, answer:numberOfAnswer))
                     table.reloadData()
                 }

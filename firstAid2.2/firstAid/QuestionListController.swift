@@ -94,10 +94,12 @@ class QuestionListController: UIViewController {
 
 extension QuestionListController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return questionList.questionlist.count
+    /*
     if let selectedBook = questionTable.selectedBook {
       return selectedBook.bookQuestion.count
     }
-    return 0
+    return 0*/
   }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
