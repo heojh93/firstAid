@@ -33,7 +33,8 @@ class QuestionListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        
+        questionTable.tableFooterView = UIView(frame: CGRect.zero)
+      
         // 선택된 책의 정보를 가져오기 위함.
         /*
         for singleBook in BookList{
@@ -92,9 +93,13 @@ class QuestionListController: UIViewController {
  }
 
 extension QuestionListController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questionList.questionlist.count
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if let selectedBook = questionTable.selectedBook {
+      return selectedBook.bookQuestion.count
     }
+    return 0
+  }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableCell") as! QuestionTableCell
         let question = questionSorting(index: indexPath.row)

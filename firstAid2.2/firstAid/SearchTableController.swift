@@ -57,6 +57,8 @@ class SearchTableController: UITableViewController {
         //BookList.removeAll()
         
         bookList.setBookList(table: self.tableView)
+      self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+      
         
         self.tableView.reloadData()
     }

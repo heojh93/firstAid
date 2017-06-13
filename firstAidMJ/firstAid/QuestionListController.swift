@@ -29,8 +29,9 @@ class QuestionListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        questionTable.tableFooterView = UIView(frame: CGRect.zero)
         configureView()
-        
+      
         // 선택된 책의 정보를 가져오기 위함.
         for singleBook in BookList{
             if(singleBook.bookName == detailBook?.bookName){
@@ -67,6 +68,7 @@ class QuestionListController: UIViewController {
                     self.questionTable.reloadData()
                 }
             }
+          
         }
         
         // TableCell과 quesitonTable의 원소번호를 맞추기 위해.
@@ -116,7 +118,10 @@ class QuestionListController: UIViewController {
 
 extension QuestionListController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questionTable.selectedBook.bookQuestion.count
+      if let selectedBook = questionTable.selectedBook {
+        return selectedBook.bookQuestion.count
+      }
+        return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableCell") as! QuestionTableCell

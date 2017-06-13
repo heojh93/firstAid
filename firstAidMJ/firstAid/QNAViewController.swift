@@ -28,6 +28,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableview.estimatedRowHeight = 100
         
         tableview.sectionHeaderHeight = 170
+      tableview.tableFooterView = UIView(frame: CGRect.zero)
+      
         
     }
     override func viewWillAppear(_ animated: Bool) {

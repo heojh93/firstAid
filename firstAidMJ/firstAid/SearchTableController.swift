@@ -77,6 +77,11 @@ class SearchTableController: UITableViewController {
                 
             }
         }
+      
+      self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+      
+      //self.tableView.backgroundColor = UIColor.clearColor()
+
 
     }
 

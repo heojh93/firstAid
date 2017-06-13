@@ -170,7 +170,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="41" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTV-GV-ocX" customClass="QuestionTable" customModule="firstAid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="427"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -184,7 +184,6 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQs-L6-Uia">
                                                     <rect key="frame" x="25" y="8" width="21" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.92834677799999998" green="0.85869905520000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -248,32 +247,17 @@
                                     <outlet property="delegate" destination="hYb-JL-rZV" id="jAx-X5-B71"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bob-pA-SM6">
-                                <rect key="frame" x="290" y="585" width="85" height="82"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPI-Oi-C2g">
-                                        <rect key="frame" x="9" y="1" width="67" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Image"/>
-                                        <connections>
-                                            <segue destination="sd9-hc-bc0" kind="presentation" identifier="addQuestion" id="XzC-al-p3H"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="85" id="TqB-ZQ-TAW"/>
-                                    <constraint firstAttribute="height" constant="82" id="i5I-HO-YA6"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="HuE-eu-wtL" firstAttribute="top" secondItem="bob-pA-SM6" secondAttribute="bottom" id="IuK-I4-zF8"/>
-                            <constraint firstItem="bob-pA-SM6" firstAttribute="leading" secondItem="zFa-sT-6v4" secondAttribute="leading" constant="290" id="eFk-i0-pPL"/>
-                            <constraint firstAttribute="trailing" secondItem="bob-pA-SM6" secondAttribute="trailing" id="vaL-k7-GF6"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BOOK TITLE" id="Bgb-Qy-8fy"/>
+                    <navigationItem key="navigationItem" title="BOOK TITLE" id="Bgb-Qy-8fy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="duP-gZ-TVL">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="sd9-hc-bc0" kind="presentation" id="Qx7-XQ-478"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="questionTable" destination="zTV-GV-ocX" id="wkQ-yM-mkK"/>
                         <outlet property="view" destination="zTV-GV-ocX" id="X9K-57-fPA"/>
