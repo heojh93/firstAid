@@ -145,9 +145,6 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
       }
       
-      
-      
-      
       return sectionCell
     }
   
