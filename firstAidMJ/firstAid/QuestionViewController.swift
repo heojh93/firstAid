@@ -12,6 +12,10 @@ import GTZoomableImageView
 import TZZoomImageManager
 import WSTagsField
 
+import Alamofire
+import SwiftyJSON
+
+
 let picker = UIImagePickerController()
 
 let placeHolder = "질문을 입력하세요"
@@ -48,7 +52,7 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     //class Questions send json request
     let title = titleText.text
     let text = textView.text
-    let images = chosenImages
+    //let images = chosenImages
     let number = Int(numberText.text!)
     
     let tags = tagsField.tagViews
@@ -63,10 +67,11 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       k += 1
     }
     
-    let questionDetail = QuestionPage(number: number!, title: title!, tag: tagString, text: text!)
-    questionDetail.image = images
+    //let questionDetail = QuestionPage(number: number!, title: title!, tag: tagString, text: text!)
+    //questionDetail.image = images
     
     // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
+    /*
     var find:Bool = false
     for i in selectedBook.bookQuestion{
       if(i.questionNumber == number){
@@ -75,10 +80,53 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       }
     }
     if(!find){
-      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: tagString, answer: 1)
+      let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
       q.addPage(questionDetail)
       selectedBook.addQuestion(q)
     }
+    
+     let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
+     q.addPage(questionDetail)
+     selectedBook.addQuestion(q)
+     */
+    
+    //let q = Question(book: selectedBook, chapter: 1, number: number!, tag: tagString, answer: 1)
+    
+    let url = "http://220.85.167.57:2288/solution/problem_post/"
+    let param: Parameters = [
+      "textbook_id":selectedBook.bookId,
+      "number":number!,
+      "tag":tagString,
+      "title":title!,
+      "content":text!
+    ]
+    Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
+      if let j = response.result.value {
+        let json = JSON(j)
+        guard let id = json["id"].int else {
+          return
+        }
+        guard let number = json["number"].int else {
+          return
+        }
+        guard let chapter = json["chapter"].int else {
+          return
+        }
+        guard let tag = json["tag"].string else {
+          return
+        }
+        guard let answer_number = json["answer_number"].int else {
+          return
+        }
+        self.selectedBook.addQuestion(Question(questionId: id, book: self.selectedBook, chapter: chapter, number: number, tag: tag, answer: answer_number))
+        self.table.reloadData()
+      }
+
+      
+    }
+    
+
+    
     
     /*
     let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)

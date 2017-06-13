@@ -1,19 +1,17 @@
 //
-//  SearchTableController.swift
+//  QPCell.swift
 //  firstAid
 //
-//  Created by heoju on 2017. 5. 27..
-//  Copyright © 2017년 HJ. All rights reserved.
+//  Created by heoju on 2017. 6. 8..
+//  Copyright © 2017년 KimMJ. All rights reserved.
 //
 
 import UIKit
 
-class SearchCell: UITableViewCell {
+class QPCell: UITableViewCell {
 
-    @IBOutlet weak var bookName: UILabel!
-    @IBOutlet weak var bookWriter: UILabel!
-    
-  @IBOutlet weak var bookImage: UIImageView!
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var numberOfAnswer: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

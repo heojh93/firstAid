@@ -12,18 +12,31 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var tableview: UITableView!
     var selectedQuestion:Question!
-  var images:[UIImage] = []//for question
-  var answerImages:[UIImage] = []//for answer
-
+    var addView:AnswerViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableview.delegate = self
         tableview.dataSource = self
         
+        // cell의 AutoLayout을 위해.
+        //tableview.setNeedsLayout()
+        //tableview.layoutIfNeeded()
+
+        tableview.rowHeight = UITableViewAutomaticDimension
+        tableview.estimatedRowHeight = 100
+        
         tableview.sectionHeaderHeight = 170
-      
-      images.append(UIImage(named: "Image")!)
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableview.setNeedsLayout()
+        tableview.layoutIfNeeded()
+        tableview.rowHeight = UITableViewAutomaticDimension
+        tableview.estimatedRowHeight = 100
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,14 +50,62 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        //print("@@@@@@@@@@@@@@@\(1 + selectedQuestion.questionPage[section].answerPage.count)\n")
+        return 1 + selectedQuestion.questionPage[section].answerPage.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
-        
-        return cell
+        if(indexPath.row == 0){
+            let cell = tableview.dequeueReusableCell(withIdentifier: "QPCell") as! QPCell
+            let answer = selectedQuestion.questionPage[indexPath.section].answerPage
+            
+            cell.button.tag = indexPath.section
+            cell.numberOfAnswer.text = String(answer.count)
+            
+            return cell
+        }
+        else{
+            // 답변 Cell에 관한 설정들.
+            let cell = tableview.dequeueReusableCell(withIdentifier: "QNAPageCell") as! QNAPageCell
+            let qp = selectedQuestion.questionPage[indexPath.section]
+            cell.textView.text = qp.answerPage[indexPath.row-1].text
+            cell.boomNum.text = String(qp.answerPage[indexPath.row-1].boom)
+            
+            cell.sizeToFit()
+            //cell.updateConstraintsIfNeeded()
+            cell.textView?.numberOfLines = 0
+            if(qp.answerPage[indexPath.row-1].image?.count == 0){
+                cell.viewForImage.isHidden = true
+            }
+            
+            cell.upButton.tag = indexPath.section * 100 + indexPath.row
+            cell.downButton.tag = indexPath.section * 100 + indexPath.row
+          //qp.answerPage[indexPath.row-1].image
+          //for image in answer
+          var chosenImages:[UIImage] = qp.answerPage[indexPath.row-1].image!
+          for i in 0 ..< chosenImages.count{
+            let imageView = UIImageView()
+            imageView.image = chosenImages[i]
+            let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
+            //print(self.imageScrollView.frame.height)
+            imageView.frame = CGRect(x: xPosition, y: 0, width: cell.imageScrollView.frame.height, height: cell.imageScrollView.frame.height)
+            
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+            imageView.addGestureRecognizer(tapRecognizer)
+            
+            imageView.isUserInteractionEnabled = true
+            
+            
+            cell.imageScrollView.contentSize.width = cell.imageScrollView.frame.height * CGFloat(i + 1)
+            cell.imageScrollView.addSubview(imageView)
+          }
+
+            
+            return cell
+        }
     }
+    
+
     
     // section header를 customize하기 위한 몸부림.
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -54,53 +115,88 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.tagLabel.text = selectedQuestion.questionPage[section].tag
         sectionCell.textView.text = selectedQuestion.questionPage[section].text
       
-      
-      var Images: [UIImage] = []
-      
-      if !Images.isEmpty {
-        for v in sectionCell.scrollView.subviews {
-          v.removeFromSuperview()
+      //for image in header
+      if (selectedQuestion.questionPage[section].image != nil){
+        let chosenImages = selectedQuestion.questionPage[section].image!
+        for i in 0 ..< chosenImages.count{
+          let imageView = UIImageView()
+          imageView.image = chosenImages[i]
+          let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
+          //print(self.imageScrollView.frame.height)
+          imageView.frame = CGRect(x: xPosition, y: 0, width: sectionCell.imageScrollView.frame.height, height: sectionCell.imageScrollView.frame.height)
+          
+          let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+          imageView.addGestureRecognizer(tapRecognizer)
+          imageView.isUserInteractionEnabled = true
+          
+          //imageView.addGestureRecognizer(tapRecognizer)
+          
+          
+          sectionCell.imageScrollView.contentSize.width = sectionCell.imageScrollView.frame.height * CGFloat(i + 1)
+          sectionCell.imageScrollView.addSubview(imageView)
         }
       }
       
-      Images = images
-      //let imagePickerController = ImagePickerController()
       
       
-      for i in 0 ..< Images.count{
-        let imageView = UIImageView()
-        imageView.image = Images[i]
-        let xPosition = self.view.frame.height * CGFloat(i)
-        //print(self.imageScrollView.frame.height)
-        imageView.frame = CGRect(x: xPosition, y: 0, width: sectionCell.scrollView.frame.height, height: sectionCell.scrollView.frame.height)
-        
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-        imageView.addGestureRecognizer(tapRecognizer)
-        imageView.isUserInteractionEnabled = true
-        
-        //imageView.addGestureRecognizer(tapRecognizer)
-        
-        
-        sectionCell.scrollView.contentSize.width = sectionCell.scrollView.frame.height * CGFloat(i + 1)
-        sectionCell.scrollView.addSubview(imageView)
-      }
       
       return sectionCell
     }
+  
+    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+      //tappedImageView is tapped image
+      let tappedImageView = gestureRecognizer.view! as! UIImageView
+      let storyboard = UIStoryboard(name:
+      "Main", bundle: nil)
+      let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+      let tmp = controller as! ImageZoomNavigationViewController
+      tmp.tappedImage = tappedImageView.image
     
-  @IBAction func answerThisQuestion(_ sender: Any) {
-    // 사용자의 탭 좌표에 해당하는 테이블 뷰 셀을 얻을 수 있음.
-    //그 셀의 인덱스패쓰로부터 섹션 번호를 얻어냄.
+      self.present(tmp, animated: true, completion: nil)
+    }
+  
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
     
-    //print(self.tableview.indexPathForSelectedRow)
-//    let selectedINdexPaht = self.tableview.indexPathForSelectedRow
-//    
-//    print(selectedINdexPaht?.section)
-  }
-    /*
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    @IBAction func pushButton(_ sender: Any) {
+        let button = sender as! UIButton
+        let section = button.tag
+        addView.table = tableview
+        addView.selectedQuestionPage = selectedQuestion.questionPage[section]
+        print("####\(section)\n")
+    }
+
+    // 추천 기능.
+    @IBAction func boomUp(_ sender: Any) {
+        let button = sender as! UIButton
+        let section = button.tag / 100
+        let row = button.tag % 100
+    
+        let question = selectedQuestion.questionPage[section]
+        question.answerPage[row-1].boom += 1
+        self.tableview.reloadData()
+    }
+    
+    @IBAction func boomDown(_ sender: Any) {
+        let button = sender as! UIButton
+        let section = button.tag / 100
+        let row = button.tag % 100
         
-    }*/
+        let question = selectedQuestion.questionPage[section]
+        question.answerPage[row-1].boom -= 1
+        self.tableview.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "addAnswer" {
+            addView = (segue.destination as!UINavigationController).topViewController as! AnswerViewController
+            //addView.selectedQuestionPage = selectedQuestion.questionPage[index!]
+            //addView.table = tableview
+        }
+    }
+    
     
     /*
     // MARK: - Navigation
@@ -111,19 +207,5 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Pass the selected object to the new view controller.
     }
     */
-  
-  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
-    //tappedImageView is tapped image
-    let tappedImageView = gestureRecognizer.view! as! UIImageView
-    if (tappedImageView.image != nil) {
-      let storyboard = UIStoryboard(name:
-        "Main", bundle: nil)
-      let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
-      let tmp = controller as! ImageZoomNavigationViewController
-      tmp.tappedImage = tappedImageView.image
-      
-      self.present(tmp, animated: true, completion: nil)
-    }
-  }
 
 }

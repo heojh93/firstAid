@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class QuestionListController: UIViewController {
     
@@ -33,6 +35,37 @@ class QuestionListController: UIViewController {
         for singleBook in BookList{
             if(singleBook.bookName == detailBook?.bookName){
                 questionTable.selectedBook = singleBook
+            }
+        }
+        
+        
+        let url:String = "http://220.85.167.57:2288/solution/textbook/" + String(detailBook!.bookId) + "/problem_list/"
+        
+        //questionTable.selectedBook.bookQuestion = []
+        Alamofire.request(url).responseJSON { response in
+            
+            if let j = response.result.value {
+                let jsons = JSON(j)
+                for (_, json) in jsons {
+                    
+                    guard let questionId = json["id"].int else {
+                        continue
+                    }
+                    guard let questionNumber = json["number"].int else {
+                        continue
+                    }
+                    guard let questionTag = json["tag"].string else {
+                        continue
+                    }
+                    guard let numberOfAnswer = json["answer_number"].int else {
+                        continue
+                    }
+                    guard let chapter = json["chapter"].int else {
+                        continue
+                    }
+                    self.questionTable.selectedBook.addQuestion(Question(questionId:questionId, book:self.detailBook!, chapter:chapter, number:questionNumber, tag:questionTag, answer:numberOfAnswer))
+                    self.questionTable.reloadData()
+                }
             }
         }
         
@@ -89,9 +122,18 @@ extension QuestionListController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableCell") as! QuestionTableCell
         let question = questionSorting(index: indexPath.row)
         //let question = orderedQ[indexPath.row]
+        
+        cell.QNAview.backgroundColor = UIColor(patternImage: UIImage(named: "QNABox.png")!)
         cell.QuestionNumber.text = String(question.questionNumber)
         cell.QuestionTag.text = question.questionTag
-        cell.NumberOfAnswer.text = String(question.numberOfAnswer)
+        //cell.NumberOfAnswer.text = String(question.numberOfAnswer)
+        cell.numberQuestion.text = String(question.questionPage.count)
+        
+        var answerNum:Int = 0
+        for i in question.questionPage{
+            answerNum += i.answerPage.count
+        }
+        cell.numberAnswer.text = String(answerNum)
         
         return cell
     }

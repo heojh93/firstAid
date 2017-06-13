@@ -11,9 +11,11 @@ import ImagePicker
 import GTZoomableImageView
 import TZZoomImageManager
 
+let answerPlaceHolder = "답변을 입력하세요"
+
 class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
 
-    var selectedQuestionPage:[QuestionPage]!
+    var selectedQuestionPage:QuestionPage!
     var table:UITableView!
     
     @IBOutlet weak var textView: UITextView!
@@ -31,16 +33,16 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     }
     
     @IBAction func DoneDIsmiss(_ sender: Any) {
-        
-        // AnswerPage로 값이 제대로 넘어오지 못함. Section 문제 떄문.
-        self.dismiss(animated:true, completion: nil)
-        return
-        
+      
         let text = textView.text
+      
         let image = chosenImages
         
-        var answerPage = AnswerPage(text: text!)
-        answerPage.image = image
+        if (!(text == answerPlaceHolder && image.isEmpty)){
+            let answerPage = AnswerPage(text: text!)
+            answerPage.image = image
+        
+            selectedQuestionPage.addAnswer(answerPage)
         
 /*
         //Something to do
@@ -54,27 +56,12 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         let questionDetail = QuestionPage(number: number!, title: title!, tag: "", text: text!)
         questionDetail.image = images
         
-        // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
-        var find:Bool = false
-        for i in selectedBook.bookQuestion{
-            if(i.questionNumber == number){
-                i.addPage(questionDetail)
-                find = true
-            }
-        }
-        if(!find){
-            let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
-            q.addPage(questionDetail)
-            selectedBook.addQuestion(q)
-        }
-        /*
-         let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
-         q.addPage(questionDetail)
-         selectedBook.addQuestion(q)
-         */
  */
- 
         table.reloadData()
+        //table.setNeedsLayout()
+        //table.layoutIfNeeded()
+
+      }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -143,7 +130,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         textView.delegate = self
-        textView.text = placeHolder
+        textView.text = answerPlaceHolder
         textView.textColor = UIColor.lightGray
         
         //textView.becomeFirstResponder()
@@ -161,7 +148,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         let updateText = currentText?.replacingCharacters(in: range, with: text)
         
         if (updateText?.isEmpty)! {
-            textView.text = placeHolder
+            textView.text = answerPlaceHolder
             textView.textColor = UIColor.lightGray
             
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
@@ -186,7 +173,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = placeHolder
+            textView.text = answerPlaceHolder
             textView.textColor = UIColor.lightGray
         }
     }

@@ -8,24 +8,29 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class BookData : NSObject{
     
+    var bookId:Int
     var bookName: String
     var bookWriter: String
     var bookImage: String!
     var bookQuestion:[Question] = []
     
-    init(bookName:String, bookWriter:String, bookImage:String){
+    init(bookId:Int, bookName:String, bookWriter:String, bookImage:String){
+        self.bookId = bookId
         self.bookName = bookName
         self.bookWriter = bookWriter
         self.bookImage = bookImage
     }
-    init(bookName:String, bookWriter:String){
+    init(bookId:Int, bookName:String, bookWriter:String){
+        self.bookId = bookId
         self.bookName = bookName
         self.bookWriter = bookWriter
     }
     func addQuestion(_ question:Question) -> Void{
+        
         self.bookQuestion.append(question)
     }
 
@@ -33,18 +38,32 @@ class BookData : NSObject{
 
 class Question : BookData{
     
+    var questionId:Int
     var chapter: Int
     var questionNumber: Int
     var questionTag: String
     var numberOfAnswer: Int
+    var imageURL: [String]
     var questionPage: [QuestionPage] = []
     
     init(book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
+        self.questionId = 0
         self.chapter = chapter
         self.questionNumber = questionNumber
         self.questionTag = questionTag
         self.numberOfAnswer = numberOfAnswer
-        super.init(bookName: book.bookName,bookWriter: book.bookWriter)
+        self.imageURL = []
+        super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
+    }
+    
+    init(questionId:Int, book:BookData, chapter:Int, number questionNumber:Int, tag questionTag:String, answer numberOfAnswer:Int){
+        self.questionId = questionId
+        self.chapter = chapter
+        self.questionNumber = questionNumber
+        self.questionTag = questionTag
+        self.numberOfAnswer = numberOfAnswer
+        self.imageURL = []
+        super.init(bookId:book.bookId, bookName: book.bookName,bookWriter: book.bookWriter)
     }
     
     func addPage(_ question:QuestionPage) -> Void{
@@ -55,6 +74,7 @@ class Question : BookData{
 // QuestionPage 추가 -> Question class구성 후, Question List에 추가, questionPage배열에 추가.
 class QuestionPage{
     
+    var queestionPageId:Int
     var questionNumber:Int
     var title:String
     var tag:String
@@ -63,6 +83,7 @@ class QuestionPage{
     var answerPage:[AnswerPage] = []
     
     init(number questionNumber:Int, title:String, tag:String, text:String){
+        self.queestionPageId = 0
         self.questionNumber = questionNumber
         self.title = title
         self.tag = tag
@@ -75,6 +96,8 @@ class QuestionPage{
 
 class AnswerPage{
     
+    var answerId:Int = 0
+    var boom:Int = 0
     var text:String
     var image:[UIImage]?
     
@@ -83,9 +106,9 @@ class AnswerPage{
     }
 }
 
-let algorithm = BookData(bookName: "Algorithm",bookWriter: "abc")
-let automata = BookData(bookName: "Automata",bookWriter: "aaa")
-let datastructure = BookData(bookName: "DataStructure",bookWriter: "ddd")
+let algorithm = BookData(bookId: 100, bookName: "Algorithm",bookWriter: "abc", bookImage: "https://developer.apple.com/library/content/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/Art/ACR_Asset_Catalog_Elements_2x.png")
+let automata = BookData(bookId: 200, bookName: "Automata",bookWriter: "aaa")
+let datastructure = BookData(bookId: 300, bookName: "DataStructure",bookWriter: "ddd")
 
 var BookList:[BookData] = [algorithm, automata, datastructure]
 

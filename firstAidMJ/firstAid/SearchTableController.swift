@@ -36,6 +36,7 @@ class SearchTableController: UITableViewController {
         }
         
         // dummy 데이터들
+        
         algorithm.addQuestion(question10)
         algorithm.addQuestion(question11)
         algorithm.addQuestion(question12)
@@ -50,12 +51,10 @@ class SearchTableController: UITableViewController {
         
         question10.addPage(questionPage11)
         
-        Alamofire.request("http://220.85.167.57:2288/solution/").responseJSON { response in
-            
-            print(response.result)
+        //BookList.removeAll()
+        Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in
             
             if let j = response.result.value {
-                print("JSON: \(j)")
                 
                 let jsons = JSON(j)
                 for (_, json) in jsons {
@@ -72,15 +71,8 @@ class SearchTableController: UITableViewController {
                     guard let bookId = json["id"].int else {
                         continue
                     }
-                    
-                    print(bookName)
-                    print(bookWriter)
-                    print(bookImage)
-                    print(bookId)
-                    
-                    BookList.append(BookData(bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
-                    
-                    
+                    BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                    self.tableView.reloadData()
                 }
                 
             }
@@ -118,9 +110,40 @@ class SearchTableController: UITableViewController {
         cell.bookName.text = book.bookName
         cell.bookWriter.text = book.bookWriter
         
+        cell.bookName.numberOfLines = 0
+        if (book.bookImage != nil && book.bookImage != ""){
+          print(book.bookImage)
+        
+          let url = URL(string:book.bookImage)
+          let data = try? Data(contentsOf: url!)
+      
+          if let imageData = data {
+            cell.bookImage.image = UIImage(data: imageData)
+          }
+          let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+          cell.bookImage.addGestureRecognizer(tapRecognizer)
+          cell.bookImage.isUserInteractionEnabled = true
+        }else {
+            cell.bookImage.image = UIImage(named: "noImage")
+          cell.bookImage.isUserInteractionEnabled = false
+        }
+
         return cell
     }
-    
+  
+    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+      //tappedImageView is tapped image
+      let tappedImageView = gestureRecognizer.view! as! UIImageView
+      if (tappedImageView.image != nil) {
+        let storyboard = UIStoryboard(name:"Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+        let tmp = controller as! ImageZoomNavigationViewController
+        tmp.tappedImage = tappedImageView.image
+        
+        self.present(tmp, animated: true, completion: nil)
+      }
+    }
+  
     func filterContentForSearchText(_ searchText: String) {
         filteredBook = BookList.filter({( book: BookData) -> Bool in
             return book.bookName.lowercased().contains(searchText.lowercased())
@@ -130,6 +153,7 @@ class SearchTableController: UITableViewController {
     
     // 문제 리스트를 위한 table view에 data를 넘겨주기 위함.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 책 선택
         if segue.identifier == "ShowDetails" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 var book: BookData
@@ -144,10 +168,16 @@ class SearchTableController: UITableViewController {
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
+        // 책 추가
+        
+        if segue.identifier == "addTextbook" {
+            let addView = (segue.destination as!UINavigationController).topViewController as! AddingBookViewController
+            addView.table = tableView
+        }
     }
     // cell의 height을 64로 맞춰줌.
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 64
+        return 90
     }
 
 }
