@@ -83,13 +83,35 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.sizeToFit()
             //cell.updateConstraintsIfNeeded()
             cell.textView?.numberOfLines = 0
-            if(qp.answerPage[indexPath.row-1].image?.count == 0){
+            if(qp.answerPage[indexPath.row-1].image == nil){
+                print("hidden")
                 cell.viewForImage.isHidden = true
             }
             
             cell.upButton.tag = indexPath.section * 100 + indexPath.row
             cell.downButton.tag = indexPath.section * 100 + indexPath.row
+          //for image in answer
+          
+          //print(qp.answerPage[indexPath.row-1].image?.count)
+          if let chosenImages:[UIImage] = qp.answerPage[indexPath.row-1].image {
+          for i in 0 ..< chosenImages.count{
+            let imageView = UIImageView()
+            imageView.image = chosenImages[i]
+            let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
+            //print(self.imageScrollView.frame.height)
+            imageView.frame = CGRect(x: xPosition, y: 0, width: cell.imageScrollView.frame.height, height: cell.imageScrollView.frame.height)
             
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+            imageView.addGestureRecognizer(tapRecognizer)
+            
+            imageView.isUserInteractionEnabled = true
+            
+            
+            cell.imageScrollView.contentSize.width = cell.imageScrollView.frame.height * CGFloat(i + 1)
+            cell.imageScrollView.addSubview(imageView)
+            print("add!")
+          }
+          }
             return cell
         }
     }
@@ -107,10 +129,43 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.titleLabel.text = qnalist.qnalist[section].title
         sectionCell.tagLabel.text = qnalist.qnalist[section].tag
         sectionCell.textView.text = qnalist.qnalist[section].text
+      //for image in header
+      if (qnalist.qnalist[section].image != nil){
+        let chosenImages = qnalist.qnalist[section].image!
+        for i in 0 ..< chosenImages.count{
+          let imageView = UIImageView()
+          imageView.image = chosenImages[i]
+          let xPosition = self.view.frame.width  * CGFloat(i) * CGFloat(0.5)
+          //print(self.imageScrollView.frame.height)
+          imageView.frame = CGRect(x: xPosition, y: 0, width: sectionCell.imageScrollView.frame.height, height: sectionCell.imageScrollView.frame.height)
+          
+          let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+          imageView.addGestureRecognizer(tapRecognizer)
+          imageView.isUserInteractionEnabled = true
+          
+          //imageView.addGestureRecognizer(tapRecognizer)
+          
+          
+          sectionCell.imageScrollView.contentSize.width = sectionCell.imageScrollView.frame.height * CGFloat(i + 1)
+          sectionCell.imageScrollView.addSubview(imageView)
+        }
+      }
       
       return sectionCell
     }
+  
+  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+    //tappedImageView is tapped image
+    let tappedImageView = gestureRecognizer.view! as! UIImageView
+    let storyboard = UIStoryboard(name:
+      "Main", bundle: nil)
+    let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+    let tmp = controller as! ImageZoomNavigationViewController
+    tmp.tappedImage = tappedImageView.image
     
+    self.present(tmp, animated: true, completion: nil)
+  }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }

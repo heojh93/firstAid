@@ -25,6 +25,7 @@ class QNAPageCell: UITableViewCell {
     @IBOutlet weak var upButton: UIButton!
     @IBOutlet weak var downButton: UIButton!
     
+  @IBOutlet weak var imageScrollView: UIScrollView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

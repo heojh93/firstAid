@@ -13,6 +13,7 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var bookName: UILabel!
     @IBOutlet weak var bookWriter: UILabel!
     
+  @IBOutlet weak var bookImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

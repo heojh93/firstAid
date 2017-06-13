@@ -81,6 +81,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.upButton.tag = indexPath.section * 100 + indexPath.row
             cell.downButton.tag = indexPath.section * 100 + indexPath.row
           //qp.answerPage[indexPath.row-1].image
+          
           //for image in answer
           var chosenImages:[UIImage] = qp.answerPage[indexPath.row-1].image!
           for i in 0 ..< chosenImages.count{

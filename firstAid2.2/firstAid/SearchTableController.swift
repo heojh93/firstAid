@@ -92,10 +92,39 @@ class SearchTableController: UITableViewController {
         cell.bookWriter.text = book.bookWriter
         
         cell.bookName.numberOfLines = 0
+      if (book.bookImage != nil && book.bookImage != ""){
+        print(book.bookImage)
         
+        let url = URL(string:book.bookImage)
+        let data = try? Data(contentsOf: url!)
+        
+        if let imageData = data {
+          cell.bookImage.image = UIImage(data: imageData)
+        }
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+        cell.bookImage.addGestureRecognizer(tapRecognizer)
+        cell.bookImage.isUserInteractionEnabled = true
+      }else {
+        cell.bookImage.image = UIImage(named: "noImage")
+        cell.bookImage.isUserInteractionEnabled = false
+      }
+
         return cell
     }
-    
+  
+  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+    //tappedImageView is tapped image
+    let tappedImageView = gestureRecognizer.view! as! UIImageView
+    if (tappedImageView.image != nil) {
+      let storyboard = UIStoryboard(name:"Main", bundle: nil)
+      let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+      let tmp = controller as! ImageZoomNavigationViewController
+      tmp.tappedImage = tappedImageView.image
+      
+      self.present(tmp, animated: true, completion: nil)
+    }
+  }
+  
     func filterContentForSearchText(_ searchText: String) {
         filteredBook = bookList.booklist.filter({( book: BookData) -> Bool in
             return book.bookName.lowercased().contains(searchText.lowercased())

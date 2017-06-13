@@ -1,309 +1,143 @@
---- firstAid2.2/firstAid/AddingBookViewController.swift	2017-06-11 21:53:56.000000000 +0900
-+++ firstAidMJ/firstAid/AddingBookViewController.swift	2017-06-08 17:51:53.000000000 +0900
-@@ -11,161 +11,158 @@
- import GTZoomableImageView
- import TZZoomImageManager
- 
--import Alamofire
--import SwiftyJSON
--
- class AddingBookViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
-+  
-+  var selectedQuestionPage:[QuestionPage]!
-+  var table:UITableView!
-+  
+--- firstAid2.2/firstAid/SearchTableController.swift	2017-06-13 12:42:51.000000000 +0900
++++ firstAidMJ/firstAid/SearchTableController.swift	2017-06-13 12:24:14.000000000 +0900
+@@ -16,10 +16,8 @@
+     var filteredBook = [BookData]()
+     var detailViewController: QuestionListController? = nil
+     let searchController = UISearchController(searchResultsController: nil)
+-    let bookList = BookList()
+     
+     override func viewDidLoad() {
+-        
+         super.viewDidLoad()
+         
+         // Setup
+@@ -38,7 +36,7 @@
+         }
+         
+         // dummy 데이터들
+-        /*
++        
+         algorithm.addQuestion(question10)
+         algorithm.addQuestion(question11)
+         algorithm.addQuestion(question12)
+@@ -52,13 +50,34 @@
+         automata.addQuestion(question111)
+         
+         question10.addPage(questionPage11)
+-        question10.addPage(questionPage12)
+-        */
+-        //BookList.removeAll()
+-        
+-        bookList.setBookList(table: self.tableView)
+         
+-        self.tableView.reloadData()
++        //BookList.removeAll()
++        Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in
++            
++            if let j = response.result.value {
++                
++                let jsons = JSON(j)
++                for (_, json) in jsons {
++                    
++                    guard let bookName = json["title"].string else {
++                        continue
++                    }
++                    guard let bookWriter = json["author"].string else {
++                        continue
++                    }
++                    guard let bookImage = json["image_url"].string else {
++                        continue
++                    }
++                    guard let bookId = json["id"].int else {
++                        continue
++                    }
++                    BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
++                    self.tableView.reloadData()
++                }
++                
++            }
++        }
 +
-+  var chosenImages: [UIImage] = []
-+  
-+  
-+  @IBOutlet weak var bookImage: UIImageView!
-+  
-+  override func didReceiveMemoryWarning() {
-+    super.didReceiveMemoryWarning()
-+    // Dispose of any resources that can be recreated.
-+  }
-+  @IBAction func CancelDismiss(_ sender: Any) {
-+    self.dismiss(animated: true, completion: nil)
-+  }
-+  
-+  @IBAction func DoneDIsmiss(_ sender: Any) {
-+    
-+    // AnswerPage로 값이 제대로 넘어오지 못함. Section 문제 떄문.
-+//    self.dismiss(animated:true, completion: nil)
-+//    return
+     }
+ 
+     override func didReceiveMemoryWarning() {
+@@ -74,7 +93,7 @@
+         if searchController.isActive && searchController.searchBar.text != "" {
+             return filteredBook.count
+         }
+-        return bookList.booklist.count
++        return BookList.count
+     }
+ 
      
-+    //let text = textView.text
-+    let image = chosenImages
-     
--    var selectedQuestionPage:[QuestionPage]!
--    
--    var table:UITableView!
--    
--    
--    
--    @IBOutlet weak var authorText: UITextField!
--    @IBOutlet weak var titleText: UITextField!
--    
--    
--    
--    var chosenImages: [UIImage] = []
--    
--    
--    
--    @IBOutlet weak var bookImage: UIImageView!
--    
--    
--    
--    
--    override func didReceiveMemoryWarning() {
--        super.didReceiveMemoryWarning()
--        // Dispose of any resources that can be recreated.
--    }
--    @IBAction func CancelDismiss(_ sender: Any) {
--        self.dismiss(animated: true, completion: nil)
--    }
--    
--    @IBAction func DoneDIsmiss(_ sender: Any) {
--        
--        // AnswerPage로 값이 제대로 넘어오지 못함. Section 문제 떄문.
--        //    self.dismiss(animated:true, completion: nil)
--        //    return
--        
--        //let text = textView.text
--        let image = chosenImages
--        
--        //var answerPage = AnswerPage(text: text!)
--        //answerPage.image = image
--        
--        
--        //Something to do
--        //class Questions send json request
--        
--        let title = titleText.text
--        let author = authorText.text
--        
--        let url = "http://220.85.167.57:2288/solution/textbook_post/"
--        let param: Parameters = [
--            "author":author!,
--            "title":title!,
--        ]
--        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
--            if let j = response.result.value {
--                let json = JSON(j)
--                guard let bookName = json["title"].string else {
--                    return
--                }
--                guard let bookWriter = json["author"].string else {
--                    return
--                }
--                guard let bookImage = json["image_url"].string else {
--                    return
--                }
--                guard let bookId = json["id"].int else {
--                    return
--                }
--                BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
--                self.table.reloadData()
--            }
--        }
--        self.dismiss(animated: true, completion: nil)
--    }
--    
--    
--    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
--        //self.dismiss(animated: true, completion: nil)
--    }
--    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
--        //var chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
--        //    if !chosenImages.isEmpty {
--        //      for v in imageScrollView.subviews {
--        //        v.removeFromSuperview()
--        //      }
--        //    }
--        
--        chosenImages = images
--        bookImage.image = chosenImages[0]
--        
--        
--        self.dismiss(animated: true, completion: nil)
--        //self.dismiss(animated: true, completion: nil)
--    }
--    
--    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
--        //tappedImageView is tapped image
--        let tappedImageView = gestureRecognizer.view! as! UIImageView
--        
--    }
--    
--    func cancelButtonDidPress(_ imagePicker: ImagePickerController){
--        //self.dismiss(animated: true, completion: nil)
--    }
--    
--    func navigationBarTap(_ recognizer: UIGestureRecognizer){
--        view.endEditing(true)
--    }
--    
--    override func viewDidLoad() {
--        super.viewDidLoad()
--        // Do any additional setup after loading the view.
--        
--        
--        let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.navigationBarTap))
--        hideKeyboard.numberOfTapsRequired = 1
--        navigationController?.navigationBar.addGestureRecognizer(hideKeyboard)
--        //self.navigationController?.setNavigationBarHidden(true, animated: true)
--    }
--    
--    
--    //
--    //  func textViewDidChangeSelection(_ textView: UITextView) {
--    //    if self.view.window != nil {
--    //      if textView.textColor == UIColor.lightGray {
--    //        //textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
--    //      }
--    //    }
--    //  }
--    //
--    
--    @IBAction func photoFromLibrary(_ sender: Any) {
--        let imagePickerController = ImagePickerController()
--        imagePickerController.delegate = self
--        self.present(imagePickerController, animated: true, completion: nil)
--        
--    }
--    
--    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
--        self.dismiss(animated: true, completion: nil)
--    }
-+    //var answerPage = AnswerPage(text: text!)
-+    //answerPage.image = image
-     
-     /*
--     // MARK: - Navigation
-+     //Something to do
-+     //class Questions send json request
-+     let title = titleText.text
-+     let text = textView.text
-+     let images = chosenImages
-+     let number = Int(numberText.text!)
-+     
-      
--     // In a storyboard-based application, you will often want to do a little preparation before navigation
--     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
--     // Get the new view controller using segue.destinationViewController.
--     // Pass the selected object to the new view controller.
-+     let questionDetail = QuestionPage(number: number!, title: title!, tag: "", text: text!)
-+     questionDetail.image = images
-+     
-+     // 같은 번호의 문제를 받았을 경우, 한개 번호에 다 넣어줌.
-+     var find:Bool = false
-+     for i in selectedBook.bookQuestion{
-+     if(i.questionNumber == number){
-+     i.addPage(questionDetail)
-+     find = true
-+     }
-+     }
-+     if(!find){
-+     let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
-+     q.addPage(questionDetail)
-+     selectedBook.addQuestion(q)
-      }
-+     /*
-+     let q = Question(book: selectedBook, chapter: 1, number: number!, tag: "", answer: 1)
-+     q.addPage(questionDetail)
-+     selectedBook.addQuestion(q)
-+     */
-      */
-     
-+//    table.reloadData()
-+    self.dismiss(animated: true, completion: nil)
-+  }
-+  
-+  
-+  func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
-+    //self.dismiss(animated: true, completion: nil)
-+  }
-+  func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
-+    //var chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
-+//    if !chosenImages.isEmpty {
-+//      for v in imageScrollView.subviews {
-+//        v.removeFromSuperview()
-+//      }
-+//    }
-+    
-+    chosenImages = images
-+    bookImage.image = chosenImages[0]
-+    
-+    
-+    self.dismiss(animated: true, completion: nil)
-+    //self.dismiss(animated: true, completion: nil)
-+  }
-+  
-+  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
-+    //tappedImageView is tapped image
-+    let tappedImageView = gestureRecognizer.view! as! UIImageView
-+    if (tappedImageView.image != nil) {
-+      let storyboard = UIStoryboard(name:
-+        "Main", bundle: nil)
-+      let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
-+      let tmp = controller as! ImageZoomNavigationViewController
-+      tmp.tappedImage = tappedImageView.image
+@@ -85,19 +104,48 @@
+         if searchController.isActive && searchController.searchBar.text != "" {
+             book = filteredBook[indexPath.row]
+         } else {
+-            book = bookList.booklist[indexPath.row]
++            book = BookList[indexPath.row]
+         }
+         
+         cell.bookName.text = book.bookName
+         cell.bookWriter.text = book.bookWriter
+         
+         cell.bookName.numberOfLines = 0
++        if (book.bookImage != nil && book.bookImage != ""){
++          print(book.bookImage)
+         
++          let url = URL(string:book.bookImage)
++          let data = try? Data(contentsOf: url!)
 +      
-+      self.present(tmp, animated: true, completion: nil)
++          if let imageData = data {
++            cell.bookImage.image = UIImage(data: imageData)
++          }
++          let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
++          cell.bookImage.addGestureRecognizer(tapRecognizer)
++          cell.bookImage.isUserInteractionEnabled = true
++        }else {
++            cell.bookImage.image = UIImage(named: "noImage")
++          cell.bookImage.isUserInteractionEnabled = false
++        }
++
+         return cell
+     }
+-    
++  
++    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
++      //tappedImageView is tapped image
++      let tappedImageView = gestureRecognizer.view! as! UIImageView
++      if (tappedImageView.image != nil) {
++        let storyboard = UIStoryboard(name:"Main", bundle: nil)
++        let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
++        let tmp = controller as! ImageZoomNavigationViewController
++        tmp.tappedImage = tappedImageView.image
++        
++        self.present(tmp, animated: true, completion: nil)
++      }
 +    }
-+  }
 +  
-+  func cancelButtonDidPress(_ imagePicker: ImagePickerController){
-+    //self.dismiss(animated: true, completion: nil)
-+  }
-+  
-+  func navigationBarTap(_ recognizer: UIGestureRecognizer){
-+    view.endEditing(true)
-+  }
-+  
-+  override func viewDidLoad() {
-+    super.viewDidLoad()
-+    // Do any additional setup after loading the view.
-+    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-+    bookImage.addGestureRecognizer(tapRecognizer)
-+    bookImage.isUserInteractionEnabled = true
-+    
-+    let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.navigationBarTap))
-+    hideKeyboard.numberOfTapsRequired = 1
-+    navigationController?.navigationBar.addGestureRecognizer(hideKeyboard)
-+    //self.navigationController?.setNavigationBarHidden(true, animated: true)
-+  }
-+  
-+  
-+    //
-+  //  func textViewDidChangeSelection(_ textView: UITextView) {
-+  //    if self.view.window != nil {
-+  //      if textView.textColor == UIColor.lightGray {
-+  //        //textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-+  //      }
-+  //    }
-+  //  }
-+  //
-+  
-+  @IBAction func photoFromLibrary(_ sender: Any) {
-+    let imagePickerController = ImagePickerController()
-+    imagePickerController.delegate = self
-+    self.present(imagePickerController, animated: true, completion: nil)
-+    
-+  }
-+  
-+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-+    self.dismiss(animated: true, completion: nil)
-+  }
-+  
-+  /*
-+   // MARK: - Navigation
-+   
-+   // In a storyboard-based application, you will often want to do a little preparation before navigation
-+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-+   // Get the new view controller using segue.destinationViewController.
-+   // Pass the selected object to the new view controller.
-+   }
-+   */
-+  
- }
+     func filterContentForSearchText(_ searchText: String) {
+-        filteredBook = bookList.booklist.filter({( book: BookData) -> Bool in
++        filteredBook = BookList.filter({( book: BookData) -> Bool in
+             return book.bookName.lowercased().contains(searchText.lowercased())
+         })
+         tableView.reloadData()
+@@ -112,7 +160,7 @@
+                 if searchController.isActive && searchController.searchBar.text != "" {
+                     book = filteredBook[indexPath.row]
+                 } else {
+-                    book = bookList.booklist[indexPath.row]
++                    book = BookList[indexPath.row]
+                 }
+                 let controller = (segue.destination as! UINavigationController).topViewController as! QuestionListController
+                 controller.detailBook = book
+@@ -124,8 +172,7 @@
+         
+         if segue.identifier == "addTextbook" {
+             let addView = (segue.destination as!UINavigationController).topViewController as! AddingBookViewController
+-            addView.table = self.tableView
+-            addView.bookList = self.bookList
++            addView.table = tableView
+         }
+     }
+     // cell의 height을 64로 맞춰줌.
