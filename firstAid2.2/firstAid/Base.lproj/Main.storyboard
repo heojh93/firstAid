@@ -248,32 +248,17 @@
                                     <outlet property="delegate" destination="hYb-JL-rZV" id="jAx-X5-B71"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bob-pA-SM6">
-                                <rect key="frame" x="290" y="585" width="85" height="82"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPI-Oi-C2g">
-                                        <rect key="frame" x="4" y="1" width="77" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Image"/>
-                                        <connections>
-                                            <segue destination="sd9-hc-bc0" kind="presentation" identifier="addQuestion" id="XzC-al-p3H"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="1SJ-MU-xWk"/>
-                                    <constraint firstAttribute="width" constant="85" id="uaM-Ah-Yvm"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="bob-pA-SM6" secondAttribute="trailing" id="OKR-Nz-BFc"/>
-                            <constraint firstItem="bob-pA-SM6" firstAttribute="leading" secondItem="zFa-sT-6v4" secondAttribute="leading" constant="290" id="jSI-uN-ZpC"/>
-                            <constraint firstItem="HuE-eu-wtL" firstAttribute="top" secondItem="bob-pA-SM6" secondAttribute="bottom" id="kk8-hg-oJh"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BOOK TITLE" id="Bgb-Qy-8fy"/>
+                    <navigationItem key="navigationItem" title="BOOK TITLE" id="Bgb-Qy-8fy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HTy-SF-xkM">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="sd9-hc-bc0" kind="presentation" id="qyP-wr-6v7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="questionTable" destination="zTV-GV-ocX" id="wkQ-yM-mkK"/>
                         <outlet property="view" destination="zTV-GV-ocX" id="X9K-57-fPA"/>
@@ -582,7 +567,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-NK-uSf">
-                                <rect key="frame" x="1" y="407" width="28" height="28"/>
+                                <rect key="frame" x="11" y="408" width="28" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVU-a6-fam">

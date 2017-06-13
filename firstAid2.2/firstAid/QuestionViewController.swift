@@ -197,6 +197,9 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     textView.text = placeHolder
     textView.textColor = UIColor.lightGray
     
+    tagsField.layer.borderWidth = CGFloat(0.5)
+    tagsField.layer.borderColor = UIColor.lightGray.cgColor
+    
     //textView.becomeFirstResponder()
     textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
     
