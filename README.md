@@ -28,15 +28,18 @@
 - [x] Data간의 계층 구조 디자인
 - [x] 질문하기, 답변하기 Scene
 - [x] Django를 통한 서버 구축
-- [ ] json을 통해 서버, 어플간 통신 ..진행중
+- [x] json을 통해 서버, 어플간 통신 ..완료
 - [x] Image 업로드
 - [x] Image 클릭으로 확대 기능
-- [ ] Tag field 구현 ..진행중
+- [x] Image scroll view 구성
+- [ ] Tag field 구현 .. 
 - [x] QNA view 구성
-- [ ] QNA view에서 Data 전달 ...section구분 문제...
+- [x] QNA view에서 Data 전달 ...완료
 - [ ] Chapter별 문제 구분
+- [x] 답변 별 추천 비추천 기능
+- [ ] QNA view 디자인 개선 필요
 
-## contributor
+## Contributor
 
 허주환 : heojh93@naver.com  
 김명진 : ss59s@nate.com  
