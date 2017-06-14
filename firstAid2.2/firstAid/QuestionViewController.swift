@@ -57,6 +57,18 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     let number = Int(numberText.text!)
     
     
+    var imageString:[String] = ["","","",""]
+    
+    if images.count != 0{
+      var i = 0
+      for image in images{
+        let temp = image.resizeImageWith(newSize: CGSize(width: 100, height: 100))
+        let imageData = UIImagePNGRepresentation(temp)
+        imageString[i] = (imageData?.base64EncodedString())!
+        i = i + 1
+      }
+    }
+    
     
     let tags = tagsField.tagViews
 
@@ -101,7 +113,11 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       "number":number!,
       "tag":tagString,
       "title":title!,
-      "content":text!
+      "content":text!,
+      "image1":imageString[0],
+      "image2":imageString[1],
+      "image3":imageString[2],
+      "image4":imageString[3],
     ]
     Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
       if let j = response.result.value {

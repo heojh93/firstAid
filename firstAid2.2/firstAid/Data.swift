@@ -47,23 +47,12 @@ class BookList {
                         return (book.bookId == bookId)
                     })
                     if book.count == 0 {
-                        /*
-                        if let url = URL(string:bookImage){
-                            let data = try? Data(contentsOf: url)
-                            let bookImageData = UIImage(data: data!)
-                            self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage, bookImageData : bookImageData!))
-                        }
-                        else{
-                            self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
-                        }*/
                         self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
                     }
                     else {
                         self.booklist.append(book[0])
                     }
                     print("reload..")
-                    table.reloadData()
-                    
                 }
                 table.reloadData()
             }
@@ -204,7 +193,18 @@ class QnAList{
                     guard let answerPages = json["answer_list"].array else {
                         continue
                     }
-                    var question = QuestionPage(questionPagdId: questionPageId, number: 0, title: title, tag: tag, text: text)
+                    guard let imageUrls = json["image_url"].array else {
+                        continue
+                    }
+                    var urls:[String] = []
+                    for imageUrl in imageUrls{
+                        guard let url = imageUrl.string else {
+                            continue
+                        }
+                        urls.append(url)
+                    }
+                    
+                    var question = QuestionPage(questionPagdId: questionPageId, number: 0, title: title, tag: tag, text: text, imageUrl: urls)
                     
                     for answer in answerPages{
                         guard let answerId = answer["id"].int else {
@@ -237,6 +237,7 @@ class QuestionPage{
     var title:String
     var tag:String
     var text:String
+    var imageUrl:[String]
     var image:[UIImage]?
     var answerPage:[AnswerPage] = []
     
@@ -246,14 +247,16 @@ class QuestionPage{
         self.title = title
         self.tag = tag
         self.text = text
+        self.imageUrl = []
     }
     
-    init(questionPagdId:Int, number questionNumber:Int, title:String, tag:String, text:String){
+    init(questionPagdId:Int, number questionNumber:Int, title:String, tag:String, text:String, imageUrl:[String]){
         self.questionPageId = questionPagdId
         self.questionNumber = questionNumber
         self.title = title
         self.tag = tag
         self.text = text
+        self.imageUrl = imageUrl
     }
     
     func addAnswer(_ answer:AnswerPage)->Void{

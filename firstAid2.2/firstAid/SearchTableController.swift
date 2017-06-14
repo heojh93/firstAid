@@ -120,21 +120,21 @@ class SearchTableController: UITableViewController {
                 cell.bookImage.image = UIImage(named: "Photo")
                 let q = DispatchQueue(label: book.bookImage)
                 q.async {
-                let url = URL(string:book.bookImage)
-                let data = try? Data(contentsOf: url!)
-                
-                if let imageData = data {
-                    book.bookImageData = UIImage(data: imageData)
-                    cell.bookImage.image = book.bookImageData
+                    let url = URL(string:book.bookImage)
+                    let data = try? Data(contentsOf: url!)
                     
-                    cell.bookImage.image = book.bookImageData
-                    
-                    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-                    cell.bookImage.addGestureRecognizer(tapRecognizer)
-                    cell.bookImage.isUserInteractionEnabled = true
-                    
-                    
-                }
+                    if let imageData = data {
+                        book.bookImageData = UIImage(data: imageData)
+                        cell.bookImage.image = book.bookImageData
+                        
+                        cell.bookImage.image = book.bookImageData
+                        
+                        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                        cell.bookImage.addGestureRecognizer(tapRecognizer)
+                        cell.bookImage.isUserInteractionEnabled = true
+                        
+                        
+                    }
                 }
                 return cell
             }
