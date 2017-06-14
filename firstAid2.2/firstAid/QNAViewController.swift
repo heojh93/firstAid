@@ -31,7 +31,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableview.rowHeight = UITableViewAutomaticDimension
         tableview.estimatedRowHeight = 100
         
-        tableview.sectionHeaderHeight = 170
+        tableview.sectionHeaderHeight = 232
       tableview.tableFooterView = UIView(frame: CGRect.zero)
       
         
@@ -59,8 +59,6 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("@@@@@@@@@@@@@@@\(1 + selectedQuestion.questionPage[section].answerPage.count)\n")
-        //return 1 + selectedQuestion.questionPage[section].answerPage.count
         return 1 + qnalist.qnalist[section].answerPage.count
     }
     
@@ -83,11 +81,10 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.boomNum.text = String(qp.answerPage[indexPath.row-1].boom)
             
             cell.sizeToFit()
-            //cell.updateConstraintsIfNeeded()
             cell.textView?.numberOfLines = 0
             if(qp.answerPage[indexPath.row-1].image == nil){
                 print("hidden")
-                cell.viewForImage.isHidden = true
+                //cell.viewForImage.isHidden = true
             }
             
             cell.upButton.tag = indexPath.section * 100 + indexPath.row
