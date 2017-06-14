@@ -20,9 +20,11 @@ class BookList {
     }
     
     func setBookList(table:UITableView){
-        self.booklist.removeAll()
+        
+        
         Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in
-            
+            var templist:[BookData] = self.booklist
+            self.booklist = []
             if let j = response.result.value {
                 
                 let jsons = JSON(j)
@@ -40,9 +42,30 @@ class BookList {
                     guard let bookId = json["id"].int else {
                         continue
                     }
-                    self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                    
+                    let book = templist.filter({( book: BookData) -> Bool in
+                        return (book.bookId == bookId)
+                    })
+                    if book.count == 0 {
+                        /*
+                        if let url = URL(string:bookImage){
+                            let data = try? Data(contentsOf: url)
+                            let bookImageData = UIImage(data: data!)
+                            self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage, bookImageData : bookImageData!))
+                        }
+                        else{
+                            self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                        }*/
+                        self.booklist.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
+                    }
+                    else {
+                        self.booklist.append(book[0])
+                    }
+                    print("reload..")
                     table.reloadData()
+                    
                 }
+                table.reloadData()
             }
         }
     }
@@ -56,8 +79,16 @@ class BookData : NSObject{
     var bookName: String
     var bookWriter: String
     var bookImage: String!
+    var bookImageData: UIImage?
     var bookQuestion:[Question] = []
     
+    init(bookId:Int, bookName:String, bookWriter:String, bookImage:String, bookImageData:UIImage){
+        self.bookId = bookId
+        self.bookName = bookName
+        self.bookWriter = bookWriter
+        self.bookImage = bookImage
+        self.bookImageData = bookImageData
+    }
     init(bookId:Int, bookName:String, bookWriter:String, bookImage:String){
         self.bookId = bookId
         self.bookName = bookName

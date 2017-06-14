@@ -10,13 +10,48 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SearchTableController: UITableViewController {
 
+
+class MyOperation: Operation {
+    var index: Int?
+    var bookList: BookList?
+    var table:UITableView?
+    override func main() {
+        print("From My Operation \(self.index)")
+        bookList?.setBookList(table: self.table!)
+    }
+    init(index: Int, bookList: BookList, table: UITableView) {
+        super.init()
+        self.index = index
+        self.bookList = bookList
+        self.table = table
+    }
+}
+
+class MyWork {
+    let queue = OperationQueue()
+    var bookList: BookList?
+    var table:UITableView?
+    init(bookList: BookList, table: UITableView) {
+        self.queue.addOperation(MyOperation(index: 0, bookList: bookList, table: table))
+        
+    }
+}
+
+
+
+class SearchTableController: UITableViewController {
+    
     // Properties
     var filteredBook = [BookData]()
     var detailViewController: QuestionListController? = nil
     let searchController = UISearchController(searchResultsController: nil)
     let bookList = BookList()
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         
@@ -39,46 +74,52 @@ class SearchTableController: UITableViewController {
         
         // dummy 데이터들
         /*
-        algorithm.addQuestion(question10)
-        algorithm.addQuestion(question11)
-        algorithm.addQuestion(question12)
-        algorithm.addQuestion(question13)
-        algorithm.addQuestion(question20)
-        algorithm.addQuestion(question21)
-        algorithm.addQuestion(question22)
-        algorithm.addQuestion(question23)
-        
-        automata.addQuestion(question110)
-        automata.addQuestion(question111)
-        
-        question10.addPage(questionPage11)
-        question10.addPage(questionPage12)
-        */
+         algorithm.addQuestion(question10)
+         algorithm.addQuestion(question11)
+         algorithm.addQuestion(question12)
+         algorithm.addQuestion(question13)
+         algorithm.addQuestion(question20)
+         algorithm.addQuestion(question21)
+         algorithm.addQuestion(question22)
+         algorithm.addQuestion(question23)
+         
+         automata.addQuestion(question110)
+         automata.addQuestion(question111)
+         
+         question10.addPage(questionPage11)
+         question10.addPage(questionPage12)
+         */
         //BookList.removeAll()
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        /*
+        DispatchQueue.main.async(execute: {
+            self.bookList.setBookList(table: self.tableView)
+        })
+        print("klsdnfwneorinanldks")
+        */
         bookList.setBookList(table: self.tableView)
-      self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-      
+        
         
         self.tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredBook.count
         }
         return bookList.booklist.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
@@ -94,39 +135,55 @@ class SearchTableController: UITableViewController {
         cell.bookWriter.text = book.bookWriter
         
         cell.bookName.numberOfLines = 0
-      if (book.bookImage != nil && book.bookImage != ""){
-        print(book.bookImage)
-        
-        let url = URL(string:book.bookImage)
-        let data = try? Data(contentsOf: url!)
-        
-        if let imageData = data {
-          cell.bookImage.image = UIImage(data: imageData)
+        if (book.bookImage != nil && book.bookImage != ""){
+            print(book.bookImage)
+            
+            if (book.bookImageData != nil) {
+                cell.bookImage.image = book.bookImageData
+            }
+            else{
+                
+                let url = URL(string:book.bookImage)
+                let data = try? Data(contentsOf: url!)
+                
+                if let imageData = data {
+                    book.bookImageData = UIImage(data: imageData)
+                    cell.bookImage.image = book.bookImageData
+                }
+            }
+            /*
+             let url = URL(string:book.bookImage)
+             let data = try? Data(contentsOf: url!)
+             
+             if let imageData = data {
+             cell.bookImage.image = UIImage(data: imageData)
+             }*/
+            cell.bookImage.image = book.bookImageData
+            
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+            cell.bookImage.addGestureRecognizer(tapRecognizer)
+            cell.bookImage.isUserInteractionEnabled = true
+        }else {
+            cell.bookImage.image = UIImage(named: "noImage")
+            cell.bookImage.isUserInteractionEnabled = false
         }
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-        cell.bookImage.addGestureRecognizer(tapRecognizer)
-        cell.bookImage.isUserInteractionEnabled = true
-      }else {
-        cell.bookImage.image = UIImage(named: "noImage")
-        cell.bookImage.isUserInteractionEnabled = false
-      }
-
+        
         return cell
     }
-  
-  func imageTapped(gestureRecognizer: UITapGestureRecognizer){
-    //tappedImageView is tapped image
-    let tappedImageView = gestureRecognizer.view! as! UIImageView
-    if (tappedImageView.image != nil) {
-      let storyboard = UIStoryboard(name:"Main", bundle: nil)
-      let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
-      let tmp = controller as! ImageZoomNavigationViewController
-      tmp.tappedImage = tappedImageView.image
-      
-      self.present(tmp, animated: true, completion: nil)
+    
+    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+        //tappedImageView is tapped image
+        let tappedImageView = gestureRecognizer.view! as! UIImageView
+        if (tappedImageView.image != nil) {
+            let storyboard = UIStoryboard(name:"Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+            let tmp = controller as! ImageZoomNavigationViewController
+            tmp.tappedImage = tappedImageView.image
+            
+            self.present(tmp, animated: true, completion: nil)
+        }
     }
-  }
-  
+    
     func filterContentForSearchText(_ searchText: String) {
         filteredBook = bookList.booklist.filter({( book: BookData) -> Bool in
             return book.bookName.lowercased().contains(searchText.lowercased())
@@ -163,7 +220,7 @@ class SearchTableController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
-
+    
 }
 
 extension SearchTableController: UISearchBarDelegate {
@@ -175,7 +232,7 @@ extension SearchTableController: UISearchBarDelegate {
 }
 
 extension SearchTableController: UISearchResultsUpdating {
-
+    
     // UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)

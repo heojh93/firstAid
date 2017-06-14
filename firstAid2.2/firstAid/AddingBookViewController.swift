@@ -14,6 +14,28 @@ import TZZoomImageManager
 import Alamofire
 import SwiftyJSON
 
+
+extension UIImage{
+    
+    func resizeImageWith(newSize: CGSize) -> UIImage {
+        
+        let horizontalRatio = newSize.width / size.width
+        let verticalRatio = newSize.height / size.height
+        
+        let ratio = max(horizontalRatio, verticalRatio)
+        let newSize = CGSize(width: size.width * ratio, height: size.height * ratio)
+        UIGraphicsBeginImageContextWithOptions(newSize, true, 0)
+        draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: newSize))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
+    
+}
+
+
+
 class AddingBookViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
     
     
@@ -46,7 +68,14 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
         //    return
         
         //let text = textView.text
+        
         let image = chosenImages
+        var imageString:String = ""
+        if image.count != 0{
+            let temp = image[0].resizeImageWith(newSize: CGSize(width: 100, height: 100))
+            let imageData = UIImagePNGRepresentation(temp)
+            imageString = (imageData?.base64EncodedString())!
+        }
         
         //var answerPage = AnswerPage(text: text!)
         //answerPage.image = image
@@ -64,26 +93,27 @@ class AddingBookViewController: UIViewController, UIImagePickerControllerDelegat
         let param: Parameters = [
             "author":author!,
             "title":title!,
+            "image":imageString,
         ]
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
-            if let j = response.result.value {
-                /*
-                let json = JSON(j)
-                guard let bookName = json["title"].string else {
-                    return
-                }
-                guard let bookWriter = json["author"].string else {
-                    return
-                }
-                guard let bookImage = json["image_url"].string else {
-                    return
-                }
-                guard let bookId = json["id"].int else {
-                    return
-                }*/
-                //BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
-                print("???????????????????????")
+            if let json = response.result.value {
                 bookList?.setBookList(table: table!)
+                
+                let j = JSON(json)
+                guard let bookId = j["id"].int else {
+                    print("fatal...")
+                    return
+                }
+                /*
+                if image.count != 0{
+                    let imageData = UIImagePNGRepresentation(image[0])!
+                    let post_url = "http://220.85.167.57:2288/solution/textbook_image_post/" + String(bookId) + "/"
+                    Alamofire.upload(imageData, to: post_url).responseJSON { response in
+                        debugPrint(response)
+                    }
+                }
+                */
+                
                 table?.reloadData()
             }
         }
