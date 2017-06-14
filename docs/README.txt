@@ -1,25 +1,30 @@
-Fractal by HTML5 UP
+Escape Velocity by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 
 
-A simple landing page template for showcasing mobile apps (although it'll definitely work
-for other stuff if you get rid of the phone :) Lightweight, fully responsive, and built on
-Skel 3, Sass, and flexbox.
+A new responsive template featuring a flat (but not too flat) minimalistic design, spacious
+layout, and styling for all basic page elements. Its demo images* are courtesy of the supremely
+talented photographer Felicia Simion. If you like photography or just enjoy being blown away by
+awesome stuff, check out her portfolio for more stunning images:
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+http://ineedchemicalx.deviantart.com/
 
-(* = not included)
+(* = Not included! Only meant for use with my own on-site demo, so please do NOT download
+and/or use any of Felicia's work without her explicit permission!)
+
+Feedback, bug reports, and comments are not only welcome, but strongly encouraged :)
 
 AJ
 aj@lkn.io | @ajlkn
+
+PS: Not sure how to get that contact form working? Give formspree.io a try (it's awesome).
 
 
 Credits:
 
 	Demo Images:
-		Unsplash (unsplash.com)
+		Felicia Simion (ineedchemicalx.deviantart.com)
 
 	Icons:
 		Font Awesome (fortawesome.github.com/Font-Awesome)
@@ -28,6 +33,7 @@ Credits:
 		jQuery (jquery.com)
 		html5shiv.js (@afarkas @jdalton @jon_neal @rem)
 		CSS3 Pie (css3pie.com)
+		background-size polyfill (github.com/louisremi)
 		Respond.js (j.mp/respondjs)
-		jquery.scrolly (@ajlkn)
+		jquery.dropotron (@ajlkn)
 		Skel (skel.io)

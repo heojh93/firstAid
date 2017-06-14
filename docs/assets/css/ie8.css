@@ -1,92 +1,57 @@
 /*
-	Fractal by HTML5 UP
+	Escape Velocity by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-/* Button */
+/* Basic */
 
-	input[type="submit"],
-	input[type="reset"],
-	input[type="button"],
-	button,
-	.button {
+	form input[type="text"],
+	form input[type="email"],
+	form input[type="password"],
+	form select,
+	form textarea {
 		position: relative;
 		-ms-behavior: url("assets/js/ie/PIE.htc");
-		border: solid 2px #e6e6e6 !important;
 	}
 
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		input[type="button"]:hover,
-		button:hover,
-		.button:hover {
-			border: solid 2px #e6e6e6 !important;
-		}
-
-		input[type="submit"].special,
-		input[type="reset"].special,
-		input[type="button"].special,
-		button.special,
-		.button.special {
-			border: none !important;
-		}
-
-			input[type="submit"].special:hover,
-			input[type="reset"].special:hover,
-			input[type="button"].special:hover,
-			button.special:hover,
-			.button.special:hover {
-				border: none !important;
-			}
-
-/* Image */
-
-	.image {
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"] {
+		position: relative;
 		-ms-behavior: url("assets/js/ie/PIE.htc");
 	}
 
-		.image img {
-			position: relative;
-			-ms-behavior: url("assets/js/ie/PIE.htc");
-		}
-
-		.image.phone:before, .image.phone:after {
-			display: none;
-		}
-
-		.image.phone .inner:before, .image.phone .inner:after {
-			display: none;
-		}
-
-/* List */
-
-	ul.icons li {
-		padding: 0 0 0 1.5em;
+	.button,
+	#intro > .style2,
+	#copyright ul,
+	#nav > ul,
+	.dropotron {
+		position: relative;
+		-ms-behavior: url("assets/js/ie/PIE.htc");
 	}
 
-		ul.icons li:first-child {
-			padding-left: 0 !important;
-		}
+/* Section/Article */
 
-		ul.icons li .icon:before {
-			font-size: 24px;
-		}
-
-	ul.icons.major li {
-		padding: 0 0 0 2.5em;
+	section > .last-child,
+	article > .last-child,
+	section.last-child,
+	article.last-child {
+		margin-bottom: 0;
 	}
 
-		ul.icons.major li .icon:before {
-			font-size: 48px;
-		}
+/* Wrappers */
 
-/* Header */
-
-	#header {
-		min-height: 0;
+	.wrapper .title:before, .wrapper .title:after {
+		display: none;
 	}
 
-		#header .image {
-			margin: 0 0 2em 0;
-		}
+	#header-wrapper {
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+	}
+
+/* Copyright */
+
+	#copyright {
+		margin: 0;
+	}
