@@ -184,6 +184,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQs-L6-Uia">
                                                     <rect key="frame" x="25" y="8" width="21" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.47058823529411764" green="0.68627450980392157" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -624,7 +625,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CH-WP-7LE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="1567"/>
+            <point key="canvasLocation" x="-1204" y="1566.5667166416792"/>
         </scene>
         <!--Detail View-->
         <scene sceneID="JSY-N9-3j9">
@@ -858,7 +859,7 @@
         <image name="upButton" width="278" height="188"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Z6E-2g-kpI"/>
+        <segue reference="BcI-lU-KOc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.24313725490196078" green="0.5725490196078431" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -130,6 +130,8 @@ extension QuestionListController: UITableViewDataSource{
         
         cell.QNAview.backgroundColor = UIColor(patternImage: UIImage(named: "QNABox.png")!)
         cell.QuestionNumber.text = String(question.questionNumber)
+      cell.QuestionNumber.layer.borderWidth = CGFloat(1)
+      //cell.QuestionNumber.layer.borderColor = UIColor(red: 0x78, green: 0xaf, blue: 0xc5, alpha: 1.0) as! CGColor
         cell.QuestionTag.text = question.questionTag
         //cell.NumberOfAnswer.text = String(question.numberOfAnswer)
         cell.numberQuestion.text = String(question.questionPage.count)
