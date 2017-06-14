@@ -12,33 +12,6 @@ import SwiftyJSON
 
 
 
-class MyOperation: Operation {
-    var index: Int?
-    var bookList: BookList?
-    var table:UITableView?
-    override func main() {
-        print("From My Operation \(self.index)")
-        bookList?.setBookList(table: self.table!)
-    }
-    init(index: Int, bookList: BookList, table: UITableView) {
-        super.init()
-        self.index = index
-        self.bookList = bookList
-        self.table = table
-    }
-}
-
-class MyWork {
-    let queue = OperationQueue()
-    var bookList: BookList?
-    var table:UITableView?
-    init(bookList: BookList, table: UITableView) {
-        self.queue.addOperation(MyOperation(index: 0, bookList: bookList, table: table))
-        
-    }
-}
-
-
 
 class SearchTableController: UITableViewController {
     
@@ -122,6 +95,7 @@ class SearchTableController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let book:BookData
         
@@ -143,13 +117,26 @@ class SearchTableController: UITableViewController {
             }
             else{
                 
+                cell.bookImage.image = UIImage(named: "Photo")
+                let q = DispatchQueue(label: book.bookImage)
+                q.async {
                 let url = URL(string:book.bookImage)
                 let data = try? Data(contentsOf: url!)
                 
                 if let imageData = data {
                     book.bookImageData = UIImage(data: imageData)
                     cell.bookImage.image = book.bookImageData
+                    
+                    cell.bookImage.image = book.bookImageData
+                    
+                    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                    cell.bookImage.addGestureRecognizer(tapRecognizer)
+                    cell.bookImage.isUserInteractionEnabled = true
+                    
+                    
                 }
+                }
+                return cell
             }
             /*
              let url = URL(string:book.bookImage)
@@ -169,6 +156,7 @@ class SearchTableController: UITableViewController {
         }
         
         return cell
+        
     }
     
     func imageTapped(gestureRecognizer: UITapGestureRecognizer){
