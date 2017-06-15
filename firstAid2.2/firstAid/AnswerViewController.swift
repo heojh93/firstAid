@@ -40,7 +40,19 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     @IBAction func DoneDIsmiss(_ sender: Any) {
         let text = textView.text
       
-        let image = chosenImages
+        let images = chosenImages
+        
+        var imageString:[String] = ["","","",""]
+        
+        if images.count != 0{
+            var i = 0
+            for image in images{
+                let temp = image.resizeImageWith(newSize: CGSize(width: 100, height: 100))
+                let imageData = UIImagePNGRepresentation(temp)
+                imageString[i] = (imageData?.base64EncodedString())!
+                i = i + 1
+            }
+        }
         
         /*
         if (!(text == answerPlaceHolder && image.isEmpty)){
@@ -53,30 +65,16 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         let url = "http://220.85.167.57:2288/solution/answer_post/"
         let param: Parameters = [
             "quest_id":selectedQuestionPage.questionPageId,
-            "content":text
+            "content":text,
+            "image1":imageString[0],
+            "image2":imageString[1],
+            "image3":imageString[2],
+            "image4":imageString[3],
         ]
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
             if let j = response.result.value {
                 let json = JSON(j)
-                /*
-                guard let id = json["id"].int else {
-                    return
-                }
-                guard let number = json["number"].int else {
-                    return
-                }
-                guard let chapter = json["chapter"].int else {
-                    return
-                }
-                guard let tag = json["tag"].string else {
-                    return
-                }
-                guard let answer_number = json["answer_number"].int else {
-                    return
-                }
-                self.selectedBook.addQuestion(Question(questionId: id, book: self.selectedBook, chapter: chapter, number: number, tag: tag, answer: answer_number))
-
-                 */
+                
                 self.qnalist.setQnAList(problemId: self.problemId, table: self.table)
                 self.table.reloadData()
             }

@@ -92,6 +92,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             //for image in answer
             
             //print(qp.answerPage[indexPath.row-1].image?.count)
+            /*
             if let chosenImages:[UIImage] = qp.answerPage[indexPath.row-1].image {
                 for i in 0 ..< chosenImages.count{
                     let imageView = UIImageView()
@@ -110,6 +111,36 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     imageView.clipsToBounds = true
                     cell.imageScrollView.contentSize.width = (cell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
                     cell.imageScrollView.addSubview(imageView)
+                }
+            }*/
+            if (qp.answerPage[indexPath.row-1].imageUrl != nil){
+                for i in 0 ..< qp.answerPage[indexPath.row-1].imageUrl.count{
+                    if (qp.answerPage[indexPath.row-1].imageUrl[i] == ""){
+                        continue
+                    }
+                    let imageView = UIImageView()
+                    let url = URL(string:qp.answerPage[indexPath.row-1].imageUrl[i])
+                    let data = try? Data(contentsOf: url!)
+                    
+                    if let imageData = data {
+                        
+                        imageView.image = UIImage(data: imageData)
+                        let xPosition = (cell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
+                        //print(self.imageScrollView.frame.height)
+                        imageView.frame = CGRect(x: xPosition, y: 2, width: cell.imageScrollView.frame.height - 4, height: cell.imageScrollView.frame.height - 4)
+                        
+                        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                        imageView.addGestureRecognizer(tapRecognizer)
+                        imageView.isUserInteractionEnabled = true
+                        
+                        //imageView.addGestureRecognizer(tapRecognizer)
+                        
+                        imageView.contentMode = .scaleAspectFill
+                        imageView.clipsToBounds = true
+                        cell.imageScrollView.contentSize.width = (cell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
+                        cell.imageScrollView.addSubview(imageView)
+                        
+                    }
                 }
             }
             return cell

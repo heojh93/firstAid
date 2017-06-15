@@ -217,7 +217,18 @@ class QnAList{
                         guard let boom = answer["like"].int else {
                             continue
                         }
-                        var answerPage = AnswerPage(text: text, boom: boom, answerId: answerId)
+                        guard let imageUrls = json["image_url"].array else {
+                            continue
+                        }
+                        var urls:[String] = []
+                        for imageUrl in imageUrls{
+                            guard let url = imageUrl.string else {
+                                continue
+                            }
+                            urls.append(url)
+                        }
+                        
+                        var answerPage = AnswerPage(text: text, boom: boom, answerId: answerId, imageUrl:urls)
                         question.answerPage.append(answerPage)
                     }
                     self.qnalist.append(question)
@@ -269,15 +280,18 @@ class AnswerPage{
     var answerId:Int = 0
     var boom:Int = 0
     var text:String
+    var imageUrl:[String]
     var image:[UIImage]?
     
     init(text:String){
+        self.imageUrl = []
         self.text = text
     }
-    init(text:String, boom:Int, answerId:Int){
+    init(text:String, boom:Int, answerId:Int, imageUrl:[String]){
         self.text = text
         self.boom = boom
         self.answerId = answerId
+        self.imageUrl = imageUrl
     }
 }
 /*

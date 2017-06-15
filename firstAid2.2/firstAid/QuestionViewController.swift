@@ -126,8 +126,6 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
         self.questionList.setQuestionList(bookId: self.selectedBook.bookId, table: self.table)
         self.table.reloadData()
       }
-
-      
     }
     
 
