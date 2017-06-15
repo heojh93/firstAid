@@ -37,6 +37,7 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
   
   var selectedBook:BookData!
   var table:QuestionTable!
+  var questionList:QuestionList!
   
   // @IBOutlet weak var test: UIImageView!
   //@IBOutlet weak var navigator: UINavigationItem!
@@ -52,8 +53,22 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     //class Questions send json request
     let title = titleText.text
     let text = textView.text
-    //let images = chosenImages
+    let images = chosenImages
     let number = Int(numberText.text!)
+    
+    
+    var imageString:[String] = ["","","",""]
+    
+    if images.count != 0{
+      var i = 0
+      for image in images{
+        let temp = image.resizeImageWith(newSize: CGSize(width: 100, height: 100))
+        let imageData = UIImagePNGRepresentation(temp)
+        imageString[i] = (imageData?.base64EncodedString())!
+        i = i + 1
+      }
+    }
+    
     
     let tags = tagsField.tagViews
 
@@ -98,31 +113,19 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       "number":number!,
       "tag":tagString,
       "title":title!,
-      "content":text!
+      "content":text!,
+      "image1":imageString[0],
+      "image2":imageString[1],
+      "image3":imageString[2],
+      "image4":imageString[3],
     ]
     Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
       if let j = response.result.value {
         let json = JSON(j)
-        guard let id = json["id"].int else {
-          return
-        }
-        guard let number = json["number"].int else {
-          return
-        }
-        guard let chapter = json["chapter"].int else {
-          return
-        }
-        guard let tag = json["tag"].string else {
-          return
-        }
-        guard let answer_number = json["answer_number"].int else {
-          return
-        }
-        self.selectedBook.addQuestion(Question(questionId: id, book: self.selectedBook, chapter: chapter, number: number, tag: tag, answer: answer_number))
+        
+        self.questionList.setQuestionList(bookId: self.selectedBook.bookId, table: self.table)
         self.table.reloadData()
       }
-
-      
     }
     
 
@@ -160,7 +163,7 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
       let xPosition = (self.imageScrollView.frame.height - 5)  * CGFloat(i) + 5
       //print(self.imageScrollView.frame.height)
       imageView.frame = CGRect(x: xPosition, y: 5, width: self.imageScrollView.frame.height - 10, height: self.imageScrollView.frame.height - 10)
-    
+      
       let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
       imageView.addGestureRecognizer(tapRecognizer)
       imageView.isUserInteractionEnabled = true
@@ -207,6 +210,9 @@ class QuestionViewController: UIViewController, UIImagePickerControllerDelegate,
     textView.delegate = self
     textView.text = placeHolder
     textView.textColor = UIColor.lightGray
+    
+    //tagsField.layer.borderWidth = CGFloat(0.5)
+    //tagsField.layer.borderColor = UIColor.lightGray.cgColor
     
     //textView.becomeFirstResponder()
     textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)

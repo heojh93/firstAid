@@ -16,6 +16,7 @@ class QuestionTableCell: UITableViewCell {
 
     @IBOutlet weak var numberQuestion: UILabel!
     @IBOutlet weak var numberAnswer: UILabel!
+  @IBOutlet weak var tagField: WSTagsField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

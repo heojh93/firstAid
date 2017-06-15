@@ -10,14 +10,24 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SearchTableController: UITableViewController {
 
+
+
+class SearchTableController: UITableViewController {
+    
     // Properties
     var filteredBook = [BookData]()
     var detailViewController: QuestionListController? = nil
     let searchController = UISearchController(searchResultsController: nil)
+    let bookList = BookList()
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Setup
@@ -36,80 +46,63 @@ class SearchTableController: UITableViewController {
         }
         
         // dummy 데이터들
-        
-        algorithm.addQuestion(question10)
-        algorithm.addQuestion(question11)
-        algorithm.addQuestion(question12)
-        algorithm.addQuestion(question13)
-        algorithm.addQuestion(question20)
-        algorithm.addQuestion(question21)
-        algorithm.addQuestion(question22)
-        algorithm.addQuestion(question23)
-        
-        automata.addQuestion(question110)
-        automata.addQuestion(question111)
-        
-        question10.addPage(questionPage11)
-        
+        /*
+         algorithm.addQuestion(question10)
+         algorithm.addQuestion(question11)
+         algorithm.addQuestion(question12)
+         algorithm.addQuestion(question13)
+         algorithm.addQuestion(question20)
+         algorithm.addQuestion(question21)
+         algorithm.addQuestion(question22)
+         algorithm.addQuestion(question23)
+         
+         automata.addQuestion(question110)
+         automata.addQuestion(question111)
+         
+         question10.addPage(questionPage11)
+         question10.addPage(questionPage12)
+         */
         //BookList.removeAll()
-        Alamofire.request("http://220.85.167.57:2288/solution/textbook_list/").responseJSON { response in
-            
-            if let j = response.result.value {
-                
-                let jsons = JSON(j)
-                for (_, json) in jsons {
-                    
-                    guard let bookName = json["title"].string else {
-                        continue
-                    }
-                    guard let bookWriter = json["author"].string else {
-                        continue
-                    }
-                    guard let bookImage = json["image_url"].string else {
-                        continue
-                    }
-                    guard let bookId = json["id"].int else {
-                        continue
-                    }
-                    BookList.append(BookData(bookId: bookId, bookName: bookName, bookWriter: bookWriter, bookImage: bookImage))
-                    self.tableView.reloadData()
-                }
-                
-            }
-        }
-      
-      self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-      
-      //self.tableView.backgroundColor = UIColor.clearColor()
-
-
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        /*
+        DispatchQueue.main.async(execute: {
+            self.bookList.setBookList(table: self.tableView)
+        })
+        print("klsdnfwneorinanldks")
+        */
+        bookList.setBookList(table: self.tableView)
+        
+        
+        self.tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredBook.count
         }
-        return BookList.count
+        return bookList.booklist.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let book:BookData
         
         if searchController.isActive && searchController.searchBar.text != "" {
             book = filteredBook[indexPath.row]
         } else {
-            book = BookList[indexPath.row]
+            book = bookList.booklist[indexPath.row]
         }
         
         cell.bookName.text = book.bookName
@@ -117,40 +110,70 @@ class SearchTableController: UITableViewController {
         
         cell.bookName.numberOfLines = 0
         if (book.bookImage != nil && book.bookImage != ""){
-          print(book.bookImage)
-        
-          let url = URL(string:book.bookImage)
-          let data = try? Data(contentsOf: url!)
-      
-          if let imageData = data {
-            cell.bookImage.image = UIImage(data: imageData)
-          }
-          let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-          cell.bookImage.addGestureRecognizer(tapRecognizer)
-          cell.bookImage.isUserInteractionEnabled = true
+            print(book.bookImage)
+            
+            if (book.bookImageData != nil) {
+                cell.bookImage.image = book.bookImageData
+            }
+            else{
+                
+                cell.bookImage.image = UIImage.gif(name:"loading")
+                let q = DispatchQueue(label: book.bookImage)
+                q.async {
+                    let url = URL(string:book.bookImage)
+                    let data = try? Data(contentsOf: url!)
+                    
+                    if let imageData = data {
+                        book.bookImageData = UIImage(data: imageData)
+                        cell.bookImage.image = book.bookImageData
+                        
+                        cell.bookImage.image = book.bookImageData
+                        
+                        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                        cell.bookImage.addGestureRecognizer(tapRecognizer)
+                        cell.bookImage.isUserInteractionEnabled = true
+                        
+                        
+                    }
+                }
+                return cell
+            }
+            /*
+             let url = URL(string:book.bookImage)
+             let data = try? Data(contentsOf: url!)
+             
+             if let imageData = data {
+             cell.bookImage.image = UIImage(data: imageData)
+             }*/
+            cell.bookImage.image = book.bookImageData
+            
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+            cell.bookImage.addGestureRecognizer(tapRecognizer)
+            cell.bookImage.isUserInteractionEnabled = true
         }else {
             cell.bookImage.image = UIImage(named: "noImage")
-          cell.bookImage.isUserInteractionEnabled = false
+            cell.bookImage.isUserInteractionEnabled = false
         }
-
-        return cell
-    }
-  
-    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
-      //tappedImageView is tapped image
-      let tappedImageView = gestureRecognizer.view! as! UIImageView
-      if (tappedImageView.image != nil) {
-        let storyboard = UIStoryboard(name:"Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
-        let tmp = controller as! ImageZoomNavigationViewController
-        tmp.tappedImage = tappedImageView.image
         
-        self.present(tmp, animated: true, completion: nil)
-      }
+        return cell
+        
     }
-  
+    
+    func imageTapped(gestureRecognizer: UITapGestureRecognizer){
+        //tappedImageView is tapped image
+        let tappedImageView = gestureRecognizer.view! as! UIImageView
+        if (tappedImageView.image != nil) {
+            let storyboard = UIStoryboard(name:"Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ImageZoomNavigationViewController")
+            let tmp = controller as! ImageZoomNavigationViewController
+            tmp.tappedImage = tappedImageView.image
+            
+            self.present(tmp, animated: true, completion: nil)
+        }
+    }
+    
     func filterContentForSearchText(_ searchText: String) {
-        filteredBook = BookList.filter({( book: BookData) -> Bool in
+        filteredBook = bookList.booklist.filter({( book: BookData) -> Bool in
             return book.bookName.lowercased().contains(searchText.lowercased())
         })
         tableView.reloadData()
@@ -165,7 +188,7 @@ class SearchTableController: UITableViewController {
                 if searchController.isActive && searchController.searchBar.text != "" {
                     book = filteredBook[indexPath.row]
                 } else {
-                    book = BookList[indexPath.row]
+                    book = bookList.booklist[indexPath.row]
                 }
                 let controller = (segue.destination as! UINavigationController).topViewController as! QuestionListController
                 controller.detailBook = book
@@ -177,14 +200,15 @@ class SearchTableController: UITableViewController {
         
         if segue.identifier == "addTextbook" {
             let addView = (segue.destination as!UINavigationController).topViewController as! AddingBookViewController
-            addView.table = tableView
+            addView.table = self.tableView
+            addView.bookList = self.bookList
         }
     }
     // cell의 height을 64로 맞춰줌.
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
-
+    
 }
 
 extension SearchTableController: UISearchBarDelegate {
@@ -196,7 +220,7 @@ extension SearchTableController: UISearchBarDelegate {
 }
 
 extension SearchTableController: UISearchResultsUpdating {
-
+    
     // UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)

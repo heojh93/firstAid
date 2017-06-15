@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2E4428D94062089C58C52A91D0C63DCE'
-               BlueprintName = 'SFFullscreenImageDetailViewController-SFFullscreenImageDetailViewController'
+               BlueprintIdentifier = 'CFE6198633CDCFC16A7355420B4D8589'
+               BlueprintName = 'SwiftGifOrigin'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SFFullscreenImageDetailViewController.bundle'>
+               BuildableName = 'SwiftGifOrigin.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

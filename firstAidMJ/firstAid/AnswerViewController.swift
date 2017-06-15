@@ -11,12 +11,17 @@ import ImagePicker
 import GTZoomableImageView
 import TZZoomImageManager
 
+import Alamofire
+import SwiftyJSON
+
 let answerPlaceHolder = "답변을 입력하세요"
 
 class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, ImagePickerDelegate, UITextViewDelegate, UIScrollViewDelegate {
 
     var selectedQuestionPage:QuestionPage!
     var table:UITableView!
+    var qnalist:QnAList!
+    var problemId:Int!
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var imageScrollView: ImageScrollView!
@@ -33,17 +38,49 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
     }
     
     @IBAction func DoneDIsmiss(_ sender: Any) {
-      
         let text = textView.text
       
-        let image = chosenImages
+        let images = chosenImages
         
+        var imageString:[String] = ["","","",""]
+        
+        if images.count != 0{
+            var i = 0
+            for image in images{
+                let temp = image.resizeImageWith(newSize: CGSize(width: 100, height: 100))
+                let imageData = UIImagePNGRepresentation(temp)
+                imageString[i] = (imageData?.base64EncodedString())!
+                i = i + 1
+            }
+        }
+        
+        /*
         if (!(text == answerPlaceHolder && image.isEmpty)){
             let answerPage = AnswerPage(text: text!)
             answerPage.image = image
         
             selectedQuestionPage.addAnswer(answerPage)
+        */
         
+        let url = "http://220.85.167.57:2288/solution/answer_post/"
+        let param: Parameters = [
+            "quest_id":selectedQuestionPage.questionPageId,
+            "content":text,
+            "image1":imageString[0],
+            "image2":imageString[1],
+            "image3":imageString[2],
+            "image4":imageString[3],
+        ]
+        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseJSON { response in
+            if let j = response.result.value {
+                let json = JSON(j)
+                
+                self.qnalist.setQnAList(problemId: self.problemId, table: self.table)
+                self.table.reloadData()
+            }
+            
+            
+        }
 /*
         //Something to do
         //class Questions send json request
@@ -61,7 +98,6 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
         //table.setNeedsLayout()
         //table.layoutIfNeeded()
 
-      }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -98,7 +134,7 @@ class AnswerViewController: UIViewController, UIImagePickerControllerDelegate,  
           imageView.clipsToBounds = true
           imageScrollView.contentSize.width = (imageScrollView.frame.height-5) * CGFloat(i + 1) + 5
           imageScrollView.addSubview(imageView)
-      }
+        }
         
         //viewsection.contentMode = .scaleAspectFit
         //viewsection.image = chosenImages[0]

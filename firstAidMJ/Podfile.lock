@@ -3,6 +3,7 @@ PODS:
   - GTZoomableImageView (1.0.0)
   - ImagePicker (2.1.1)
   - SFFullscreenImageDetailViewController (0.1.2)
+  - SwiftGifOrigin (1.6.1)
   - SwiftyJSON (3.1.4)
   - TZZoomImageManager (1.0.0)
   - WSTagsField (2.1.1)
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - GTZoomableImageView
   - ImagePicker
   - SFFullscreenImageDetailViewController
+  - SwiftGifOrigin (~> 1.6.1)
   - SwiftyJSON (~> 3.1)
   - TZZoomImageManager
   - WSTagsField
@@ -21,10 +23,11 @@ SPEC CHECKSUMS:
   GTZoomableImageView: 5a474ae18e0b7b03b8633c521fadecaed7e04879
   ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
   SFFullscreenImageDetailViewController: d584030e78413d8c9cfb82b71b746ff6f3b48bfa
+  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TZZoomImageManager: e650f10f0596c329bc9e49d0c3bc2232b4a7852b
   WSTagsField: 184e47df41bea27a0305c575a3f95c3f369adafc
 
-PODFILE CHECKSUM: 43fa458b4a90f69069981eba08f5fe9c481f5633
+PODFILE CHECKSUM: 6ca8daff59d970b206ee79f13e83b38b629a1e59
 
 COCOAPODS: 1.2.1

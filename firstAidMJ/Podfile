@@ -14,5 +14,6 @@ target 'firstAid' do
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON', '~> 3.1'
   pod 'WSTagsField'
+  pod ‘SwiftGifOrigin’, ‘~>1.6.1’
 
 end

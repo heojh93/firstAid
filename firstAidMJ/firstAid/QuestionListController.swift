@@ -27,49 +27,24 @@ class QuestionListController: UIViewController {
         }
     }
     
+    var questionList = QuestionList()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionTable.tableFooterView = UIView(frame: CGRect.zero)
         configureView()
+        questionTable.tableFooterView = UIView(frame: CGRect.zero)
       
         // 선택된 책의 정보를 가져오기 위함.
+        /*
         for singleBook in BookList{
             if(singleBook.bookName == detailBook?.bookName){
                 questionTable.selectedBook = singleBook
             }
-        }
+        }*/
+        questionTable.selectedBook = detailBook
         
-        
-        let url:String = "http://220.85.167.57:2288/solution/textbook/" + String(detailBook!.bookId) + "/problem_list/"
-        
-        //questionTable.selectedBook.bookQuestion = []
-        Alamofire.request(url).responseJSON { response in
-            
-            if let j = response.result.value {
-                let jsons = JSON(j)
-                for (_, json) in jsons {
-                    
-                    guard let questionId = json["id"].int else {
-                        continue
-                    }
-                    guard let questionNumber = json["number"].int else {
-                        continue
-                    }
-                    guard let questionTag = json["tag"].string else {
-                        continue
-                    }
-                    guard let numberOfAnswer = json["answer_number"].int else {
-                        continue
-                    }
-                    guard let chapter = json["chapter"].int else {
-                        continue
-                    }
-                    self.questionTable.selectedBook.addQuestion(Question(questionId:questionId, book:self.detailBook!, chapter:chapter, number:questionNumber, tag:questionTag, answer:numberOfAnswer))
-                    self.questionTable.reloadData()
-                }
-            }
-          
-        }
+        questionList.setQuestionList(bookId: (detailBook?.bookId)!, table: questionTable)
         
         // TableCell과 quesitonTable의 원소번호를 맞추기 위해.
         //orderedQ = questionTable.selectedBook.bookQuestion.sorted(by: {$0.0.questionNumber < $0.1.questionNumber})
@@ -86,7 +61,7 @@ class QuestionListController: UIViewController {
     
     // 문제를 번호 순대로 sorting함.
     func questionSorting(index:Int) -> Question{
-        let orderedQuestion = questionTable.selectedBook.bookQuestion.sorted(by: {$0.0.questionNumber < $0.1.questionNumber})
+        let orderedQuestion = questionList.questionlist.sorted(by: {$0.0.questionNumber < $0.1.questionNumber})
         return orderedQuestion[index]
     }
 
@@ -102,6 +77,7 @@ class QuestionListController: UIViewController {
             let addView = (segue.destination as!UINavigationController).topViewController as! QuestionViewController
             addView.selectedBook = questionTable.selectedBook
             addView.table = questionTable
+            addView.questionList = questionList
         }
         
         // "문제 보기"
@@ -117,12 +93,15 @@ class QuestionListController: UIViewController {
  }
 
 extension QuestionListController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      if let selectedBook = questionTable.selectedBook {
-        return selectedBook.bookQuestion.count
-      }
-        return 0
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return questionList.questionlist.count
+    /*
+    if let selectedBook = questionTable.selectedBook {
+      return selectedBook.bookQuestion.count
     }
+    return 0*/
+  }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableCell") as! QuestionTableCell
         let question = questionSorting(index: indexPath.row)
@@ -130,18 +109,25 @@ extension QuestionListController: UITableViewDataSource{
         
         cell.QNAview.backgroundColor = UIColor(patternImage: UIImage(named: "QNABox.png")!)
         cell.QuestionNumber.text = String(question.questionNumber)
-      cell.QuestionNumber.layer.borderWidth = CGFloat(1)
-      //cell.QuestionNumber.layer.borderColor = UIColor(red: 0x78, green: 0xaf, blue: 0xc5, alpha: 1.0) as! CGColor
+            
+      
         cell.QuestionTag.text = question.questionTag
         //cell.NumberOfAnswer.text = String(question.numberOfAnswer)
         cell.numberQuestion.text = String(question.questionPage.count)
+        var answerNum:Int = question.numberOfAnswer
+        var questionNum:Int = question.numberOfQuest
         
-        var answerNum:Int = 0
-        for i in question.questionPage{
-            answerNum += i.answerPage.count
-        }
         cell.numberAnswer.text = String(answerNum)
+        cell.numberQuestion.text = String(questionNum)
         
         return cell
     }
 }
+
+
+extension QuestionListController: SearchTagViewDataSource{
+    func searchPropertyName() -> String {
+        return "questionTag"
+    }
+}
+

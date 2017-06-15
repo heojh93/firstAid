@@ -18,6 +18,8 @@
 		7ADB08471ED9D0BE00E0566B /* QuestionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */; };
 		7ADB08491ED9D49600E0566B /* QuestionTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB08481ED9D49600E0566B /* QuestionTableController.swift */; };
 		7AE9A92B1EE9372F0088AA26 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */; };
+		7AEB6AF91EF22FA3000155C0 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB6AF81EF22FA3000155C0 /* UIImage+Gif.swift */; };
+		7AEB6AFB1EF23055000155C0 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7AEB6AFA1EF23055000155C0 /* loading.gif */; };
 		AD06954E1EE00317004B52C9 /* QuestionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06954D1EE00317004B52C9 /* QuestionTable.swift */; };
 		AD0695521EE0077B004B52C9 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0695511EE0077B004B52C9 /* QuestionViewController.swift */; };
 		AD0695541EE0082F004B52C9 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0695531EE0082F004B52C9 /* ImageScrollView.swift */; };
@@ -49,6 +51,8 @@
 		7ADB08461ED9D0BE00E0566B /* QuestionTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableCell.swift; sourceTree = "<group>"; };
 		7ADB08481ED9D49600E0566B /* QuestionTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableController.swift; sourceTree = "<group>"; };
 		7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		7AEB6AF81EF22FA3000155C0 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Gif.swift"; path = "../Pods/SwiftGifOrigin/SwiftGifCommon/UIImage+Gif.swift"; sourceTree = "<group>"; };
+		7AEB6AFA1EF23055000155C0 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = SOURCE_ROOT; };
 		7EC6D49F6FB5EEA9415C84EA /* Pods-firstAid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstAid.release.xcconfig"; path = "Pods/Target Support Files/Pods-firstAid/Pods-firstAid.release.xcconfig"; sourceTree = "<group>"; };
 		AD06954D1EE00317004B52C9 /* QuestionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTable.swift; sourceTree = "<group>"; };
 		AD0695511EE0077B004B52C9 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -146,6 +150,8 @@
 				ADE20E2A1EE8857D00E5267E /* WSTagView.swift */,
 				7AE9A92A1EE9372F0088AA26 /* AnswerViewController.swift */,
 				7A112BAB1EE9714000849B18 /* QPCell.swift */,
+				7AEB6AF81EF22FA3000155C0 /* UIImage+Gif.swift */,
+				7AEB6AFA1EF23055000155C0 /* loading.gif */,
 			);
 			path = firstAid;
 			sourceTree = "<group>";
@@ -213,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD2010D71EC4620E00682212 /* LaunchScreen.storyboard in Resources */,
+				7AEB6AFB1EF23055000155C0 /* loading.gif in Resources */,
 				AD2010D41EC4620E00682212 /* Assets.xcassets in Resources */,
 				AD2010D21EC4620E00682212 /* Main.storyboard in Resources */,
 			);
@@ -277,6 +284,7 @@
 				AD06954E1EE00317004B52C9 /* QuestionTable.swift in Sources */,
 				7A112BAC1EE9714000849B18 /* QPCell.swift in Sources */,
 				7A862C6E1ED9914F00F74213 /* SearchTableController.swift in Sources */,
+				7AEB6AF91EF22FA3000155C0 /* UIImage+Gif.swift in Sources */,
 				ADE20E301EE888AA00E5267E /* ImageZoomNavigationViewController.swift in Sources */,
 				7A6915001ED29F7000FAF1A5 /* Data.swift in Sources */,
 				ADE20E2D1EE8857D00E5267E /* WSTagView.swift in Sources */,
@@ -418,7 +426,6 @@
 			baseConfigurationReference = 089A56540B3D3D78A67DFD05 /* Pods-firstAid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = firstAid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MJCompany.firstAid;
@@ -432,7 +439,6 @@
 			baseConfigurationReference = 7EC6D49F6FB5EEA9415C84EA /* Pods-firstAid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = firstAid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MJCompany.firstAid;
