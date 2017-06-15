@@ -118,28 +118,32 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     if (qp.answerPage[indexPath.row-1].imageUrl[i] == ""){
                         continue
                     }
-                    let imageView = UIImageView()
-                    let url = URL(string:qp.answerPage[indexPath.row-1].imageUrl[i])
-                    let data = try? Data(contentsOf: url!)
                     
-                    if let imageData = data {
+                    let q = DispatchQueue(label: qp.answerPage[indexPath.row-1].imageUrl[i])
+                    q.async {
+                        let imageView = UIImageView()
+                        let url = URL(string:qp.answerPage[indexPath.row-1].imageUrl[i])
+                        let data = try? Data(contentsOf: url!)
                         
-                        imageView.image = UIImage(data: imageData)
-                        let xPosition = (cell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
-                        //print(self.imageScrollView.frame.height)
-                        imageView.frame = CGRect(x: xPosition, y: 2, width: cell.imageScrollView.frame.height - 4, height: cell.imageScrollView.frame.height - 4)
-                        
-                        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-                        imageView.addGestureRecognizer(tapRecognizer)
-                        imageView.isUserInteractionEnabled = true
-                        
-                        //imageView.addGestureRecognizer(tapRecognizer)
-                        
-                        imageView.contentMode = .scaleAspectFill
-                        imageView.clipsToBounds = true
-                        cell.imageScrollView.contentSize.width = (cell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
-                        cell.imageScrollView.addSubview(imageView)
-                        
+                        if let imageData = data {
+                            
+                            imageView.image = UIImage(data: imageData)
+                            let xPosition = (cell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
+                            //print(self.imageScrollView.frame.height)
+                            imageView.frame = CGRect(x: xPosition, y: 2, width: cell.imageScrollView.frame.height - 4, height: cell.imageScrollView.frame.height - 4)
+                            
+                            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                            imageView.addGestureRecognizer(tapRecognizer)
+                            imageView.isUserInteractionEnabled = true
+                            
+                            //imageView.addGestureRecognizer(tapRecognizer)
+                            
+                            imageView.contentMode = .scaleAspectFill
+                            imageView.clipsToBounds = true
+                            cell.imageScrollView.contentSize.width = (cell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
+                            cell.imageScrollView.addSubview(imageView)
+                            
+                        }
                     }
                 }
             }
@@ -162,51 +166,35 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.textView.text = qnalist.qnalist[section].text
         //for image in header
         if (qnalist.qnalist[section].imageUrl != nil){
-            /*
-            let chosenImages = qnalist.qnalist[section].image!
-            for i in 0 ..< chosenImages.count{
-                
-                let imageView = UIImageView()
-                imageView.image = chosenImages[i]
-                let xPosition = (sectionCell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
-                //print(self.imageScrollView.frame.height)
-                imageView.frame = CGRect(x: xPosition, y: 2, width: sectionCell.imageScrollView.frame.height - 4, height: sectionCell.imageScrollView.frame.height - 4)
-                
-                let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-                imageView.addGestureRecognizer(tapRecognizer)
-                imageView.isUserInteractionEnabled = true
-                
-                //imageView.addGestureRecognizer(tapRecognizer)
-                
-                imageView.contentMode = .scaleAspectFill
-                imageView.clipsToBounds = true
-                sectionCell.imageScrollView.contentSize.width = (sectionCell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
-                sectionCell.imageScrollView.addSubview(imageView)
-            }*/
+            
             for i in 0 ..< qnalist.qnalist[section].imageUrl.count{
                 if (qnalist.qnalist[section].imageUrl[i] == ""){
                     continue
                 }
-                let imageView = UIImageView()
-                let url = URL(string:qnalist.qnalist[section].imageUrl[i])
-                let data = try? Data(contentsOf: url!)
                 
-                if let imageData = data {
-                    imageView.image = UIImage(data: imageData)
-                    let xPosition = (sectionCell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
-                    //print(self.imageScrollView.frame.height)
-                    imageView.frame = CGRect(x: xPosition, y: 2, width: sectionCell.imageScrollView.frame.height - 4, height: sectionCell.imageScrollView.frame.height - 4)
+                let q = DispatchQueue(label: qnalist.qnalist[section].imageUrl[i])
+                q.async {
+                    let imageView = UIImageView()
+                    let url = URL(string:self.qnalist.qnalist[section].imageUrl[i])
+                    let data = try? Data(contentsOf: url!)
                     
-                    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
-                    imageView.addGestureRecognizer(tapRecognizer)
-                    imageView.isUserInteractionEnabled = true
-                    
-                    //imageView.addGestureRecognizer(tapRecognizer)
-                    
-                    imageView.contentMode = .scaleAspectFill
-                    imageView.clipsToBounds = true
-                    sectionCell.imageScrollView.contentSize.width = (sectionCell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
-                    sectionCell.imageScrollView.addSubview(imageView)
+                    if let imageData = data {
+                        imageView.image = UIImage(data: imageData)
+                        let xPosition = (sectionCell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
+                        //print(self.imageScrollView.frame.height)
+                        imageView.frame = CGRect(x: xPosition, y: 2, width: sectionCell.imageScrollView.frame.height - 4, height: sectionCell.imageScrollView.frame.height - 4)
+                        
+                        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                        imageView.addGestureRecognizer(tapRecognizer)
+                        imageView.isUserInteractionEnabled = true
+                        
+                        //imageView.addGestureRecognizer(tapRecognizer)
+                        
+                        imageView.contentMode = .scaleAspectFill
+                        imageView.clipsToBounds = true
+                        sectionCell.imageScrollView.contentSize.width = (sectionCell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
+                        sectionCell.imageScrollView.addSubview(imageView)
+                    }
                 }
             }
         }
