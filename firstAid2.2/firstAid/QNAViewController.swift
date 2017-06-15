@@ -116,8 +116,28 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             if (qp.answerPage[indexPath.row-1].imageUrl != nil){
                 for i in 0 ..< qp.answerPage[indexPath.row-1].imageUrl.count{
                     if (qp.answerPage[indexPath.row-1].imageUrl[i] == ""){
-                        continue
+                        break
                     }
+                    
+                    let imagev = UIImageView()
+                    imagev.image = UIImage(named: "Photo")
+                    
+                    let xPosition = (cell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
+                    //print(self.imageScrollView.frame.height)
+                    imagev.frame = CGRect(x: xPosition, y: 2, width: cell.imageScrollView.frame.height - 4, height: cell.imageScrollView.frame.height - 4)
+                    
+                    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                    imagev.addGestureRecognizer(tapRecognizer)
+                    imagev.isUserInteractionEnabled = true
+                    
+                    //imageView.addGestureRecognizer(tapRecognizer)
+                    
+                    imagev.contentMode = .scaleAspectFill
+                    imagev.clipsToBounds = true
+                    cell.imageScrollView.contentSize.width = (cell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
+                    cell.imageScrollView.addSubview(imagev)
+                    
+                    
                     
                     let q = DispatchQueue(label: qp.answerPage[indexPath.row-1].imageUrl[i])
                     q.async {
@@ -169,8 +189,28 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             for i in 0 ..< qnalist.qnalist[section].imageUrl.count{
                 if (qnalist.qnalist[section].imageUrl[i] == ""){
-                    continue
+                    break
                 }
+                
+                let imagev = UIImageView()
+                imagev.image = UIImage(named: "Photo")
+                
+                let xPosition = (sectionCell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
+                //print(self.imageScrollView.frame.height)
+                imagev.frame = CGRect(x: xPosition, y: 2, width: sectionCell.imageScrollView.frame.height - 4, height: sectionCell.imageScrollView.frame.height - 4)
+                
+                let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gestureRecognizer:)))
+                imagev.addGestureRecognizer(tapRecognizer)
+                imagev.isUserInteractionEnabled = true
+                
+                //imageView.addGestureRecognizer(tapRecognizer)
+                
+                imagev.contentMode = .scaleAspectFill
+                imagev.clipsToBounds = true
+                sectionCell.imageScrollView.contentSize.width = (sectionCell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
+                sectionCell.imageScrollView.addSubview(imagev)
+                
+                
                 
                 let q = DispatchQueue(label: qnalist.qnalist[section].imageUrl[i])
                 q.async {
