@@ -143,6 +143,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     let q = DispatchQueue(label: qp.answerPage[indexPath.row-1].imageUrl[i])
                     q.async {
                         let imageView = UIImageView()
+                        print(qp.answerPage[indexPath.row-1].imageUrl[i])
                         let url = URL(string:qp.answerPage[indexPath.row-1].imageUrl[i])
                         let data = try? Data(contentsOf: url!)
                         
@@ -163,6 +164,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                             imageView.clipsToBounds = true
                             cell.imageScrollView.contentSize.width = (cell.imageScrollView.frame.height-5) * CGFloat(i + 1) + 2
                             cell.imageScrollView.addSubview(imageView)
+                            
                             
                         }
                     }
@@ -187,6 +189,7 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         sectionCell.textView.text = qnalist.qnalist[section].text
         //for image in header
         if (qnalist.qnalist[section].imageUrl != nil){
+            //let q = DispatchQueue(label: String(qnalist.qnalist[section].questionPageId))
             
             for i in 0 ..< qnalist.qnalist[section].imageUrl.count{
                 if (qnalist.qnalist[section].imageUrl[i] == ""){

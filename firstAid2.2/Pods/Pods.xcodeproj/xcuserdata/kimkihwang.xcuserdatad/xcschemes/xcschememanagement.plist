@@ -53,6 +53,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>SwiftGifOrigin.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -85,6 +90,21 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2B5C7A241ECB0D3A6F8240422DFBF5B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E4428D94062089C58C52A91D0C63DCE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>31AEF5EFAC0144490A4D7CAD6B6BC67D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3BFF9F651824EF6D7159B996DAA71D25</key>
 		<dict>
 			<key>primary</key>
@@ -96,6 +116,16 @@
 			<true/>
 		</dict>
 		<key>43666185AC096E28E5133D3C1B1B6ECF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4476933A15E901F7BCD339C3608C6C2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>46575E2CD305142ACD06EE5F01BA8D91</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -140,7 +170,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>CFE6198633CDCFC16A7355420B4D8589</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E0D1E47AF48B8A64B6F1DB8795C110F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3CA06CD5046421F68B6FBCA5A9072D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

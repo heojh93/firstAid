@@ -217,18 +217,20 @@ class QnAList{
                         guard let boom = answer["like"].int else {
                             continue
                         }
-                        guard let imageUrls = json["image_url"].array else {
+                        guard let imageUrls2 = answer["image_url"].array else {
                             continue
                         }
-                        var urls:[String] = []
-                        for imageUrl in imageUrls{
+                        var urls2:[String] = []
+                        for imageUrl in imageUrls2{
                             guard let url = imageUrl.string else {
                                 continue
                             }
-                            urls.append(url)
+                            urls2.append(url)
+                            print("################################")
+                            print(url)
                         }
                         
-                        var answerPage = AnswerPage(text: text, boom: boom, answerId: answerId, imageUrl:urls)
+                        var answerPage = AnswerPage(text: text, boom: boom, answerId: answerId, imageUrl:urls2)
                         question.answerPage.append(answerPage)
                     }
                     self.qnalist.append(question)
