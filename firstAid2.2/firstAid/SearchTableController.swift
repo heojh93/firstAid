@@ -22,7 +22,7 @@ class SearchTableController: UITableViewController {
     let bookList = BookList()
     
     
-    
+    //let q = DispatchQueue(label: "lable", qos: DispatchQoS.userInteractive)
     
     
     
@@ -118,7 +118,7 @@ class SearchTableController: UITableViewController {
             else{
                 
                 cell.bookImage.image = UIImage.gif(name:"loading")
-                let q = DispatchQueue(label: book.bookImage)
+                let q = DispatchQueue(label: book.bookImage, qos: DispatchQoS.userInteractive)
                 q.async {
                     let url = URL(string:book.bookImage)
                     let data = try? Data(contentsOf: url!)
