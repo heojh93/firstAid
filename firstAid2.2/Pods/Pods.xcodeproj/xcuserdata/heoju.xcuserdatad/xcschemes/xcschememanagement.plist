@@ -6,68 +6,78 @@
 	<dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>GTZoomableImageView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>ImagePicker-ImagePicker.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>ImagePicker.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-firstAid.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SFFullscreenImageDetailViewController-SFFullscreenImageDetailViewController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SFFullscreenImageDetailViewController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftGifOrigin.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>TZZoomImageManager.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>WSTagsField.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00DF280A108EB3FA873AC88B6054B4E6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>09A62655F66AE53A474D64E42E6E9DF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CF5F5B418FA4DCFBF6EF32A5649A630</key>
+		<key>2B5C7A241ECB0D3A6F8240422DFBF5B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E4428D94062089C58C52A91D0C63DCE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>31AEF5EFAC0144490A4D7CAD6B6BC67D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,22 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E64B0151C7F838475A9ED647709CDE4</key>
+		<key>4476933A15E901F7BCD339C3608C6C2D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41565608626D18461C0473F12D5DD07F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>43666185AC096E28E5133D3C1B1B6ECF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>622DA3B6F86DEB7E17F3B3F88A7AAD11</key>
+		<key>46575E2CD305142ACD06EE5F01BA8D91</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>964B4AA7DBFD9FB21B8FEE2C29BD98A1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A338C93506F15213BDD0856574AB0FAE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BBD7CD4CC179654AA0BCDA89AA62C528</key>
+		<key>CFE6198633CDCFC16A7355420B4D8589</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,12 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E52D7419DBD4E2D7D19E4B2350E79F35</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FD353D003F2C68B872D1F5B39A4300B1</key>
+		<key>F3CA06CD5046421F68B6FBCA5A9072D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

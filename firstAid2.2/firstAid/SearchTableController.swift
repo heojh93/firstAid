@@ -117,7 +117,7 @@ class SearchTableController: UITableViewController {
             }
             else{
                 
-                cell.bookImage.image = UIImage(named: "Photo")
+                cell.bookImage.image = UIImage.gif(name:"loading")
                 let q = DispatchQueue(label: book.bookImage)
                 q.async {
                     let url = URL(string:book.bookImage)

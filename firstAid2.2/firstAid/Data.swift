@@ -137,7 +137,7 @@ class QuestionList{
 }
 
 
-class Question{
+class Question : NSObject{
     var questionId:Int
     var questionNumber: Int
     var questionTag: String

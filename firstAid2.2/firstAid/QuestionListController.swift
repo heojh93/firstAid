@@ -109,13 +109,7 @@ extension QuestionListController: UITableViewDataSource{
         
         cell.QNAview.backgroundColor = UIColor(patternImage: UIImage(named: "QNABox.png")!)
         cell.QuestionNumber.text = String(question.questionNumber)
-      let size:CGFloat = 35.0
-      cell.QuestionNumber.bounds = CGRect(x: 0.0, y: 0.0, width: size, height: size)
-      cell.QuestionNumber.layer.cornerRadius = size / 2
-      cell.QuestionNumber.layer.borderWidth = 3.0
-      //cell.QuestionNumber.layer.backgroundColor =
-      //cell.QuestionNumber.layer.borderColor =
-      
+            
       
         cell.QuestionTag.text = question.questionTag
         //cell.NumberOfAnswer.text = String(question.numberOfAnswer)
@@ -129,3 +123,11 @@ extension QuestionListController: UITableViewDataSource{
         return cell
     }
 }
+
+
+extension QuestionListController: SearchTagViewDataSource{
+    func searchPropertyName() -> String {
+        return "questionTag"
+    }
+}
+

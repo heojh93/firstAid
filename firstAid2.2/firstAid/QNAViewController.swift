@@ -120,7 +120,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     }
                     
                     let imagev = UIImageView()
-                    imagev.image = UIImage(named: "Photo")
+                    imagev.image = UIImage.gif(name:"loading")
+                    //imagev.image = UIImage(named: "Photo")
                     
                     let xPosition = (cell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
                     //print(self.imageScrollView.frame.height)
@@ -193,7 +194,8 @@ class QNAViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
                 
                 let imagev = UIImageView()
-                imagev.image = UIImage(named: "Photo")
+                imagev.image = UIImage.gif(name:"loading")
+                //imagev.image = UIImage(named: "Photo")
                 
                 let xPosition = (sectionCell.imageScrollView.frame.height - 2)  * CGFloat(i) + 2
                 //print(self.imageScrollView.frame.height)
